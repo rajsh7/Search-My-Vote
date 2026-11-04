@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LoopAI CRM Dashboard — Search My Vote</title>
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/search-my-vote-logo.png">
+
+  <!-- Botanical Fonts: EB Garamond (Display) + Instrument Sans (Interface) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    *::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+
+    :root {
+      /* Botanical Theme Palette */
+      --bg: #f5efdf;               /* Cream Paper Ground */
+      --card-bg: #ffffff;          /* Clean White Card Surface */
+      --panel-sage: #e0e5d3;       /* Sage Accent */
+      --warm-field: #e6cbb8;       /* Pale Clay Field */
+      --accent-clay: #895440;      /* Terracotta Accent */
+      --border: #dcd7c8;           /* Subtle Paper Rule */
+      --border-light: #ece7dc;
+      
+      --primary: #1e382c;          /* Deep Forest Green */
+      --primary-hover: #2b4d3d;
+      --primary-light: rgba(30, 56, 44, 0.06);
+      
+      --text: #1e382c;
+      --text-muted: #576d60;
+      --text-light: #7e9487;
+
+      --font-display: 'EB Garamond', Georgia, serif;
+      --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 26px;
+      --radius-full: 9999px;
+
+      --shadow-subtle: 0 4px 20px rgba(30, 56, 44, 0.05);
+      --shadow-hover: 0 8px 30px rgba(30, 56, 44, 0.09);
+
+      --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 24px 30px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Main Dashboard Outer Wrapper (LoopAI Window Silhouette) */
+    .dashboard-window {
+      width: 100%;
+      max-width: 1360px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 20px 60px rgba(30, 56, 44, 0.08);
+      padding: 24px 28px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* =========================================================
+       1. TOP NAVBAR (LoopAI Style)
+       ========================================================= */
+    .top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--primary);
+    }
+
+    .brand-logo-img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.01em;
+    }
+
+    .platform-tags {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: 6px;
+    }
+
+    .p-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      border-radius: var(--radius-full);
+      background: var(--panel-sage);
+      color: var(--primary);
+    }
+
+    .p-tag.atlas {
+      background: #e2ede5;
+      color: #16462c;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .p-tag.atlas::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 6px #22c55e;
+    }
+
+    /* Nav Center Segmented Pills */
+    .nav-center-pills {
+      display: flex;
+      align-items: center;
+      background: #faf7f0;
+      border: 1px solid var(--border);
+      padding: 4px;
+      border-radius: var(--radius-full);
+      gap: 4px;
+    }
+
+    .nav-pill {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 7px 18px;
+      border-radius: var(--radius-full);
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .nav-pill:hover {
+      color: var(--primary);
+    }
+
+    .nav-pill.active {
+      background: var(--card-bg);
+      color: var(--primary);
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 6px rgba(30, 56, 44, 0.06);
+    }
+
+    /* Nav Right User Controls */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .icon-btn:hover {
+      background: var(--panel-sage);
+      border-color: var(--primary);
+    }
+
+    .user-avatar-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #faf7f0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 3px 12px 3px 4px;
+      cursor: pointer;
+    }
+
+    .avatar-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .user-name {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* =========================================================
+       2. DASHBOARD MAIN GRID (Left Main 72% / Right Sidebar 28%)
+       ========================================================= */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .main-column {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .side-column {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    /* =========================================================
+       3. TOP 3 KPI SUMMARY CARDS (LoopAI Style)
+       ========================================================= */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      box-shadow: var(--shadow-subtle);
+      transition: var(--transition);
+    }
+
+    .kpi-card:hover {
+      box-shadow: var(--shadow-hover);
+      border-color: #beb8a7;
+    }
+
+    .kpi-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .kpi-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .kpi-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      background: var(--panel-sage);
+      color: var(--primary);
+    }
+
+    .kpi-pill.negative {
+      background: #fde8e8;
+      color: #a81c1c;
+    }
+
+    .kpi-value-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .kpi-number {
+      font-family: var(--font-display);
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .kpi-compare {
+      font-size: 11px;
+      color: var(--text-light);
+      white-space: nowrap;
+    }
+
+    /* =========================================================
+       4. ANALYTICS CARD WITH SIGNATURE LOOPAI BUBBLE CHART
+       ========================================================= */
+    .analytics-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .card-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .card-filters {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mini-dropdown {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: #faf7f0;
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      outline: none;
+    }
+
+    .chart-layout {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .chart-left-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .legend-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .legend-dot.projected {
+      background: var(--warm-field);
+    }
+
+    .ai-insight-box {
+      background: #f7f4ec;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      font-size: 0.78rem;
+      color: var(--primary);
+      line-height: 1.45;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .ai-insight-box svg {
+      color: var(--accent-clay);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .btn-run-analysis {
+      font-family: var(--font-sans);
+      font-size: 0.86rem;
+      font-weight: 600;
+      background: var(--primary);
+      color: var(--bg);
+      border: none;
+      padding: 10px 18px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-run-analysis:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    /* LoopAI Dotted Bubble Matrix Chart */
+    .bubble-chart-wrap {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .bubble-columns-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      height: 170px;
+      padding: 10px 0 6px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .bubble-column {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 5px;
+      align-items: center;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .bubble-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #d8e5dc;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .bubble-column:hover .bubble-dot {
+      background: var(--text-light);
+      transform: scale(1.15);
+    }
+
+    /* Active Highlighted Column (Like LoopAI Mar 14) */
+    .bubble-column.active .bubble-dot {
+      background: var(--primary);
+    }
+
+    .bubble-highlight-pill {
+      position: absolute;
+      top: -30px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+      box-shadow: 0 4px 10px rgba(30, 56, 44, 0.2);
+    }
+
+    .bubble-dates-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-light);
+      padding-top: 4px;
+      font-weight: 500;
+    }
+
+    .date-active-pill {
+      background: var(--panel-sage);
+      color: var(--primary);
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    /* =========================================================
+       5. MANAGE GRIEVANCES TABLE CARD (LoopAI Style)
+       ========================================================= */
+    .table-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px 24px;
+      box-shadow: var(--shadow-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .table-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .filter-pills-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tbl-pill-btn {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tbl-pill-btn:hover {
+      color: var(--primary);
+      border-color: #beb8a7;
+    }
+
+    .tbl-pill-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .tbl-pill-count {
+      font-size: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 1px 5px;
+      border-radius: var(--radius-full);
+    }
+
+    .tbl-pill-btn:not(.active) .tbl-pill-count {
+      background: var(--panel-sage);
+      color: var(--primary);
+    }
+
+    .search-input-pill {
+      font-family: var(--font-sans);
+      font-size: 0.84rem;
+      padding: 7px 14px 7px 32px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      background: #faf7f0 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23576d60' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E") no-repeat 11px center;
+      outline: none;
+      color: var(--primary);
+      width: 220px;
+      transition: var(--transition);
+    }
+
+    .search-input-pill:focus {
+      border-color: var(--primary);
+      background-color: #ffffff;
+      width: 260px;
+    }
+
+    /* Clean LoopAI Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    thead th {
+      padding: 10px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody td {
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 0.86rem;
+      vertical-align: middle;
+    }
+
+    tbody tr:hover {
+      background: #faf8f2;
+    }
+
+    .citizen-info-cell {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .citizen-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--panel-sage);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .citizen-name-meta {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .c-name {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .c-handle {
+      font-size: 11px;
+      color: var(--text-light);
+    }
+
+    .task-cell {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .task-title {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .task-sub {
+      font-size: 11px;
+      color: var(--text-light);
+    }
+
+    .ticket-mono {
+      font-family: var(--font-display);
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--accent-clay);
+      background: rgba(137, 84, 64, 0.08);
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      display: inline-block;
+    }
+
+    /* Outlined LoopAI Status Pills */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      text-transform: capitalize;
+    }
+
+    .status-badge::before {
+      content: "○";
+      font-size: 10px;
+      line-height: 1;
+    }
+
+    .status-badge.in-progress {
+      border-color: #f59e0b;
+      color: #b45309;
+      background: #fffbeb;
+    }
+    .status-badge.in-progress::before { content: "⦿"; color: #f59e0b; }
+
+    .status-badge.on-review,
+    .status-badge.under-review {
+      border-color: #3b82f6;
+      color: #1d4ed8;
+      background: #eff6ff;
+    }
+    .status-badge.on-review::before { content: "⦿"; color: #3b82f6; }
+
+    .status-badge.resolved,
+    .status-badge.closed {
+      border-color: #22c55e;
+      color: #15803d;
+      background: #f0fdf4;
+    }
+    .status-badge.resolved::before { content: "●"; color: #22c55e; }
+
+    .status-badge.draft,
+    .status-badge.received {
+      border-color: #a1a1aa;
+      color: #52525b;
+      background: #f4f4f5;
+    }
+
+    .more-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-light);
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      font-size: 16px;
+      line-height: 1;
+      transition: var(--transition);
+    }
+
+    .more-btn:hover {
+      color: var(--primary);
+      background: var(--panel-sage);
+    }
+
+    /* =========================================================
+       6. RIGHT SIDEBAR: PRIORITY TASKS & ASSISTANT CARD
+       ========================================================= */
+    .priority-tasks-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      box-shadow: var(--shadow-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .task-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .see-all-link {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-clay);
+      text-decoration: none;
+    }
+
+    .task-item-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-light);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .task-item-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .task-item-row:hover {
+      transform: translateX(3px);
+    }
+
+    .task-item-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .task-item-title-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .task-sub-hint {
+      font-size: 11px;
+      color: var(--text-light);
+      line-height: 1.35;
+    }
+
+    .task-arrow {
+      color: var(--text-light);
+      font-size: 13px;
+    }
+
+    /* Assistant Card: "How can I help you?" */
+    .assistant-card {
+      background: #f7f4ec;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      box-shadow: var(--shadow-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: center;
+    }
+
+    .assistant-greeting {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .assistant-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: -6px;
+    }
+
+    /* Sub-tabs inside assistant */
+    .assistant-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      background: #eae5d7;
+      padding: 3px;
+      border-radius: var(--radius-full);
+    }
+
+    .ast-tab-btn {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .ast-tab-btn.active {
+      background: var(--card-bg);
+      color: var(--primary);
+      box-shadow: 0 1px 4px rgba(30, 56, 44, 0.08);
+    }
+
+    /* 2x2 Quick Action Tiles */
+    .quick-tiles-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .quick-tile {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .quick-tile:hover {
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    .tile-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .tile-icon.green { background: #e0f2fe; color: #0284c7; }
+    .tile-icon.coral { background: #fee2e2; color: #dc2626; }
+    .tile-icon.amber { background: #fef3c7; color: #d97706; }
+    .tile-icon.pink { background: #fce7f3; color: #db2777; }
+
+    .tile-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .ask-input-wrap {
+      position: relative;
+      margin-top: 2px;
+    }
+
+    .ask-input {
+      width: 100%;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      padding: 9px 36px 9px 14px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      background: #ffffff;
+      outline: none;
+      color: var(--primary);
+    }
+
+    .ask-input:focus {
+      border-color: var(--primary);
+    }
+
+    .ask-icon-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: var(--accent-clay);
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    /* =========================================================
+       7. INTERACTIVE CASEWORK MODAL DRAWER
+       ========================================================= */
+    .crm-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(30, 56, 44, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+      padding: 20px;
+    }
+
+    .crm-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .crm-modal-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(30, 56, 44, 0.15);
+      transform: translateY(14px);
+      transition: transform 0.25s var(--transition);
+    }
+
+    .crm-modal-overlay.active .crm-modal-card {
+      transform: translateY(0);
+    }
+
+    .modal-head {
+      padding: 20px 26px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #faf7f0;
+    }
+
+    .modal-head h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      line-height: 1;
+    }
+
+    .modal-body {
+      padding: 26px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      background: #faf7f0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 18px;
+      margin-bottom: 22px;
+    }
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .detail-item.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .detail-lbl {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+      margin-bottom: 2px;
+    }
+
+    .detail-val {
+      font-size: 0.92rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .statement-box {
+      font-weight: 400;
+      line-height: 1.55;
+      background: #ffffff;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      margin-top: 4px;
+      font-size: 0.86rem;
+    }
+
+    .form-group-crm {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .form-group-crm label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .form-group-crm input,
+    .form-group-crm select,
+    .form-group-crm textarea {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--primary);
+      outline: none;
+      width: 100%;
+    }
+
+    .form-group-crm input:focus,
+    .form-group-crm select:focus,
+    .form-group-crm textarea:focus {
+      border-color: var(--primary);
+    }
+
+    .history-list {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      max-height: 140px;
+      overflow-y: auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .history-entry {
+      font-size: 0.78rem;
+      border-left: 2px solid var(--primary);
+      padding-left: 8px;
+      line-height: 1.4;
+    }
+
+    .history-time {
+      font-size: 10px;
+      color: var(--text-light);
+    }
+
+    .modal-actions {
+      padding: 16px 26px;
+      border-top: 1px solid var(--border);
+      background: #faf7f0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .btn-save-crm {
+      background: var(--primary);
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: 0.86rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-save-crm:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-cancel-crm {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      font-family: var(--font-sans);
+      font-size: 0.86rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+    }
+
+    .btn-delete-crm {
+      background: #fee2e2;
+      color: #dc2626;
+      border: 1px solid #fecaca;
+      font-family: var(--font-sans);
+      font-size: 0.86rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--primary);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 0.86rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 2000;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1080px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+      .side-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 780px) {
+      body {
+        padding: 12px;
+      }
+      .dashboard-window {
+        padding: 16px;
+      }
+      .top-nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .nav-center-pills {
+        overflow-x: auto;
+      }
+      .kpi-row {
+        grid-template-columns: 1fr;
+      }
+      .chart-layout {
+        grid-template-columns: 1fr;
+      }
+      .side-column {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dashboard Window Container (LoopAI Frame) -->
+  <div class="dashboard-window">
+
+    <!-- 1. Top Navbar -->
+    <header class="top-nav">
+      <!-- Left: Brand & Platform Tags -->
+      <div class="nav-left">
+        <a href="/" class="brand-mark" aria-label="Search My Vote Home">
+          <img src="/assets/logo.svg" alt="Logo" class="brand-logo-img" onerror="this.src='/assets/search-my-vote-logo.png'">
+          <span class="brand-title">Search My Vote</span>
+        </a>
+        <div class="platform-tags">
+          <span class="p-tag atlas">Atlas Live</span>
+          <span class="p-tag">28 States</span>
+        </div>
+      </div>
+
+      <!-- Center: Segmented Navigation Pills -->
+      <nav class="nav-center-pills">
+        <button class="nav-pill active" onclick="switchNavTab('overview', this)">Overview</button>
+        <button class="nav-pill" onclick="switchNavTab('grievances', this)">Grievances</button>
+        <button class="nav-pill" onclick="switchNavTab('constituencies', this)">Constituencies</button>
+        <button class="nav-pill" onclick="switchNavTab('advocacy', this)">Advocacy</button>
+        <a href="/api/admin/export-csv" class="nav-pill">Reports</a>
+      </nav>
+
+      <!-- Right: Settings, Notifications & Caseworker Avatar -->
+      <div class="nav-right">
+        <button class="icon-btn" title="Refresh Live Data" onclick="loadAllData()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        </button>
+        <a href="/api/admin/export-csv" class="icon-btn" title="Export CSV Report">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </a>
+        <div class="user-avatar-badge" title="Search My Vote Casework Portal">
+          <div class="avatar-circle">SM</div>
+          <span class="user-name">Search My Vote</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. Main 2-Column Dashboard Grid -->
+    <div class="dashboard-grid">
+
+      <!-- Left Main Column (72%) -->
+      <div class="main-column">
+
+        <!-- A. Top 3 KPI Cards (Live Real Data Only) -->
+        <div class="kpi-row">
+          <!-- Card 1: Total Registered -->
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <span class="kpi-title">Total Grievances</span>
+              <span class="kpi-pill">Atlas Live</span>
+            </div>
+            <div class="kpi-value-row">
+              <span class="kpi-number" id="cntTotal">0</span>
+              <span class="kpi-compare">Total citizen submissions</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Under Review -->
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <span class="kpi-title">Pending Review</span>
+              <span class="kpi-pill negative" id="pillPending">0</span>
+            </div>
+            <div class="kpi-value-row">
+              <span class="kpi-number" id="cntUnderReview">0</span>
+              <span class="kpi-compare">Awaiting staff verification</span>
+            </div>
+          </div>
+
+          <!-- Card 3: In Active Follow-up -->
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <span class="kpi-title">Active Advocacy</span>
+              <span class="kpi-pill" id="pillProgress">0 Actioned</span>
+            </div>
+            <div class="kpi-value-row">
+              <span class="kpi-number" id="cntInProgress">0</span>
+              <span class="kpi-compare">In representation &amp; resolved</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- B. Grievance Inflow Analytics Card (LoopAI Dotted Bubble Chart) -->
+        <div class="analytics-card">
+          <div class="card-header-row">
+            <h2 class="card-title">Grievance Inflow Analytics</h2>
+            <div class="card-filters">
+              <select class="mini-dropdown">
+                <option>All Inflow</option>
+                <option>Name Missing</option>
+                <option>Deletion</option>
+              </select>
+              <select class="mini-dropdown">
+                <option>Last 30 Days</option>
+                <option>This Week</option>
+                <option>All Time</option>
+              </select>
+              <a href="/api/admin/export-csv" class="icon-btn" style="width:28px; height:28px;" title="Export chart data">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="chart-layout">
+            <!-- Left Insight & Actions -->
+            <div class="chart-left-meta">
+              <div class="legend-row">
+                <div class="legend-item">
+                  <span class="legend-dot"></span>
+                  <span>Registered Intake</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-dot projected"></span>
+                  <span>Projected Volume</span>
+                </div>
+              </div>
+
+              <div class="ai-insight-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                <span id="aiInsightText">Connected to MongoDB Atlas. Live citizen submissions will dynamically populate analytics.</span>
+              </div>
+
+              <button class="btn-run-analysis" onclick="loadAllData()">
+                <span>Run Case Audit</span>
+              </button>
+            </div>
+
+            <!-- Right: Dotted Bubble Matrix Chart (Dynamic Real Data) -->
+            <div class="bubble-chart-wrap" id="bubbleChartContainer">
+              <div class="bubble-columns-row" id="bubbleColumnsRow">
+                <!-- Dynamic columns from MongoDB Atlas -->
+              </div>
+              <div class="bubble-dates-row" id="bubbleDatesRow">
+                <!-- Dynamic dates -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- C. Manage Grievances Table Card -->
+        <div class="table-card" id="grievancesSection">
+          <div class="table-top-bar">
+            <h3 class="card-title" style="font-size: 1.25rem;">Manage Grievances</h3>
+            
+            <div class="filter-pills-wrap">
+              <button class="tbl-pill-btn active" data-status="all" onclick="selectStatusFilter('all', this)">
+                <span>All</span> <span class="tbl-pill-count" id="pillCountAll">0</span>
+              </button>
+              <button class="tbl-pill-btn" data-status="Received" onclick="selectStatusFilter('Received', this)">
+                <span>Received</span> <span class="tbl-pill-count" id="pillCountReceived">0</span>
+              </button>
+              <button class="tbl-pill-btn" data-status="Under Review" onclick="selectStatusFilter('Under Review', this)">
+                <span>In Review</span>
+              </button>
+              <button class="tbl-pill-btn" data-status="In Progress" onclick="selectStatusFilter('In Progress', this)">
+                <span>In Progress</span>
+              </button>
+              <button class="tbl-pill-btn" data-status="Resolved" onclick="selectStatusFilter('Resolved', this)">
+                <span>Resolved</span>
+              </button>
+            </div>
+
+            <input type="text" id="searchInput" class="search-input-pill" placeholder="Search ticket, name, phone..." oninput="debounceSearch()">
+          </div>
+
+          <!-- Hidden select for filter compatibility -->
+          <select id="filterStatus" style="display:none;" onchange="loadGrievances()">
+            <option value="all">All</option>
+            <option value="Received">Received</option>
+            <option value="Under Review">Under Review</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+          <select id="filterState" style="display:none;" onchange="loadGrievances()">
+            <option value="all">All</option>
+          </select>
+
+          <!-- Table View -->
+          <table>
+            <thead>
+              <tr>
+                <th>CITIZEN / APPLICANT</th>
+                <th>GRIEVANCE NATURE / CONSTITUENCY</th>
+                <th>CASE REF</th>
+                <th>DATE</th>
+                <th>STATUS</th>
+                <th>ACTION</th>
+              </tr>
+            </thead>
+            <tbody id="grievanceTbody">
+              <tr>
+                <td colspan="6" style="text-align: center; padding: 42px; color: var(--text-muted);">
+                  Loading live cases from MongoDB Atlas...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="table-footer" style="display: flex; justify-content: space-between; align-items: center; padding-top: 10px; font-size: 11px; color: var(--text-light);">
+            <span id="paginationLabel">Showing 0 cases</span>
+            <div style="display: flex; gap: 8px;">
+              <button class="tbl-pill-btn" id="prevPageBtn" onclick="changePage(-1)">← Previous</button>
+              <button class="tbl-pill-btn" id="nextPageBtn" onclick="changePage(1)">Next →</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Sidebar Column (28%) -->
+      <div class="side-column">
+
+        <!-- 1. Priority Tasks Card (Real Casework Queue) -->
+        <div class="priority-tasks-card">
+          <div class="task-header">
+            <h3 class="card-title" style="font-size: 1.15rem;">Priority Casework</h3>
+            <a href="#grievancesSection" class="see-all-link">See all</a>
+          </div>
+
+          <!-- Dynamic Real Casework Queue -->
+          <div id="priorityCasesList">
+            <p style="font-size: 0.82rem; color: var(--text-light); text-align: center; padding: 20px 0;">Loading pending casework...</p>
+          </div>
+        </div>
+
+        <!-- 2. "How can I help you?" Caseworker Assistant Card (LoopAI Match) -->
+        <div class="assistant-card">
+          <div class="assistant-greeting">Hi, Caseworker 👋</div>
+          <div class="assistant-title">How can I help you?</div>
+
+          <!-- Assistant Sub-Tabs -->
+          <div class="assistant-tabs">
+            <button class="ast-tab-btn active">ꚙ LoopAI</button>
+            <button class="ast-tab-btn">Constituency</button>
+            <button class="ast-tab-btn">Legal Cell</button>
+          </div>
+
+          <!-- 2x2 Quick Action Tiles -->
+          <div class="quick-tiles-grid">
+            <div class="quick-tile" onclick="quickAction('Draft Representation')">
+              <div class="tile-icon green">📝</div>
+              <span class="tile-label">Draft Notice</span>
+            </div>
+            <div class="quick-tile" onclick="quickAction('Procedure Verification')">
+              <div class="tile-icon coral">⚖️</div>
+              <span class="tile-label">Roll Audit</span>
+            </div>
+            <div class="quick-tile" onclick="quickAction('Schedule Follow-up')">
+              <div class="tile-icon amber">📅</div>
+              <span class="tile-label">Schedule Task</span>
+            </div>
+            <div class="quick-tile" onclick="quickAction('Constituency Analytics')">
+              <div class="tile-icon pink">📊</div>
+              <span class="tile-label">Case Stats</span>
+            </div>
+          </div>
+
+          <!-- Bottom Ask Input -->
+          <div class="ask-input-wrap">
+            <input type="text" class="ask-input" id="assistantInput" placeholder="Ask casework assistant..." onkeydown="handleAssistantKey(event)">
+            <button class="ask-icon-btn" onclick="sendAssistantQuery()">✨</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Casework Detail & Update Drawer Modal -->
+  <div class="crm-modal-overlay" id="caseModal">
+    <div class="crm-modal-card">
+      <div class="modal-head">
+        <h3 id="modalTicketTitle">Case Review — 2026NAME01</h3>
+        <button class="modal-close-btn" onclick="closeModal()">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="detail-grid">
+          <div class="detail-item">
+            <span class="detail-lbl">Ticket ID</span>
+            <span class="detail-val" id="mdTicketId" style="font-family: var(--font-display); font-size: 1.2rem; color: var(--accent-clay);">—</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-lbl">Current Status</span>
+            <div id="mdStatusPill" style="margin-top: 4px;">—</div>
+          </div>
+          <div class="detail-item">
+            <span class="detail-lbl">Citizen Full Name</span>
+            <span class="detail-val" id="mdFullName">—</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-lbl">Registered Mobile</span>
+            <span class="detail-val" id="mdMobile">—</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-lbl">Email Address</span>
+            <span class="detail-val" id="mdEmail">—</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-lbl">Date Registered</span>
+            <span class="detail-val" id="mdCreated">—</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-lbl">State / UT</span>
+            <span class="detail-val" id="mdState">—</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-lbl">District</span>
+            <span class="detail-val" id="mdDistrict">—</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-lbl">Lok Sabha Constituency</span>
+            <span class="detail-val" id="mdLokSabha">—</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-lbl">Assembly Constituency</span>
+            <span class="detail-val" id="mdAssembly">—</span>
+          </div>
+          <div class="detail-item full-width">
+            <span class="detail-lbl">Nature of Grievance</span>
+            <span class="detail-val" id="mdNature">—</span>
+          </div>
+          <div class="detail-item full-width" id="mdDescContainer">
+            <span class="detail-lbl">Citizen's Statement / Description</span>
+            <div class="statement-box" id="mdDescription">—</div>
+          </div>
+        </div>
+
+        <div class="form-group-crm">
+          <label for="upStatus">Update Case Status</label>
+          <select id="upStatus">
+            <option value="Received">Received</option>
+            <option value="Under Review">Under Review</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Evidence Required">Evidence Required</option>
+            <option value="Verified for Follow-up">Verified for Follow-up</option>
+            <option value="Resolved">Resolved</option>
+            <option value="Rejected">Rejected</option>
+            <option value="Closed">Closed</option>
+          </select>
+        </div>
+
+        <div class="form-group-crm">
+          <label for="upAssigned">Assigned Caseworker / Advocate</label>
+          <input type="text" id="upAssigned" placeholder="e.g. Adv. R. K. Sharma (Legal Cell)">
+        </div>
+
+        <div class="form-group-crm">
+          <label for="upRemarks">Caseworker Notes &amp; Public Tracking Update</label>
+          <textarea id="upRemarks" rows="3" placeholder="Enter notes. Citizen sees this when tracking with their Ticket ID..."></textarea>
+        </div>
+
+        <div class="form-group-crm">
+          <label>Case Audit Trail</label>
+          <div class="history-list" id="mdHistoryList">
+            <p class="history-entry">No prior updates.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-cancel-crm" onclick="closeModal()">Cancel</button>
+        <button class="btn-delete-crm" id="deleteCaseBtn">Delete Case</button>
+        <button class="btn-save-crm" id="saveCaseBtn" onclick="saveCaseChanges()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <script src="/js/data.js"></script>
+  <script>
+    let activeTicketId = null;
+    let currentPage = 1;
+    let totalPages = 1;
+    let debounceTimer = null;
+
+    function switchNavTab(tabName, btnEl) {
+      document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      if (tabName === 'grievances') {
+        document.getElementById('grievancesSection').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function selectStatusFilter(statusVal, btnEl) {
+      document.querySelectorAll('.tbl-pill-btn').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      document.getElementById('filterStatus').value = statusVal;
+      currentPage = 1;
+      loadGrievances();
+    }
+
+    function filterByPriority(type) {
+      const reviewBtn = document.querySelector('.tbl-pill-btn[data-status="Under Review"]');
+      if (reviewBtn) selectStatusFilter('Under Review', reviewBtn);
+      document.getElementById('grievancesSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function quickAction(actionName) {
+      showToast(`AI Assistant triggered: ${actionName}`);
+    }
+
+    function handleAssistantKey(e) {
+      if (e.key === 'Enter') sendAssistantQuery();
+    }
+
+    function sendAssistantQuery() {
+      const input = document.getElementById('assistantInput');
+      const val = input.value.trim();
+      if (!val) return;
+      showToast(`LoopAI Assistant: Searching cases related to "${val}"...`);
+      document.getElementById('searchInput').value = val;
+      input.value = '';
+      loadGrievances();
+    }
+
+    function loadAllData() {
+      loadStats();
+      loadGrievances();
+    }
+
+    // Load Metrics from MongoDB Atlas (100% Real Data Only)
+    async function loadStats() {
+      try {
+        const res = await fetch('/api/admin/stats');
+        const data = await res.json();
+
+        // Update KPI Counters
+        document.getElementById('cntTotal').textContent = data.total || 0;
+        document.getElementById('pillCountAll').textContent = data.total || 0;
+        document.getElementById('pillCountReceived').textContent = data.received || 0;
+        document.getElementById('cntUnderReview').textContent = data.under_review || 0;
+        document.getElementById('pillPending').textContent = (data.under_review || 0) + (data.received || 0);
+        document.getElementById('cntInProgress').textContent = (data.in_progress || 0) + (data.resolved || 0);
+        const pillProg = document.getElementById('pillProgress');
+        if (pillProg) pillProg.textContent = (data.in_progress || 0) + ' Actioned';
+
+        // Update Real AI Insight Quote
+        const insightEl = document.getElementById('aiInsightText');
+        if (insightEl) {
+          if (data.top_states && data.top_states.length > 0) {
+            insightEl.textContent = `Intake analysis: ${data.top_states[0].state} leads regional grievances (${data.top_states[0].count} cases). Verification underway.`;
+          } else {
+            insightEl.textContent = "Live MongoDB Atlas register connected. Real citizen complaints will dynamically populate analytics.";
+          }
+        }
+
+        // Render Real Dynamic Dotted Bubble Chart
+        renderBubbleChart(data);
+
+        // Render Real Priority Casework List
+        renderPriorityCases(data);
+
+      } catch (err) {
+        console.error('Stats load error:', err);
+      }
+    }
+
+    // Dynamic Dotted Bubble Matrix Chart (LoopAI Style with Real Atlas Data)
+    function renderBubbleChart(data) {
+      const colsEl = document.getElementById('bubbleColumnsRow');
+      const datesEl = document.getElementById('bubbleDatesRow');
+      if (!colsEl || !datesEl) return;
+
+      // Generate past 8 days
+      const days = [];
+      for (let i = 7; i >= 0; i--) {
+        const d = new Date();
+        d.setDate(d.getDate() - i);
+        days.push({
+          iso: d.toISOString().slice(0, 10),
+          label: d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+          count: 0
+        });
+      }
+
+      // Map real daily intake counts from database
+      if (data.daily_intake && Array.isArray(data.daily_intake)) {
+        data.daily_intake.forEach(di => {
+          const match = days.find(day => day.iso === di.date);
+          if (match) match.count = di.count;
+        });
+      }
+
+      const maxCount = Math.max(...days.map(d => d.count), 0);
+      const hasRealData = maxCount > 0;
+
+      colsEl.innerHTML = days.map((day, idx) => {
+        const isToday = idx === days.length - 1;
+        const isPeak = hasRealData && day.count === maxCount;
+        const isActive = isPeak || (isToday && !hasRealData);
+
+        // Render stacked dots proportional to real count (1 base dot if 0)
+        const dotCount = day.count > 0 ? Math.min(Math.max(day.count, 2), 8) : 1;
+        let dotsHtml = '';
+        for (let k = 0; k < dotCount; k++) {
+          dotsHtml += '<div class="bubble-dot"></div>';
+        }
+
+        const pillHtml = (isActive && day.count > 0)
+          ? `<div class="bubble-highlight-pill">${day.count} Cases</div>`
+          : (isToday && day.count === 0 && !hasRealData)
+            ? `<div class="bubble-highlight-pill" style="background:#576d60;">Live Today</div>`
+            : '';
+
+        return `
+          <div class="bubble-column ${isActive ? 'active' : ''}" title="${day.label}: ${day.count} case(s)">
+            ${pillHtml}
+            ${dotsHtml}
+          </div>
+        `;
+      }).join('');
+
+      datesEl.innerHTML = days.map((day, idx) => {
+        const isToday = idx === days.length - 1;
+        return `<span class="${isToday ? 'date-active-pill' : ''}">${day.label}</span>`;
+      }).join('');
+    }
+
+    // Dynamic Priority Casework List (Real Database Queue)
+    function renderPriorityCases(data) {
+      const listEl = document.getElementById('priorityCasesList');
+      if (!listEl) return;
+
+      if (!data.priority_cases || data.priority_cases.length === 0) {
+        listEl.innerHTML = `
+          <div style="padding: 24px 10px; text-align: center; color: var(--text-light); font-size: 0.84rem; line-height: 1.5;">
+            <span style="font-size: 1.3rem; display: block; margin-bottom: 6px;">✓</span>
+            No pending casework in queue.<br>Live citizen submissions will automatically appear here.
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = data.priority_cases.map(c => {
+        const statusClass = (c.status || 'received').toLowerCase().replace(/[^a-z0-9]/g, '-');
+        return `
+          <div class="task-item-row" onclick='openCaseModalById("${c.ticket_id}")' title="Review case ${c.ticket_id}">
+            <div class="task-item-left">
+              <div class="task-item-title-line">
+                <span>${c.full_name}</span>
+                <span class="ticket-mono" style="font-size: 10px; padding: 1px 6px;">${c.ticket_id}</span>
+              </div>
+              <div class="task-sub-hint">
+                ${c.grievance_nature.slice(0, 30)}... • ${c.district || ''}, ${c.state || ''}
+              </div>
+            </div>
+            <span class="status-badge ${statusClass}" style="font-size: 10px; padding: 2px 7px;">${c.status}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function openCaseModalById(ticketId) {
+      try {
+        const res = await fetch(`/api/grievances/track/${encodeURIComponent(ticketId)}`);
+        if (res.ok) {
+          const caseData = await res.json();
+          openCaseModal(caseData);
+        }
+      } catch (e) {
+        console.error('Failed to open case by id:', e);
+      }
+    }
+
+    // Load Live Table Data
+    async function loadGrievances() {
+      const q = document.getElementById('searchInput').value.trim();
+      const status = document.getElementById('filterStatus').value;
+
+      const params = new URLSearchParams({
+        page: currentPage,
+        limit: 10
+      });
+      if (q) params.set('search', q);
+      if (status !== 'all') params.set('status', status);
+
+      try {
+        const res = await fetch('/api/admin/grievances?' + params.toString());
+        const data = await res.json();
+        const tbody = document.getElementById('grievanceTbody');
+
+        if (!data.grievances || data.grievances.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="6" style="text-align: center; padding: 36px; color: var(--text-light);">
+                No grievance records found matching criteria.
+              </td>
+            </tr>
+          `;
+          document.getElementById('paginationLabel').textContent = 'Showing 0 cases';
+          document.getElementById('prevPageBtn').disabled = true;
+          document.getElementById('nextPageBtn').disabled = true;
+          return;
+        }
+
+        totalPages = data.totalPages || 1;
+
+        tbody.innerHTML = data.grievances.map(g => {
+          const statusClass = (g.status || 'received').toLowerCase().replace(/[^a-z0-9]/g, '-');
+          const dateStr = g.created_at ? new Date(g.created_at).toLocaleDateString('en-US', {
+            month: 'short', day: 'numeric'
+          }) : '—';
+
+          // Extract initials for avatar
+          const names = g.full_name.trim().split(' ');
+          const initials = (names[0][0] + (names.length > 1 ? names[names.length - 1][0] : '')).toUpperCase();
+
+          return `
+            <tr>
+              <td>
+                <div class="citizen-info-cell">
+                  <div class="citizen-avatar">${initials}</div>
+                  <div class="citizen-name-meta">
+                    <span class="c-name">${g.full_name}</span>
+                    <span class="c-handle">+91 ${g.mobile}</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="task-cell">
+                  <span class="task-title">${g.grievance_nature.slice(0, 32)}${g.grievance_nature.length > 32 ? '...' : ''}</span>
+                  <span class="task-sub">${g.assembly || g.district}, ${g.state}</span>
+                </div>
+              </td>
+              <td><span class="ticket-mono">${g.ticket_id}</span></td>
+              <td style="color: var(--text-light); font-size: 11px;">${dateStr}</td>
+              <td><span class="status-badge ${statusClass}">${g.status}</span></td>
+              <td>
+                <button class="more-btn" title="Open Casework Dossier" onclick='openCaseModal(${JSON.stringify(g).replace(/'/g, "&apos;")})'>
+                  ⋮
+                </button>
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+        const startIdx = ((currentPage - 1) * data.limit) + 1;
+        const endIdx = Math.min(currentPage * data.limit, data.total);
+        document.getElementById('paginationLabel').textContent = `Showing ${startIdx}–${endIdx} of ${data.total} cases`;
+        document.getElementById('prevPageBtn').disabled = currentPage <= 1;
+        document.getElementById('nextPageBtn').disabled = currentPage >= totalPages;
+
+      } catch (err) {
+        console.error('Failed to load grievances:', err);
+      }
+    }
+
+    function changePage(direction) {
+      currentPage += direction;
+      if (currentPage < 1) currentPage = 1;
+      if (currentPage > totalPages) currentPage = totalPages;
+      loadGrievances();
+    }
+
+    function debounceSearch() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        currentPage = 1;
+        loadGrievances();
+      }, 250);
+    }
+
+    // Modal Handling
+    function openCaseModal(g) {
+      activeTicketId = g.ticket_id;
+      document.getElementById('modalTicketTitle').textContent = `Case Review — ${g.ticket_id}`;
+      document.getElementById('mdTicketId').textContent = g.ticket_id;
+      document.getElementById('mdFullName').textContent = g.full_name;
+      document.getElementById('mdMobile').textContent = `+91 ${g.mobile}`;
+      document.getElementById('mdEmail').textContent = g.email || 'None provided';
+      document.getElementById('mdCreated').textContent = g.created_at ? new Date(g.created_at).toLocaleString('en-IN') : '—';
+      document.getElementById('mdState').textContent = g.state;
+      document.getElementById('mdDistrict').textContent = g.district;
+      document.getElementById('mdLokSabha').textContent = g.lok_sabha;
+      document.getElementById('mdAssembly').textContent = g.assembly;
+      document.getElementById('mdNature').textContent = g.grievance_nature;
+      document.getElementById('mdDescription').textContent = g.description || 'No additional statement provided by citizen.';
+
+      const statusClass = (g.status || 'received').toLowerCase().replace(/[^a-z0-9]/g, '-');
+      document.getElementById('mdStatusPill').innerHTML = `<span class="status-badge ${statusClass}">${g.status}</span>`;
+
+      document.getElementById('upStatus').value = g.status || 'Received';
+      document.getElementById('upAssigned').value = g.assigned_to || '';
+      document.getElementById('upRemarks').value = g.admin_remarks || '';
+
+      const histEl = document.getElementById('mdHistoryList');
+      if (g.history && g.history.length > 0) {
+        histEl.innerHTML = g.history.slice().reverse().map(h => `
+          <div class="history-entry">
+            <strong>${h.status}</strong>: ${h.remarks || ''}
+            <div class="history-time">${new Date(h.timestamp).toLocaleString('en-IN')} (${h.updated_by || 'Staff'})</div>
+          </div>
+        `).join('');
+      } else {
+        histEl.innerHTML = '<p class="history-entry">No prior updates.</p>';
+      }
+
+      document.getElementById('deleteCaseBtn').onclick = () => deleteCase(g.ticket_id);
+      document.getElementById('caseModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('caseModal').classList.remove('active');
+      activeTicketId = null;
+    }
+
+    async function saveCaseChanges() {
+      if (!activeTicketId) return;
+
+      const status = document.getElementById('upStatus').value;
+      const assigned_to = document.getElementById('upAssigned').value.trim();
+      const admin_remarks = document.getElementById('upRemarks').value.trim();
+
+      try {
+        const res = await fetch(`/api/admin/grievances/${activeTicketId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status, assigned_to, admin_remarks })
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+          showToast(`Case ${activeTicketId} updated successfully.`);
+          closeModal();
+          loadAllData();
+        } else {
+          showToast(data.error || 'Failed to update case.');
+        }
+      } catch (err) {
+        showToast('Network error while saving changes.');
+      }
+    }
+
+    async function deleteCase(ticketId) {
+      if (!confirm(`Are you sure you want to permanently delete grievance ${ticketId}?`)) return;
+
+      try {
+        const res = await fetch(`/api/admin/grievances/${ticketId}`, { method: 'DELETE' });
+        const data = await res.json();
+
+        if (res.ok) {
+          showToast(`Case ${ticketId} removed.`);
+          closeModal();
+          loadAllData();
+        } else {
+          showToast(data.error || 'Failed to delete case.');
+        }
+      } catch (err) {
+        showToast('Network error deleting case.');
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    document.getElementById('caseModal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('caseModal')) closeModal();
+    });
+
+    loadAllData();
+  </script>
+</body>
+</html>

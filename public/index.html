@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Search My Vote — National Citizen Grievance Portal for Electoral Roll Concerns, Verification & Lawful Case Support.">
+  <title>Search My Vote — Grievance &amp; Voter Support</title>
+  
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/search-my-vote-logo.png">
+
+  <!-- Google Fonts: EB Garamond (Display) + Instrument Sans (Reading) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar: Logo on Left, File & Track on Right -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <!-- Left: Logo & Brand -->
+      <a href="/" class="nav-brand" aria-label="Search My Vote Home">
+        <img src="/assets/logo.svg" alt="Search My Vote Logo" class="brand-logo-img" onerror="this.src='/assets/search-my-vote-logo.png'">
+        <div class="brand-text">
+          <span class="brand-title">Search <span>My</span> Vote</span>
+          <span class="brand-subtitle">Grievance &amp; Voter Support</span>
+        </div>
+      </a>
+
+      <!-- Right: File a Complaint & Track Complaint -->
+      <nav class="nav-actions" aria-label="Quick Actions">
+        <button class="nav-link-btn" onclick="flipCard('file'); document.getElementById('formSection').scrollIntoView();">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          <span>File a Complaint</span>
+        </button>
+        <button class="nav-link-btn primary" onclick="flipCard('track'); document.getElementById('formSection').scrollIntoView();">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span>Track Complaint</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section (Botanical Layout: Left Serif Copy + Right Tall Arched Visual) -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <!-- Left Column: Expressive Garamond Statements, Subtitle & Actions -->
+      <div class="hero-copy-side">
+        <div class="botanical-label">
+          <span>Democratic Voter Rights &amp; Electoral Roll Assistance</span>
+        </div>
+        
+        <h1 class="hero-title-hindi">
+          आपका वोट.<br>
+          <span>आपकी आवाज़.</span>
+        </h1>
+        <h2 class="hero-title-green">
+          Your Vote is <em>Your Voice.</em>
+        </h2>
+        
+        <p class="hero-subtitle">
+          Has your name gone missing from the voter list? Notice unexpected deletion or enumeration errors? Register your grievance confidentially.
+        </p>
+
+        <p class="hero-hindi-sub">
+          अगर आपका नाम मतदाता सूची से हट गया है या रिकॉर्ड में गलत जानकारी है, तो अपनी शिकायत दर्ज करें। लोकदल दस्तावेज़ एकत्र कर कानूनी और लोकतांत्रिक माध्यमों से मुद्दा उठाने का प्रयास करेगा।
+        </p>
+
+        <div class="hero-actions-row">
+          <button class="btn-botanical-primary" onclick="flipCard('file'); document.getElementById('formSection').scrollIntoView();">
+            <span>Register your grievance ↗</span>
+          </button>
+          <button class="btn-botanical-quiet" onclick="flipCard('track'); document.getElementById('formSection').scrollIntoView();">
+            <span>Track a case →</span>
+          </button>
+        </div>
+
+        <div class="scroll-indicator-wrap" onclick="document.getElementById('formSection').scrollIntoView();">
+          <span>Scroll down to register or track</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M7 13l5 5 5-5M12 4v14"/></svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Tall Arched Silhouette with Natural Photograph & Sprig -->
+      <div class="hero-visual-side">
+        <!-- Outer Fine Arch Guide -->
+        <div class="arch-outer-guide" aria-hidden="true"></div>
+
+        <!-- Botanical Sprig Ornament -->
+        <svg class="botanical-sprig-svg" viewBox="0 0 60 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M30 135 C28 95, 32 55, 30 5" stroke="#b5baa4" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M30 110 C18 102, 12 110, 16 118 C20 122, 26 116, 30 110 Z" stroke="#b5baa4" stroke-width="1" fill="none"/>
+          <path d="M30 95 C42 87, 48 95, 44 103 C40 107, 34 101, 30 95 Z" stroke="#b5baa4" stroke-width="1" fill="none"/>
+          <path d="M30 70 C16 63, 10 71, 16 79 C22 82, 26 76, 30 70 Z" stroke="#b5baa4" stroke-width="1" fill="none"/>
+          <path d="M30 55 C44 48, 50 56, 44 64 C38 67, 34 61, 30 55 Z" stroke="#b5baa4" stroke-width="1" fill="none"/>
+          <path d="M30 30 C20 22, 16 30, 22 36 C26 38, 28 34, 30 30 Z" stroke="#b5baa4" stroke-width="1" fill="none"/>
+          <path d="M30 15 C38 8, 44 14, 38 20 C35 22, 32 18, 30 15 Z" stroke="#b5baa4" stroke-width="1" fill="none"/>
+        </svg>
+
+        <!-- Tall Arched Card with Real Editorial Photograph -->
+        <div class="botanical-arch-card">
+          <img src="/assets/hero-voter-guide.jpg" alt="Civic volunteer assisting an Indian citizen with voter roll registration and electoral roll verification" class="botanical-arch-img" width="304" height="456">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sage Panel: Related Explanations & 4 Pillars -->
+  <section class="sage-features-section container">
+    <div class="sage-panel-card">
+      <div class="feature-grid">
+        <div class="feature-card-item">
+          <span class="feature-symbol">◇</span>
+          <strong>Nationwide Scope</strong>
+          <p>28 states &amp; 8 UTs verified constituency hierarchy &amp; coverage.</p>
+        </div>
+        <div class="feature-card-item">
+          <span class="feature-symbol">▤</span>
+          <strong>Evidence First</strong>
+          <p>Attach supporting proof &amp; detailed electoral roll records.</p>
+        </div>
+        <div class="feature-card-item">
+          <span class="feature-symbol">◎</span>
+          <strong>Private Tracking</strong>
+          <p>Irrevocable Ticket ID (e.g. 2026NAME01) for instant real-time lookup.</p>
+        </div>
+        <div class="feature-card-item">
+          <span class="feature-symbol">⚖</span>
+          <strong>Lawful Advocacy</strong>
+          <p>Authorized caseworker review &amp; constitutional representation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Continuous Forest-Green Field: Numbered Process & Benefits -->
+  <section class="forest-steps-section container">
+    <div class="forest-field-card">
+      <div class="forest-header">
+        <div class="forest-kicker">HOW IT WORKS</div>
+        <h2 class="forest-title">Three steps to make your grievance heard</h2>
+      </div>
+      <div class="steps-3-grid">
+        <div class="step-box-item">
+          <span class="step-num-badge">01</span>
+          <strong>Submit your grievance</strong>
+          <p>Enter your contact details and describe what occurred with your voter roll registration.</p>
+        </div>
+        <div class="step-box-item">
+          <span class="step-num-badge">02</span>
+          <strong>Verify constituency details</strong>
+          <p>Select your State, District, Lok Sabha and Assembly Constituency with verified procedures.</p>
+        </div>
+        <div class="step-box-item">
+          <span class="step-num-badge">03</span>
+          <strong>Follow the case</strong>
+          <p>Use your generated Ticket ID at any time to monitor review progress and caseworker notes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Area: Form & Tracking -->
+  <main class="main-wrapper" id="formSection">
+    <div class="container">
+
+      <!-- Tabs stuck directly to the form -->
+      <div class="card-tab-bar">
+        <div class="card-tabs">
+          <button class="card-tab-btn active" id="tabBtnFile" onclick="flipCard('file')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="17" height="17"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            01. File Complaint
+          </button>
+          <button class="card-tab-btn" id="tabBtnTrack" onclick="flipCard('track')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="17" height="17"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            02. Track Complaint
+          </button>
+        </div>
+      </div>
+
+      <!-- 3D FLIP CARD: FRONT (FILE COMPLAINT) / BACK (TRACK COMPLAINT) -->
+      <div class="flip-scene">
+        <div class="flip-inner" id="cardFlipper">
+          
+          <!-- FRONT FACE: FILE A COMPLAINT -->
+          <div class="flip-face flip-front" id="cardFaceFront">
+            <section class="screen-card">
+              <div class="screen-header">
+                <h2 class="screen-title">Register Your Grievance</h2>
+                <p class="screen-subtitle">
+                  Provide your details below to log an official grievance into the central database.
+                </p>
+              </div>
+
+              <div class="form-with-sidebar">
+                <!-- Left: Form -->
+                <form id="grievanceForm" novalidate>
+                  <!-- Step 1: Personal Contact Details -->
+                  <div class="form-step-divider">
+                    <span>Step 1: Citizen Contact Information</span>
+                  </div>
+
+                  <div class="form-grid">
+                    <div class="form-group" id="grpFullName">
+                      <label class="form-label" for="fullName">
+                        <span>Full Name <span class="req-star">*</span></span>
+                      </label>
+                      <input type="text" id="fullName" class="input-box" placeholder="e.g. Rajesh Kumar Sharma" required autocomplete="name">
+                      <span class="field-error" id="errFullName"></span>
+                    </div>
+
+                    <div class="form-group" id="grpMobile">
+                      <label class="form-label" for="mobile">
+                        <span>Mobile Number <span class="req-star">*</span></span>
+                      </label>
+                      <div class="phone-input-wrap">
+                        <span class="phone-prefix">🇮🇳 +91</span>
+                        <input type="tel" id="mobile" class="input-box" placeholder="10-digit mobile number" maxlength="10" inputmode="numeric" required autocomplete="tel">
+                      </div>
+                      <span class="field-error" id="errMobile"></span>
+                    </div>
+
+                    <div class="form-group full-width" id="grpEmail">
+                      <label class="form-label" for="email">
+                        <span>Email Address <span class="badge-optional">Optional</span></span>
+                      </label>
+                      <input type="email" id="email" class="input-box" placeholder="e.g. rajesh@example.com" autocomplete="email">
+                      <span class="field-help">Optional — used to send case updates and tracking receipts.</span>
+                      <span class="field-error" id="errEmail"></span>
+                    </div>
+                  </div>
+
+                  <!-- Step 2: Location Procedure -->
+                  <div class="form-step-divider">
+                    <span>Step 2: Constituency Procedure (State → District → Lok Sabha → Assembly)</span>
+                  </div>
+
+                  <div class="form-grid">
+                    <!-- 1. State -->
+                    <div class="form-group" id="grpState">
+                      <label class="form-label" for="stateSelect">
+                        <span>1. State / Union Territory <span class="req-star">*</span></span>
+                      </label>
+                      <select id="stateSelect" class="select-box" required>
+                        <option value="">Select State / UT</option>
+                      </select>
+                      <span class="field-error" id="errState"></span>
+                    </div>
+
+                    <!-- 2. District -->
+                    <div class="form-group" id="grpDistrict">
+                      <label class="form-label" for="districtSelect">
+                        <span>2. District <span class="req-star">*</span></span>
+                      </label>
+                      <select id="districtSelect" class="select-box" disabled required>
+                        <option value="">Select District</option>
+                      </select>
+                      <input type="text" id="districtCustom" class="input-box" placeholder="Enter District Name" style="display:none; margin-top: 8px;">
+                      <span class="field-error" id="errDistrict"></span>
+                    </div>
+
+                    <!-- 3. Lok Sabha Constituency -->
+                    <div class="form-group" id="grpLokSabha">
+                      <label class="form-label" for="lokSabhaSelect">
+                        <span>3. Lok Sabha (Parliamentary) Constituency <span class="req-star">*</span></span>
+                      </label>
+                      <select id="lokSabhaSelect" class="select-box" disabled required>
+                        <option value="">Select Lok Sabha Constituency</option>
+                      </select>
+                      <input type="text" id="lokSabhaCustom" class="input-box" placeholder="Enter Lok Sabha Constituency" style="display:none; margin-top: 8px;">
+                      <span class="field-error" id="errLokSabha"></span>
+                    </div>
+
+                    <!-- 4. Assembly Constituency -->
+                    <div class="form-group" id="grpAssembly">
+                      <label class="form-label" for="assemblySelect">
+                        <span>4. Assembly (Vidhan Sabha) Constituency <span class="req-star">*</span></span>
+                      </label>
+                      <select id="assemblySelect" class="select-box" disabled required>
+                        <option value="">Select Assembly Constituency</option>
+                      </select>
+                      <input type="text" id="assemblyCustom" class="input-box" placeholder="Enter Assembly Constituency" style="display:none; margin-top: 8px;">
+                      <span class="field-error" id="errAssembly"></span>
+                    </div>
+                  </div>
+
+                  <!-- Step 3: Nature of Grievance & Description -->
+                  <div class="form-step-divider">
+                    <span>Step 3: Grievance Details</span>
+                  </div>
+
+                  <div class="form-grid">
+                    <div class="form-group full-width" id="grpNature">
+                      <label class="form-label" for="natureSelect">
+                        <span>Nature of Grievance <span class="req-star">*</span></span>
+                      </label>
+                      <select id="natureSelect" class="select-box" required>
+                        <option value="">Select Nature of Grievance</option>
+                      </select>
+                      <span class="field-error" id="errNature"></span>
+                    </div>
+
+                    <div class="form-group full-width" id="grpDescription">
+                      <label class="form-label" for="description">
+                        <span>Detailed Description / What happened? <span class="badge-optional">Optional</span></span>
+                      </label>
+                      <textarea id="description" class="textarea-box" rows="4" placeholder="Provide any additional context: when was your name last on the roll? Did you receive an enumeration notice? Polling booth number, etc."></textarea>
+                      <span class="field-help">Please do not submit Aadhaar, bank credentials, caste or religious details.</span>
+                    </div>
+                  </div>
+
+                  <div class="form-consent-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="22" height="22"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <div>
+                      <strong>Confidential Citizen Grievance Redressal</strong>
+                      <p>Your submission is recorded into our CRM database for lawful case documentation, verification and democratic advocacy. We do not ask for voting intention or party membership.</p>
+                    </div>
+                  </div>
+
+                  <!-- Centered Buttons: Reset Form & Green Submit Button -->
+                  <div class="form-actions">
+                    <button type="reset" class="btn btn-outline" id="resetBtn">Reset Form</button>
+                    <button type="submit" class="btn btn-primary btn-submit-green" id="submitBtn">
+                      <span class="btn-caption">Submit Complaint &amp; Generate Ticket</span>
+                      <span class="spinner" id="submitSpinner" style="display:none;"></span>
+                    </button>
+                  </div>
+                </form>
+
+                <!-- Right: Botanical Sidebar -->
+                <aside class="form-sidebar-panel">
+                  <div class="sidebar-info-card">
+                    <h4>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                      Before you begin
+                    </h4>
+                    <ul>
+                      <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Valid 10-digit mobile number for status alerts</span>
+                      </li>
+                      <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Constituency details (State, District, Assembly)</span>
+                      </li>
+                      <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Description of missing name or roll deletion</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="sidebar-info-card sage">
+                    <h4>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                      Your data is protected
+                    </h4>
+                    <p>
+                      Submissions are stored securely and treated confidentially in accordance with Indian DPDP principles. Information is used exclusively for citizen casework and democratic grievance representation.
+                    </p>
+                  </div>
+
+                  <div class="sidebar-info-card">
+                    <h4>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                      Independent platform
+                    </h4>
+                    <p>
+                      Lok Dal advocates for constitutional voter rights and lawful representation. This platform does not directly modify official voter registers.
+                    </p>
+                  </div>
+                </aside>
+              </div>
+            </section>
+          </div>
+
+          <!-- BACK FACE: TRACK COMPLAINT (Revealed on Card Flip) -->
+          <div class="flip-face flip-back" id="cardFaceBack">
+            <section class="screen-card">
+              <div class="screen-header">
+                <h2 class="screen-title">Track Complaint Status</h2>
+                <p class="screen-subtitle">
+                  Enter your generated Ticket ID <strong>(e.g. 2026NAME01)</strong> to check the real-time status and caseworker remarks.
+                </p>
+              </div>
+
+              <div class="track-search-box">
+                <div class="track-form-row">
+                  <input type="text" id="trackInput" class="track-input" placeholder="Enter Ticket ID (e.g. 2026NAME01)" maxlength="20" autocomplete="off">
+                  <button class="btn btn-primary" id="trackSubmitBtn">
+                    <span class="btn-caption">Track Status</span>
+                    <span class="spinner" id="trackSpinner" style="display:none;"></span>
+                  </button>
+                </div>
+                <div class="track-error-display" id="trackErrorMsg"></div>
+
+                <!-- Dynamic Complaint Track Result Card -->
+                <div class="track-card" id="trackCardResult" style="display:none;">
+                  <div class="track-card-header">
+                    <div>
+                      <div class="track-case-badge">Official Grievance Reference</div>
+                      <div class="track-case-id" id="resTicketId">2026NAME01</div>
+                    </div>
+                    <span class="status-pill received" id="resStatusPill">Received</span>
+                  </div>
+
+                  <div class="track-card-body">
+                    <div class="track-info-grid">
+                      <div class="track-info-item">
+                        <span class="track-info-label">Applicant Name</span>
+                        <span class="track-info-value" id="resName">—</span>
+                      </div>
+                      <div class="track-info-item">
+                        <span class="track-info-label">Registered Mobile</span>
+                        <span class="track-info-value" id="resMobile">—</span>
+                      </div>
+                      <div class="track-info-item">
+                        <span class="track-info-label">Grievance Category</span>
+                        <span class="track-info-value" id="resNature">—</span>
+                      </div>
+                      <div class="track-info-item">
+                        <span class="track-info-label">Registration Date</span>
+                        <span class="track-info-value" id="resDate">—</span>
+                      </div>
+                    </div>
+
+                    <!-- Constituency Trail -->
+                    <div class="track-location-trail">
+                      <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-right: 4px;">Constituency Trail:</span>
+                      <span class="trail-node" id="resState">State</span>
+                      <span class="trail-sep">➔</span>
+                      <span class="trail-node" id="resDistrict">District</span>
+                      <span class="trail-sep">➔</span>
+                      <span class="trail-node" id="resLokSabha">Lok Sabha</span>
+                      <span class="trail-sep">➔</span>
+                      <span class="trail-node" id="resAssembly">Assembly</span>
+                    </div>
+
+                    <!-- Admin Remarks -->
+                    <div class="track-remarks-box">
+                      <div class="track-remarks-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                        Caseworker Notes &amp; Status Update
+                      </div>
+                      <p class="track-remarks-content" id="resRemarks">
+                        Your grievance is registered with the central helpline. Case files are being reviewed by authorized personnel.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 28px;">
+                  <button class="btn btn-outline" onclick="flipCard('file')">
+                    ← File Another Complaint
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Closing Forest-Green Area with Broad Curved Top & Footer -->
+  <section class="closing-forest-area">
+    <div class="container">
+      <div class="closing-header">
+        <div class="closing-kicker">OUR SOLEMN PLEDGE</div>
+        <h3 class="closing-title">Commitment to Indian Democracy</h3>
+        <p class="closing-subtitle">
+          Every Indian citizen has a constitutional right to an accurate electoral roll entry. Here is our solemn pledge to you.
+        </p>
+      </div>
+
+      <!-- 3 Assurance Pillars -->
+      <div class="assurance-grid">
+        <div class="assurance-card">
+          <div class="assurance-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4>1. 100% Confidentiality</h4>
+          <p>
+            Your personal information is strictly protected under Indian data protection principles. We never share your contact details for commercial purposes or political campaigning.
+          </p>
+        </div>
+
+        <div class="assurance-card">
+          <div class="assurance-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h4>2. 48-Hour Case Intake</h4>
+          <p>
+            Every complaint registered on Search My Vote is ingested into our CRM database, reviewed by designated caseworkers, and categorized for timely representation.
+          </p>
+        </div>
+
+        <div class="assurance-card">
+          <div class="assurance-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <h4>3. Transparent Tracking</h4>
+          <p>
+            You are issued an irrevocable Ticket ID (e.g. 2026NAME01) instantly. You can track real-time progress, caseworker remarks, and advocacy updates at any time.
+          </p>
+        </div>
+      </div>
+
+      <!-- Statutory Legal Notice & Citizen Contact Desk -->
+      <div class="assurance-legal-box">
+        <div>
+          <h5>Statutory Legal Notice</h5>
+          <p>
+            SearchMyVote.com is an independent voter grievance intake and documentation helpline sponsored and managed by Lok Dal (INDIA bloc constituent). This portal is <strong>not</strong> an Election Commission of India (ECI) website and does not directly change official voter rolls. All data is processed for citizen assistance, legal advocacy, and democratic electoral oversight.
+          </p>
+        </div>
+        <div>
+          <h5>Citizen Support Desk</h5>
+          <p>Have questions about your grievance or need immediate assistance?</p>
+          <p style="margin-top: 6px;">
+            Email: <a href="mailto:grievance@searchmyvote.in" class="footer-contact-email">grievance@searchmyvote.in</a>
+          </p>
+          <p style="margin-top: 2px;">Hours: Mon – Sat (9:00 AM – 7:00 PM IST)</p>
+        </div>
+      </div>
+
+      <!-- Bottom Footer on the Same Forest Ground -->
+      <footer class="footer-bottom-bar">
+        <p>© 2026 Search My Vote. All rights reserved.</p>
+      </footer>
+    </div>
+  </section>
+
+  <!-- SUCCESS MODAL WITH TICKET ID -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-dialog">
+      <div class="modal-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="32" height="32"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3 class="modal-title">Grievance Registered!</h3>
+      <p class="modal-text">
+        Your complaint has been successfully recorded in our central CRM database. Please save your unique Ticket ID below:
+      </p>
+
+      <div class="ticket-showcase">
+        <div>
+          <div class="ticket-showcase-label">Your Unique Ticket ID</div>
+          <div class="ticket-showcase-code" id="modalTicketCode">2026NAME01</div>
+        </div>
+        <button class="copy-ticket-btn" id="copyTicketBtn" title="Copy Ticket ID to Clipboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span id="copyBtnText">Copy</span>
+        </button>
+      </div>
+
+      <p class="modal-note">
+        You can use this Ticket ID at any time in the <strong>Track Complaint</strong> section to check your status.
+      </p>
+
+      <div class="modal-btns">
+        <button class="btn btn-outline" id="modalDismissBtn">Done</button>
+        <button class="btn btn-primary" id="modalTrackNowBtn">Track Now ➔</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/data.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
