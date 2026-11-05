@@ -118,6 +118,44 @@ document.addEventListener('DOMContentLoaded', () => {
   // State -> District -> Lok Sabha -> Assembly
   // ==========================================
 
+  function populateAssemblies(selectedState, selectedDistrict, selectedLs) {
+    resetSelect(assemblySelect, 'Select Assembly Constituency');
+    assemblyCustom.style.display = 'none';
+    assemblyCustom.value = '';
+
+    if (!selectedLs) return;
+
+    if (selectedLs === '__other__') {
+      assemblyCustom.style.display = 'block';
+      assemblyCustom.placeholder = 'Enter Assembly Constituency';
+      assemblyCustom.focus();
+      return;
+    }
+
+    const stateData = (typeof INDIA_DATA !== 'undefined') ? INDIA_DATA[selectedState] : null;
+    const distData = stateData?.districts?.[selectedDistrict];
+    const assemblies = distData?.lokSabha?.[selectedLs];
+
+    if (assemblies && assemblies.length > 0) {
+      assemblies.slice().sort().forEach(ac => {
+        const opt = document.createElement('option');
+        opt.value = ac;
+        opt.textContent = ac;
+        assemblySelect.appendChild(opt);
+      });
+
+      const otherAc = document.createElement('option');
+      otherAc.value = '__other__';
+      otherAc.textContent = '✎ Other Assembly (Specify)';
+      assemblySelect.appendChild(otherAc);
+
+      assemblySelect.disabled = false;
+    } else {
+      assemblyCustom.style.display = 'block';
+      assemblyCustom.placeholder = 'Enter Assembly Constituency';
+    }
+  }
+
   // State Change:
   stateSelect.addEventListener('change', () => {
     const selectedState = stateSelect.value;
@@ -156,7 +194,9 @@ document.addEventListener('DOMContentLoaded', () => {
       districtCustom.style.display = 'block';
       districtCustom.placeholder = `Enter District in ${selectedState}`;
       lokSabhaCustom.style.display = 'block';
+      lokSabhaCustom.placeholder = 'Enter Lok Sabha Constituency';
       assemblyCustom.style.display = 'block';
+      assemblyCustom.placeholder = 'Enter Assembly Constituency';
     }
   });
 
@@ -179,7 +219,9 @@ document.addEventListener('DOMContentLoaded', () => {
       districtCustom.style.display = 'block';
       districtCustom.focus();
       lokSabhaCustom.style.display = 'block';
+      lokSabhaCustom.placeholder = 'Enter Lok Sabha Constituency';
       assemblyCustom.style.display = 'block';
+      assemblyCustom.placeholder = 'Enter Assembly Constituency';
       return;
     } else {
       districtCustom.style.display = 'none';
@@ -203,9 +245,17 @@ document.addEventListener('DOMContentLoaded', () => {
       lokSabhaSelect.appendChild(otherLs);
 
       lokSabhaSelect.disabled = false;
+
+      // Auto-select if only 1 Lok Sabha constituency exists for this district
+      if (lsList.length === 1) {
+        lokSabhaSelect.value = lsList[0];
+        populateAssemblies(selectedState, selectedDistrict, lsList[0]);
+      }
     } else {
       lokSabhaCustom.style.display = 'block';
+      lokSabhaCustom.placeholder = 'Enter Lok Sabha Constituency';
       assemblyCustom.style.display = 'block';
+      assemblyCustom.placeholder = 'Enter Assembly Constituency';
     }
   });
 
@@ -215,48 +265,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedDistrict = districtSelect.value;
     const selectedLs = lokSabhaSelect.value;
 
-    resetSelect(assemblySelect, 'Select Assembly Constituency');
-    assemblyCustom.style.display = 'none';
-    assemblyCustom.value = '';
-
-    if (!selectedLs) return;
-
-    if (selectedLs === '__other__') {
-      lokSabhaCustom.style.display = 'block';
-      lokSabhaCustom.focus();
-      assemblyCustom.style.display = 'block';
-      return;
-    } else {
-      lokSabhaCustom.style.display = 'none';
-    }
-
-    const stateData = (typeof INDIA_DATA !== 'undefined') ? INDIA_DATA[selectedState] : null;
-    const distData = stateData?.districts?.[selectedDistrict];
-    const assemblies = distData?.lokSabha?.[selectedLs];
-
-    if (assemblies && assemblies.length > 0) {
-      assemblies.slice().sort().forEach(ac => {
-        const opt = document.createElement('option');
-        opt.value = ac;
-        opt.textContent = ac;
-        assemblySelect.appendChild(opt);
-      });
-
-      const otherAc = document.createElement('option');
-      otherAc.value = '__other__';
-      otherAc.textContent = '✎ Other Assembly (Specify)';
-      assemblySelect.appendChild(otherAc);
-
-      assemblySelect.disabled = false;
-    } else {
-      assemblyCustom.style.display = 'block';
-    }
+    populateAssemblies(selectedState, selectedDistrict, selectedLs);
   });
 
   // Assembly Change:
   assemblySelect.addEventListener('change', () => {
     if (assemblySelect.value === '__other__') {
       assemblyCustom.style.display = 'block';
+      assemblyCustom.placeholder = 'Enter Assembly Constituency';
       assemblyCustom.focus();
     } else {
       assemblyCustom.style.display = 'none';
