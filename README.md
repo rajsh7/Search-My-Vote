@@ -11,12 +11,6 @@ A democratic civic support portal and casework management system built to assist
   - **Downloadable Case Receipt:** Print or save a formatted civic receipt with status stamps.
   - **Live Case Tracking:** Citizens can track casework progress, status changes, and official caseworker remarks in real time.
 
-- **Casework CRM Dashboard (`/login/crm` or `/admin`):**
-  - **LoopAI-Inspired Architecture:** Segmented pill navigation, top KPI metrics cards, and dedicated caseworker workspace.
-  - **100% Real MongoDB Atlas Integration:** Zero placeholder data; live counts, real priority cases, and daily intake aggregations.
-  - **Dynamic Bubble Matrix Chart:** Visualizes intake trends across the past 8–10 days directly from database records.
-  - **Casework Dossier Drawer:** Full case review, status transitions (`Under Review`, `In Progress`, `Resolved`, etc.), and timestamped audit logs.
-  - **One-Click CSV Export:** Export complete grievance records for legal review or reporting.
 
 ## 🚀 Tech Stack
 
