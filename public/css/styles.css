@@ -1364,50 +1364,135 @@ body::-webkit-scrollbar {
   margin-bottom: 22px;
 }
 
-.ticket-showcase {
+/* Dual Ticket Showcase for Reference & PIN */
+.ticket-showcase-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.ticket-showcase-box {
   background: #ffffff;
   border: var(--dp-border-hairline) dashed var(--dp-color-ornament-line);
   border-radius: 12px;
-  padding: 16px 20px;
-  margin-bottom: 18px;
+  padding: 14px 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.ticket-showcase-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: var(--dp-typography-label-tracking);
-  text-align: left;
-}
-
-.ticket-showcase-code {
+.ticket-box-code {
   font-family: var(--dp-typography-display);
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
+  color: var(--dp-color-ink);
+  letter-spacing: 0.04em;
+}
+
+.ticket-box-code.pin {
+  letter-spacing: 0.14em;
+  color: var(--dp-color-accent);
+}
+
+/* Upload Dropzone */
+.upload-dropzone {
+  border: 1.5px dashed var(--dp-color-field-line);
+  background: #faf7f0;
+  border-radius: 12px;
+  padding: 22px;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--dp-motion-interaction) var(--dp-motion-easing);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.upload-dropzone:hover {
+  background: var(--dp-color-panel);
+  border-color: var(--dp-color-ink);
+}
+
+.upload-icon {
+  font-size: 1.8rem;
   color: var(--dp-color-ink);
 }
 
-.copy-ticket-btn {
-  background: var(--dp-color-ground);
-  border: var(--dp-border-hairline) solid var(--dp-color-rule);
-  border-radius: 8px;
-  padding: 8px 12px;
-  cursor: pointer;
+.upload-title {
+  font-weight: 600;
   color: var(--dp-color-ink);
-  transition: all var(--dp-motion-interaction) var(--dp-motion-easing);
+  font-size: 0.95rem;
+}
+
+.upload-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.upload-input-file {
+  position: absolute;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.selected-file-pill {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  background: var(--dp-color-panel);
+  border: 1px solid var(--dp-color-field-line);
+  border-radius: 9999px;
+  padding: 4px 14px;
   font-size: 12px;
   font-weight: 600;
+  color: var(--dp-color-ink);
+  margin-top: 6px;
 }
 
-.copy-ticket-btn:hover {
-  background: var(--dp-color-panel);
+/* Checkbox Wrappers */
+.consent-checkbox-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.88rem;
+  color: var(--dp-color-ink);
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.consent-checkbox-wrap input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  accent-color: var(--dp-color-ink);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.bilingual-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* Two-column tracking inputs */
+.track-dual-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 640px) {
+  .track-dual-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .modal-note {

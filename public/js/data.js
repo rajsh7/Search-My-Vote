@@ -10389,17 +10389,42 @@ const ALL_STATES_UTS = [
 
 // Nature of Grievance Options
 const GRIEVANCE_TYPES = [
-  "Name missing from voter list (SIR 2026)",
-  "Name deleted from voter list without notice",
-  "Incorrect voter details (Name, Age, Gender, Address)",
-  "Registration / address shifted without consent",
-  "Voter ID card (EPIC) lost or not received",
+  "Name missing from voter list",
+  "Name deleted from voter list",
+  "Incorrect voter details",
+  "Registration / address shifted",
+  "Voter card not received or lost",
   "SIR 2026 enumeration / verification issue",
   "SIR notice or objection received",
-  "Marked Absent, Shifted, Dead or Duplicate (ASDD) disputed",
-  "Polling booth / accessibility issue",
-  "EVM / VVPAT or polling day grievance",
-  "Model Code of Conduct (MCC) violation",
-  "Threat, intimidation or electoral inducement",
-  "Other electoral roll grievance"
+  "Marked absent, shifted, dead or duplicate (disputed)",
+  "Enumeration form not received / processed",
+  "Other electoral-roll grievance"
+];
+
+const SIR_STAGES = [
+  "Not sure",
+  "During enumeration",
+  "Draft electoral roll",
+  "Claims / objections",
+  "Final electoral roll",
+  "Notice / hearing",
+  "Appeal",
+  "Other"
+];
+
+const VOTER_CARD_STATUSES = [
+  "Available",
+  "Lost / unavailable",
+  "Never received"
+];
+
+const SOURCE_TYPES = [
+  "Social media (X, Facebook, Instagram, YouTube)",
+  "WhatsApp message or group",
+  "News article or TV coverage",
+  "Friend, family, or neighbour",
+  "Advocate or legal aid clinic",
+  "Door-to-door campaign or volunteer",
+  "Search engine (Google, etc.)",
+  "Other"
 ];

@@ -1615,6 +1615,34 @@
             <span class="detail-lbl">Assembly Constituency</span>
             <span class="detail-val" id="mdAssembly">—</span>
           </div>
+          <div class="detail-item">
+            <span class="detail-lbl">Village / Ward</span>
+            <span class="detail-val" id="mdVillageWard">—</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-lbl">Polling Station / Booth</span>
+            <span class="detail-val" id="mdPollingStation">—</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-lbl">Roll Part &amp; Serial</span>
+            <span class="detail-val" id="mdRollInfo">—</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-lbl">Stage of SIR</span>
+            <span class="detail-val" id="mdSirStage">—</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-lbl">Voter ID / EPIC Status</span>
+            <span class="detail-val" id="mdVoterCardStatus">—</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-lbl">ECI Claim Reference</span>
+            <span class="detail-val" id="mdEciClaimRef">—</span>
+          </div>
+          <div class="detail-item full-width" id="mdProofContainer" style="display:none;">
+            <span class="detail-lbl">Supporting Proof Document</span>
+            <div id="mdProofLink" style="margin-top: 4px;"></div>
+          </div>
           <div class="detail-item full-width">
             <span class="detail-lbl">Nature of Grievance</span>
             <span class="detail-val" id="mdNature">—</span>
@@ -1973,8 +2001,28 @@
       document.getElementById('mdCreated').textContent = g.created_at ? new Date(g.created_at).toLocaleString('en-IN') : '—';
       document.getElementById('mdState').textContent = g.state;
       document.getElementById('mdDistrict').textContent = g.district;
-      document.getElementById('mdLokSabha').textContent = g.lok_sabha;
-      document.getElementById('mdAssembly').textContent = g.assembly;
+      document.getElementById('mdLokSabha').textContent = g.lok_sabha || '—';
+      document.getElementById('mdAssembly').textContent = g.assembly || '—';
+      document.getElementById('mdVillageWard').textContent = g.village_ward || '—';
+      document.getElementById('mdPollingStation').textContent = g.polling_station || '—';
+      document.getElementById('mdRollInfo').textContent = (g.roll_part || g.roll_serial) ? `Part ${g.roll_part || '—'} / Sr. ${g.roll_serial || '—'}` : '—';
+      document.getElementById('mdSirStage').textContent = g.sir_stage || '—';
+      document.getElementById('mdVoterCardStatus').textContent = g.epic ? `${g.voter_card_status || '—'} (EPIC: ${g.epic})` : (g.voter_card_status || '—');
+      document.getElementById('mdEciClaimRef').textContent = g.eci_claim_ref || '—';
+
+      const proofCont = document.getElementById('mdProofContainer');
+      const proofLink = document.getElementById('mdProofLink');
+      if (g.proof_name) {
+        proofCont.style.display = 'block';
+        if (g.proof_data) {
+          proofLink.innerHTML = `<a href="${g.proof_data}" download="${g.proof_name}" style="color:var(--accent-clay); font-weight:600; text-decoration:underline;">📎 Download ${g.proof_name}</a>`;
+        } else {
+          proofLink.textContent = `📎 ${g.proof_name} (Attached)`;
+        }
+      } else {
+        proofCont.style.display = 'none';
+      }
+
       document.getElementById('mdNature').textContent = g.grievance_nature;
       document.getElementById('mdDescription').textContent = g.description || 'No additional statement provided by citizen.';
 

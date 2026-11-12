@@ -18,25 +18,43 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://weddevraj_db_user:
 
 // Middleware
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '15mb' }));
+app.use(express.urlencoded({ extended: true, limit: '15mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Mongoose Grievance Schema
 const grievanceSchema = new mongoose.Schema({
-  ticket_id: { type: String, required: true, unique: true, index: true },
+  ticket_id: { type: String, required: true, unique: true, index: true }, // Case Reference (SMV-2026-XXXXXXXXXX)
+  tracking_pin: { type: String, required: true, index: true }, // 10-character private tracking PIN
   full_name: { type: String, required: true, trim: true },
   mobile: { type: String, required: true, trim: true },
   email: { type: String, trim: true, default: '' },
+  postcode: { type: String, trim: true, default: '' },
+  address_line: { type: String, trim: true, default: '' },
   state: { type: String, required: true, trim: true },
   district: { type: String, required: true, trim: true },
-  lok_sabha: { type: String, required: true, trim: true },
-  assembly: { type: String, required: true, trim: true },
+  lok_sabha: { type: String, trim: true, default: '' },
+  assembly: { type: String, trim: true, default: '' },
+  village_ward: { type: String, trim: true, default: '' },
+  polling_station: { type: String, trim: true, default: '' },
+  roll_part: { type: String, trim: true, default: '' },
+  roll_serial: { type: String, trim: true, default: '' },
   grievance_nature: { type: String, required: true, trim: true },
+  sir_stage: { type: String, trim: true, default: 'Not sure' },
+  incident_date: { type: String, trim: true, default: '' },
+  voter_card_status: { type: String, trim: true, default: 'Available' },
+  epic: { type: String, trim: true, default: '' },
+  last_seen: { type: String, trim: true, default: '' },
+  eci_claim_ref: { type: String, trim: true, default: '' },
   description: { type: String, trim: true, default: '' },
+  proof_name: { type: String, default: '' },
+  proof_data: { type: String, default: '' },
+  proof_mime: { type: String, default: '' },
+  source: { type: String, trim: true, default: 'Direct website' },
+  consent_representation: { type: Boolean, default: false },
   status: {
     type: String,
-    enum: ['Received', 'Under Review', 'In Progress', 'Evidence Required', 'Verified for Follow-up', 'Resolved', 'Rejected', 'Closed'],
+    enum: ['Received', 'Under Review', 'In Progress', 'Evidence Required', 'Verified for Follow-up', 'Legal Review', 'Representation Filed', 'Awaiting Response', 'Case Concluded', 'Resolved', 'Rejected', 'Closed'],
     default: 'Received'
   },
   admin_remarks: { type: String, default: '' },
@@ -55,51 +73,63 @@ const grievanceSchema = new mongoose.Schema({
 
 const Grievance = mongoose.model('Grievance', grievanceSchema);
 
-// Ticket ID Generator: 2026 + 3 letters of name + 2 digit sequence (e.g., 2026RAJ01)
-async function generateTicketId(fullName) {
-  const letters = fullName.replace(/[^a-zA-Z]/g, '').toUpperCase();
-  const nameCode = (letters.slice(0, 3) || 'VOT').padEnd(3, 'X');
-  const prefix = `2026${nameCode}`;
+const crypto = require('crypto');
 
-  // Find all existing tickets with this prefix
-  const regex = new RegExp(`^${prefix}(\\d+)$`);
-  const existing = await Grievance.find({ ticket_id: regex }).select('ticket_id').lean();
+// Case Reference Generator: SMV-2026-XXXXXXXXXX (10-character hex)
+function generateCaseReference() {
+  const token = crypto.randomBytes(5).toString('hex').toUpperCase();
+  return `SMV-2026-${token}`;
+}
 
-  let maxSeq = 0;
-  existing.forEach(item => {
-    const numPart = item.ticket_id.slice(prefix.length);
-    const seq = parseInt(numPart, 10);
-    if (!isNaN(seq) && seq > maxSeq) {
-      maxSeq = seq;
-    }
-  });
-
-  const nextSeq = (maxSeq + 1).toString().padStart(2, '0');
-  return `${prefix}${nextSeq}`;
+// 10-character Confidential Tracking PIN (unambiguous alphanumeric)
+function generateTrackingPin() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let pin = '';
+  for (let i = 0; i < 10; i++) {
+    pin += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return pin;
 }
 
 // ============================================
 // PUBLIC API ENDPOINTS
 // ============================================
 
-// Submit a new complaint
+// Submit a new complaint (Complete 5-Section Registration)
 app.post('/api/grievances', async (req, res) => {
   try {
     const {
       full_name,
       mobile,
       email,
+      postcode,
+      address_line,
       state,
       district,
       lok_sabha,
       assembly,
+      village_ward,
+      polling_station,
+      roll_part,
+      roll_serial,
       grievance_nature,
-      description
+      sir_stage,
+      incident_date,
+      voter_card_status,
+      epic,
+      last_seen,
+      eci_claim_ref,
+      description,
+      proof_name,
+      proof_data,
+      proof_mime,
+      source,
+      consent_representation
     } = req.body;
 
     // Strict validation
     if (!full_name || !full_name.trim()) {
-      return res.status(400).json({ error: 'Full name is required.' });
+      return res.status(400).json({ error: 'Full name / पूरा नाम is required.' });
     }
 
     const cleanMobile = (mobile || '').replace(/\D/g, '');
@@ -111,33 +141,57 @@ app.post('/api/grievances', async (req, res) => {
       return res.status(400).json({ error: 'Please enter a valid 10-digit Indian mobile number.' });
     }
 
-    if (!state || !district || !lok_sabha || !assembly) {
-      return res.status(400).json({ error: 'Please complete the location procedure: State -> District -> Lok Sabha -> Assembly.' });
+    if (!state || !district) {
+      return res.status(400).json({ error: 'Please select your State and District.' });
     }
 
     if (!grievance_nature) {
-      return res.status(400).json({ error: 'Please select the nature of your grievance.' });
+      return res.status(400).json({ error: 'Please select the Nature of complaint / शिकायत का प्रकार.' });
     }
 
-    // Generate Ticket ID (e.g. 2026RAJ01)
-    const ticket_id = await generateTicketId(full_name);
+    // Generate Unique Case Reference (SMV-2026-XXXXXXXXXX) & 10-char Tracking PIN
+    let case_id = generateCaseReference();
+    let exists = await Grievance.findOne({ ticket_id: case_id });
+    while (exists) {
+      case_id = generateCaseReference();
+      exists = await Grievance.findOne({ ticket_id: case_id });
+    }
+    const tracking_pin = generateTrackingPin();
 
     const grievance = new Grievance({
-      ticket_id,
+      ticket_id: case_id,
+      tracking_pin,
       full_name: full_name.trim(),
       mobile: mobileDigits,
       email: (email || '').trim().toLowerCase(),
+      postcode: (postcode || '').trim(),
+      address_line: (address_line || '').trim(),
       state: state.trim(),
       district: district.trim(),
-      lok_sabha: lok_sabha.trim(),
-      assembly: assembly.trim(),
+      lok_sabha: (lok_sabha || '').trim(),
+      assembly: (assembly || '').trim(),
+      village_ward: (village_ward || '').trim(),
+      polling_station: (polling_station || '').trim(),
+      roll_part: (roll_part || '').trim(),
+      roll_serial: (roll_serial || '').trim(),
       grievance_nature: grievance_nature.trim(),
+      sir_stage: (sir_stage || 'Not sure').trim(),
+      incident_date: (incident_date || '').trim(),
+      voter_card_status: (voter_card_status || 'Available').trim(),
+      epic: (epic || '').trim().toUpperCase(),
+      last_seen: (last_seen || '').trim(),
+      eci_claim_ref: (eci_claim_ref || '').trim(),
       description: (description || '').trim(),
+      proof_name: (proof_name || '').trim(),
+      proof_data: (proof_data || ''),
+      proof_mime: (proof_mime || ''),
+      source: (source || 'Direct website').trim(),
+      consent_representation: consent_representation === true || consent_representation === 'yes',
       status: 'Received',
       history: [
         {
           status: 'Received',
-          remarks: 'Complaint registered successfully by citizen.',
+          remarks: 'SIR 2026 grievance registered successfully by citizen.',
           updated_by: 'Citizen Portal',
           timestamp: new Date()
         }
@@ -148,10 +202,14 @@ app.post('/api/grievances', async (req, res) => {
 
     res.status(201).json({
       success: true,
-      ticket_id,
+      ticket_id: case_id,
+      case_ref: case_id,
+      tracking_pin: tracking_pin,
       message: 'Grievance registered successfully!',
       data: {
-        ticket_id,
+        ticket_id: case_id,
+        case_ref: case_id,
+        tracking_pin: tracking_pin,
         full_name: grievance.full_name,
         state: grievance.state,
         district: grievance.district,
@@ -164,12 +222,85 @@ app.post('/api/grievances', async (req, res) => {
   }
 });
 
-// Track complaint by Ticket ID
+// Track complaint with Case Reference & 10-character Private PIN (POST)
+app.post('/api/grievances/track', async (req, res) => {
+  try {
+    const caseRef = (req.body.case_ref || req.body.ticket_id || '').trim().toUpperCase();
+    const pin = (req.body.pin || '').trim().toUpperCase();
+
+    if (!caseRef) {
+      return res.status(400).json({ error: 'Please enter your Case Reference Number (e.g. SMV-2026-XXXXXXXXXX).' });
+    }
+    if (!pin) {
+      return res.status(400).json({ error: 'Please enter your confidential 10-character Tracking PIN.' });
+    }
+
+    const record = await Grievance.findOne({
+      $or: [
+        { ticket_id: caseRef },
+        { ticket_id: new RegExp(`^${caseRef}$`, 'i') }
+      ]
+    }).lean();
+
+    if (!record) {
+      return res.status(404).json({ error: `No complaint found for Case Reference "${caseRef}". Please verify your reference number and try again.` });
+    }
+
+    // Validate 10-character PIN if record has one
+    if (record.tracking_pin && record.tracking_pin.toUpperCase() !== pin) {
+      return res.status(403).json({ error: 'Invalid Tracking PIN for this Case Reference. For privacy, your status cannot be accessed without the confidential 10-character PIN.' });
+    }
+
+    // Mask mobile for privacy
+    const maskedMobile = record.mobile.slice(0, 3) + '****' + record.mobile.slice(7);
+
+    res.json({
+      ticket_id: record.ticket_id,
+      case_ref: record.ticket_id,
+      full_name: record.full_name,
+      mobile: maskedMobile,
+      state: record.state,
+      district: record.district,
+      lok_sabha: record.lok_sabha || '—',
+      assembly: record.assembly || '—',
+      village_ward: record.village_ward || '—',
+      polling_station: record.polling_station || '—',
+      roll_part: record.roll_part || '—',
+      roll_serial: record.roll_serial || '—',
+      grievance_nature: record.grievance_nature,
+      sir_stage: record.sir_stage || 'Not sure',
+      incident_date: record.incident_date || '',
+      voter_card_status: record.voter_card_status || 'Available',
+      epic: record.epic || '',
+      last_seen: record.last_seen || '',
+      eci_claim_ref: record.eci_claim_ref || '',
+      description: record.description || '',
+      proof_name: record.proof_name || '',
+      proof_data: record.proof_data || '',
+      proof_mime: record.proof_mime || '',
+      status: record.status,
+      admin_remarks: record.admin_remarks || 'Your grievance is registered with the central helpline. Case files are being reviewed by authorized personnel.',
+      history: record.history || [],
+      created_at: record.created_at,
+      updated_at: record.updated_at
+    });
+  } catch (err) {
+    console.error('Error tracking grievance:', err);
+    res.status(500).json({ error: 'Unable to look up complaint status at this moment.' });
+  }
+});
+
+// Track complaint by Ticket ID (GET - backwards compatibility & CRM link)
 app.get('/api/grievances/track/:ticketId', async (req, res) => {
   try {
     const ticketId = (req.params.ticketId || '').trim().toUpperCase();
 
-    const record = await Grievance.findOne({ ticket_id: ticketId }).lean();
+    const record = await Grievance.findOne({
+      $or: [
+        { ticket_id: ticketId },
+        { ticket_id: new RegExp(`^${ticketId}$`, 'i') }
+      ]
+    }).lean();
 
     if (!record) {
       return res.status(404).json({ error: `No complaint found for Ticket ID "${ticketId}". Please check and try again.` });
@@ -180,13 +311,34 @@ app.get('/api/grievances/track/:ticketId', async (req, res) => {
 
     res.json({
       ticket_id: record.ticket_id,
+      case_ref: record.ticket_id,
+      tracking_pin: record.tracking_pin,
       full_name: record.full_name,
       mobile: maskedMobile,
+      email: record.email || '',
+      postcode: record.postcode || '',
+      address_line: record.address_line || '',
       state: record.state,
       district: record.district,
-      lok_sabha: record.lok_sabha,
-      assembly: record.assembly,
+      lok_sabha: record.lok_sabha || '—',
+      assembly: record.assembly || '—',
+      village_ward: record.village_ward || '—',
+      polling_station: record.polling_station || '—',
+      roll_part: record.roll_part || '—',
+      roll_serial: record.roll_serial || '—',
       grievance_nature: record.grievance_nature,
+      sir_stage: record.sir_stage || 'Not sure',
+      incident_date: record.incident_date || '',
+      voter_card_status: record.voter_card_status || 'Available',
+      epic: record.epic || '',
+      last_seen: record.last_seen || '',
+      eci_claim_ref: record.eci_claim_ref || '',
+      description: record.description || '',
+      proof_name: record.proof_name || '',
+      proof_data: record.proof_data || '',
+      proof_mime: record.proof_mime || '',
+      source: record.source || 'Direct website',
+      consent_representation: record.consent_representation || false,
       status: record.status,
       admin_remarks: record.admin_remarks || 'Your complaint is being processed by the authorized grievance team.',
       history: record.history || [],
