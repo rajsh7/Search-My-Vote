@@ -18,7 +18,7 @@
 </head>
 <body>
 
-  <!-- Navigation Bar: Logo on Left, File & Track on Right -->
+  <!-- Navigation Bar: Logo on Left, Language Selector & Actions on Right -->
   <header class="navbar">
     <div class="container nav-container">
       <!-- Left: Logo & Brand -->
@@ -26,21 +26,29 @@
         <img src="/assets/logo.svg" alt="Search My Vote Logo" class="brand-logo-img" onerror="this.src='/assets/search-my-vote-logo.png'">
         <div class="brand-text">
           <span class="brand-title">Search <span>My</span> Vote</span>
-          <span class="brand-subtitle">Grievance &amp; Voter Support</span>
+          <span class="brand-subtitle" data-i18n="brand_subtitle">मतदाता सहायता एवं जन शिकायत मंच</span>
         </div>
       </a>
 
-      <!-- Right: File a Complaint & Track Complaint -->
-      <nav class="nav-actions" aria-label="Quick Actions">
-        <button class="nav-link-btn" onclick="flipCard('file'); document.getElementById('formSection').scrollIntoView();">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-          <span>File a Complaint</span>
-        </button>
-        <button class="nav-link-btn primary" onclick="flipCard('track'); document.getElementById('formSection').scrollIntoView();">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <span>Track Complaint</span>
-        </button>
-      </nav>
+      <!-- Right: Language Selector + File & Track Actions -->
+      <div class="nav-right-group">
+        <!-- Language Switcher: Hindi (Default) | English -->
+        <div class="lang-switch-pill" role="group" aria-label="Language Selector">
+          <button type="button" class="lang-btn active" id="langBtnHi" onclick="setLanguage('hi')">हिंदी</button>
+          <button type="button" class="lang-btn" id="langBtnEn" onclick="setLanguage('en')">English</button>
+        </div>
+
+        <nav class="nav-actions" aria-label="Quick Actions">
+          <button type="button" class="nav-link-btn" onclick="flipCard('file'); document.getElementById('formSection').scrollIntoView();">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            <span data-i18n="nav_file_btn">शिकायत दर्ज करें</span>
+          </button>
+          <button type="button" class="nav-link-btn primary" onclick="flipCard('track'); document.getElementById('formSection').scrollIntoView();">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span data-i18n="nav_track_btn">स्थिति ट्रैक करें</span>
+          </button>
+        </nav>
+      </div>
     </div>
   </header>
 
@@ -50,36 +58,36 @@
       <!-- Left Column: Expressive Garamond Statements, Subtitle & Actions -->
       <div class="hero-copy-side">
         <div class="botanical-label">
-          <span>Democratic Voter Rights &amp; Electoral Roll Assistance</span>
+          <span data-i18n="hero_badge">लोकतांत्रिक मतदाता अधिकार एवं निर्वाचक नामावली सहायता</span>
         </div>
         
-        <h1 class="hero-title-hindi">
+        <h1 class="hero-title-hindi" data-i18n-html="hero_title_hindi">
           आपका वोट.<br>
           <span>आपकी आवाज़.</span>
         </h1>
-        <h2 class="hero-title-green">
+        <h2 class="hero-title-green" data-i18n-html="hero_title_sub">
           Your Vote is <em>Your Voice.</em>
         </h2>
         
-        <p class="hero-subtitle">
-          Has your name gone missing from the voter list? Notice unexpected deletion or enumeration errors? Register your grievance confidentially.
+        <p class="hero-subtitle" data-i18n="hero_subtitle">
+          क्या मतदाता सूची (SIR 2026) से आपका नाम गायब है? बिना सूचना नाम हटने या गलत विवरण की गोपनीय शिकायत दर्ज करें।
         </p>
 
-        <p class="hero-hindi-sub">
+        <p class="hero-hindi-sub" data-i18n="hero_hindi_sub">
           अगर आपका नाम मतदाता सूची से हट गया है या रिकॉर्ड में गलत जानकारी है, तो अपनी शिकायत दर्ज करें। लोकदल दस्तावेज़ एकत्र कर कानूनी और लोकतांत्रिक माध्यमों से मुद्दा उठाने का प्रयास करेगा।
         </p>
 
         <div class="hero-actions-row">
-          <button class="btn-botanical-primary" onclick="flipCard('file'); document.getElementById('formSection').scrollIntoView();">
-            <span>Register your grievance ↗</span>
+          <button type="button" class="btn-botanical-primary" onclick="flipCard('file'); document.getElementById('formSection').scrollIntoView();">
+            <span data-i18n="hero_btn_register">अपनी शिकायत दर्ज करें ↗</span>
           </button>
-          <button class="btn-botanical-quiet" onclick="flipCard('track'); document.getElementById('formSection').scrollIntoView();">
-            <span>Track a case →</span>
+          <button type="button" class="btn-botanical-quiet" onclick="flipCard('track'); document.getElementById('formSection').scrollIntoView();">
+            <span data-i18n="hero_btn_track">स्थिति ट्रैक करें →</span>
           </button>
         </div>
 
         <div class="scroll-indicator-wrap" onclick="document.getElementById('formSection').scrollIntoView();">
-          <span>Scroll down to register or track</span>
+          <span data-i18n="hero_scroll_hint">शिकायत दर्ज करने या ट्रैक करने के लिए नीचे स्क्रॉल करें</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M7 13l5 5 5-5M12 4v14"/></svg>
         </div>
       </div>
@@ -114,50 +122,56 @@
       <div class="feature-grid">
         <div class="feature-card-item">
           <span class="feature-symbol">◇</span>
-          <strong>Nationwide Scope</strong>
-          <p>28 states &amp; 8 UTs verified constituency hierarchy &amp; coverage.</p>
+          <strong data-i18n="pillar1_title">राष्ट्रव्यापी दायरा</strong>
+          <p data-i18n="pillar1_desc">28 राज्यों और 8 केंद्र शासित प्रदेशों का सत्यापित निर्वाचन क्षेत्र कवरेज।</p>
         </div>
         <div class="feature-card-item">
           <span class="feature-symbol">▤</span>
-          <strong>Evidence First</strong>
-          <p>Attach supporting proof &amp; detailed electoral roll records.</p>
+          <strong data-i18n="pillar2_title">साक्ष्य आधारित</strong>
+          <p data-i18n="pillar2_desc">मतदाता पर्ची, पुराना पहचान पत्र या नोटिस प्रमाण के रूप में संलग्न करें।</p>
         </div>
         <div class="feature-card-item">
           <span class="feature-symbol">◎</span>
-          <strong>Private Tracking</strong>
-          <p>Dual-credential tracking (Case Reference &amp; PIN) for instant real-time lookup.</p>
+          <strong data-i18n="pillar3_title">गोपनीय ट्रैकिंग</strong>
+          <p data-i18n="pillar3_desc">केस रिफरेंस और 10-अंकों के गुप्त सुरक्षा पिन से रियल-टाइम जांच।</p>
         </div>
         <div class="feature-card-item">
           <span class="feature-symbol">⚖</span>
-          <strong>Lawful Advocacy</strong>
-          <p>Authorized caseworker review &amp; constitutional representation.</p>
+          <strong data-i18n="pillar4_title">कानूनी व लोकतांत्रिक पैरवी</strong>
+          <p data-i18n="pillar4_desc">अधिकृत विधिक सेल द्वारा समीक्षा और संवैधानिक अधिकारों का संरक्षण।</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Continuous Forest-Green Field: Numbered Process & Benefits -->
-  <section class="forest-steps-section container">
+  <!-- Continuous Forest-Green Field: Numbered Process & Infographic Banner -->
+  <section class="forest-steps-section container" id="howItWorksSection">
     <div class="forest-field-card">
       <div class="forest-header">
-        <div class="forest-kicker">HOW IT WORKS</div>
-        <h2 class="forest-title">Three steps to make your grievance heard</h2>
+        <div class="forest-kicker" data-i18n="how_it_works_kicker">यह कैसे काम करता है · HOW IT WORKS</div>
+        <h2 class="forest-title" data-i18n="how_it_works_title">अपनी शिकायत को सुने जाने के लिए तीन आसान कदम</h2>
       </div>
+
+      <!-- Responsive Infographic Graphic (Swaps automatically between Hindi & English) -->
+      <div class="how-it-works-banner-wrap">
+        <img id="howItWorksImg" src="/assets/how-it-works-hi.jpg" alt="यह कैसे काम करता है - अपनी शिकायत को सुने जाने के लिए तीन आसान कदम" class="how-it-works-infographic-img" width="1200" height="675">
+      </div>
+
       <div class="steps-3-grid">
         <div class="step-box-item">
           <span class="step-num-badge">01</span>
-          <strong>Submit your grievance</strong>
-          <p>Enter your contact details and describe what occurred with your voter roll registration.</p>
+          <strong data-i18n="step1_title">अपनी शिकायत दर्ज करें</strong>
+          <p data-i18n="step1_desc">मोबाइल या वेबसाइट पर जाकर अपनी समस्या और आवश्यक जानकारी भरकर शिकायत दर्ज करें।</p>
         </div>
         <div class="step-box-item">
           <span class="step-num-badge">02</span>
-          <strong>Verify constituency details</strong>
-          <p>Select your State, District, Lok Sabha and Assembly Constituency with verified procedures.</p>
+          <strong data-i18n="step2_title">अपने निर्वाचन क्षेत्र के विवरण की पुष्टि करें</strong>
+          <p data-i18n="step2_desc">यह सुनिश्चित करें कि आपकी शिकायत सही राज्य, जिला, लोकसभा और विधानसभा निर्वाचन क्षेत्र से संबंधित है।</p>
         </div>
         <div class="step-box-item">
           <span class="step-num-badge">03</span>
-          <strong>Follow the case</strong>
-          <p>Use your generated Ticket ID at any time to monitor review progress and caseworker notes.</p>
+          <strong data-i18n="step3_title">अपनी शिकायत की स्थिति ट्रैक करें</strong>
+          <p data-i18n="step3_desc">दर्ज शिकायत की प्रगति को अपने केस रिफरेंस और सुरक्षा पिन (PIN) के माध्यम से कभी भी देखें।</p>
         </div>
       </div>
     </div>
@@ -172,12 +186,14 @@
         <div class="card-tabs">
           <button class="card-tab-btn active" id="tabBtnFile" onclick="flipCard('file')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="17" height="17"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-            01. File Complaint
+            <span data-i18n="tab_file">01. शिकायत दर्ज करें</span>
           </button>
           <button class="card-tab-btn" id="tabBtnTrack" onclick="flipCard('track')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="17" height="17"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            02. Track Complaint
+            <span data-i18n="tab_track">02. स्थिति ट्रैक करें</span>
           </button>
+        </div>
+      </div>
         </div>
       </div>
 
@@ -189,9 +205,9 @@
           <div class="flip-face flip-front" id="cardFaceFront">
             <section class="screen-card">
               <div class="screen-header">
-                <h2 class="screen-title">Register Your Grievance</h2>
-                <p class="screen-subtitle">
-                  Provide your details below to log an official grievance into the central database.
+                <h2 class="screen-title" data-i18n="form_title">अपनी शिकायत दर्ज करें</h2>
+                <p class="screen-subtitle" data-i18n="form_subtitle">
+                  केंद्रीय डेटाबेस में आधिकारिक शिकायत दर्ज करने के लिए नीचे अपना विवरण भरें।
                 </p>
               </div>
 
@@ -200,68 +216,68 @@
                 <form id="grievanceForm" novalidate>
                   <!-- 01 Personal & contact details -->
                   <div class="form-step-divider">
-                    <span>01 Personal &amp; contact details</span>
+                    <span data-i18n="sec1_title">01 व्यक्तिगत एवं संपर्क विवरण</span>
                   </div>
-                  <div class="bilingual-subtitle">नाम और संपर्क विवरण · Only for grievance-related communication</div>
+                  <div class="bilingual-subtitle" data-i18n="sec1_sub">नाम और संपर्क विवरण · केवल शिकायत संबंधी संवाद के लिए</div>
 
                   <div class="form-grid">
                     <div class="form-group" id="grpFullName">
                       <label class="form-label" for="fullName">
-                        <span>Full name / पूरा नाम <span class="req-star">*</span></span>
+                        <span data-i18n="lbl_fullname">पूरा नाम *</span>
                       </label>
-                      <input type="text" id="fullName" class="input-box" placeholder="e.g. Rajesh Kumar Sharma" required autocomplete="name">
+                      <input type="text" id="fullName" class="input-box" placeholder="जैसा मतदाता पहचान पत्र या सूची में है" data-i18n-placeholder="ph_fullname" required autocomplete="name">
                       <span class="field-error" id="errFullName"></span>
                     </div>
 
                     <div class="form-group" id="grpMobile">
                       <label class="form-label" for="mobile">
-                        <span>Mobile / मोबाइल नंबर <span class="req-star">*</span></span>
+                        <span data-i18n="lbl_mobile">मोबाइल नंबर *</span>
                       </label>
                       <div class="phone-input-wrap">
                         <span class="phone-prefix">🇮🇳 +91</span>
-                        <input type="tel" id="mobile" class="input-box" placeholder="10-digit mobile number" maxlength="10" inputmode="numeric" required autocomplete="tel">
+                        <input type="tel" id="mobile" class="input-box" placeholder="10 अंकों का मोबाइल नंबर" data-i18n-placeholder="ph_mobile" maxlength="10" inputmode="numeric" required autocomplete="tel">
                       </div>
                       <span class="field-error" id="errMobile"></span>
                     </div>
 
                     <div class="form-group" id="grpEmail">
                       <label class="form-label" for="email">
-                        <span>Email <span class="badge-optional">Optional</span></span>
+                        <span><span data-i18n="lbl_email">ईमेल</span> <span class="badge-optional">वैकल्पिक</span></span>
                       </label>
-                      <input type="email" id="email" class="input-box" placeholder="e.g. rajesh@example.com" autocomplete="email">
+                      <input type="email" id="email" class="input-box" placeholder="उदाहरण: rajesh@example.com" data-i18n-placeholder="ph_email" autocomplete="email">
                       <span class="field-error" id="errEmail"></span>
                     </div>
 
                     <div class="form-group" id="grpPostcode">
                       <label class="form-label" for="postcode">
-                        <span>PIN code <span class="badge-optional">Optional</span></span>
+                        <span><span data-i18n="lbl_postcode">पिन कोड</span> <span class="badge-optional">वैकल्पिक</span></span>
                       </label>
-                      <input type="text" id="postcode" class="input-box" placeholder="6-digit PIN code" maxlength="6" inputmode="numeric">
+                      <input type="text" id="postcode" class="input-box" placeholder="6 अंकों का पोस्टल पिन कोड" data-i18n-placeholder="ph_postcode" maxlength="6" inputmode="numeric">
                       <span class="field-error" id="errPostcode"></span>
                     </div>
 
                     <div class="form-group full-width" id="grpAddress">
                       <label class="form-label" for="addressLine">
-                        <span>Address / पता <span class="badge-optional">Optional</span></span>
+                        <span><span data-i18n="lbl_address">पता</span> <span class="badge-optional">वैकल्पिक</span></span>
                       </label>
-                      <input type="text" id="addressLine" class="input-box" placeholder="House / street / locality address">
+                      <input type="text" id="addressLine" class="input-box" placeholder="मकान नंबर, सड़क, मोहल्ला या कॉलोनी" data-i18n-placeholder="ph_address">
                     </div>
                   </div>
 
                   <!-- 02 Where is your vote registered? -->
                   <div class="form-step-divider">
-                    <span>02 Where is your vote registered?</span>
+                    <span data-i18n="sec2_title">02 आपका वोट कहाँ पंजीकृत है?</span>
                   </div>
-                  <div class="bilingual-subtitle">राज्य, जिला, लोकसभा एवं विधानसभा निर्वाचन क्षेत्र</div>
+                  <div class="bilingual-subtitle" data-i18n="sec2_sub">राज्य, जिला, लोकसभा एवं विधानसभा निर्वाचन क्षेत्र</div>
 
                   <div class="form-grid">
                     <!-- State -->
                     <div class="form-group" id="grpState">
                       <label class="form-label" for="stateSelect">
-                        <span>State / UT / राज्य <span class="req-star">*</span></span>
+                        <span data-i18n="lbl_state">राज्य / केंद्र शासित प्रदेश *</span>
                       </label>
                       <select id="stateSelect" class="select-box" required>
-                        <option value="">Select state or UT</option>
+                        <option value="" data-i18n="opt_state">राज्य या केंद्र शासित प्रदेश चुनें</option>
                       </select>
                       <span class="field-error" id="errState"></span>
                     </div>
@@ -269,10 +285,10 @@
                     <!-- District -->
                     <div class="form-group" id="grpDistrict">
                       <label class="form-label" for="districtSelect">
-                        <span>District / जिला <span class="req-star">*</span></span>
+                        <span data-i18n="lbl_district">जिला *</span>
                       </label>
                       <select id="districtSelect" class="select-box" disabled required>
-                        <option value="">Select district</option>
+                        <option value="" data-i18n="opt_district">जिला चुनें</option>
                       </select>
                       <input type="text" id="districtCustom" class="input-box" placeholder="Enter District Name" style="display:none; margin-top: 8px;">
                       <span class="field-error" id="errDistrict"></span>
@@ -281,10 +297,10 @@
                     <!-- Lok Sabha Constituency -->
                     <div class="form-group" id="grpLokSabha">
                       <label class="form-label" for="lokSabhaSelect">
-                        <span>Lok Sabha constituency / लोकसभा</span>
+                        <span data-i18n="lbl_loksabha">लोकसभा निर्वाचन क्षेत्र</span>
                       </label>
                       <select id="lokSabhaSelect" class="select-box" disabled>
-                        <option value="">Select Lok Sabha constituency</option>
+                        <option value="" data-i18n="opt_loksabha">लोकसभा क्षेत्र चुनें</option>
                       </select>
                       <input type="text" id="lokSabhaCustom" class="input-box" placeholder="Enter Lok Sabha Constituency" style="display:none; margin-top: 8px;">
                       <span class="field-error" id="errLokSabha"></span>
@@ -293,10 +309,10 @@
                     <!-- Assembly Constituency -->
                     <div class="form-group" id="grpAssembly">
                       <label class="form-label" for="assemblySelect">
-                        <span>Assembly constituency / विधानसभा</span>
+                        <span data-i18n="lbl_assembly">विधानसभा निर्वाचन क्षेत्र</span>
                       </label>
                       <select id="assemblySelect" class="select-box" disabled>
-                        <option value="">Select Assembly constituency</option>
+                        <option value="" data-i18n="opt_assembly">विधानसभा क्षेत्र चुनें</option>
                       </select>
                       <input type="text" id="assemblyCustom" class="input-box" placeholder="Enter Assembly Constituency" style="display:none; margin-top: 8px;">
                       <span class="field-error" id="errAssembly"></span>
@@ -305,122 +321,122 @@
                     <!-- Village / ward -->
                     <div class="form-group" id="grpVillageWard">
                       <label class="form-label" for="villageWard">
-                        <span>Village / ward / गांव या वार्ड <span class="badge-optional">Optional</span></span>
+                        <span><span data-i18n="lbl_village">गांव या वार्ड</span> <span class="badge-optional">वैकल्पिक</span></span>
                       </label>
-                      <input type="text" id="villageWard" class="input-box" placeholder="Village name or municipal ward">
+                      <input type="text" id="villageWard" class="input-box" placeholder="गांव का नाम या नगरपालिका वार्ड" data-i18n-placeholder="ph_village">
                     </div>
 
                     <!-- Polling station -->
                     <div class="form-group" id="grpPollingStation">
                       <label class="form-label" for="pollingStation">
-                        <span>Polling station / बूथ (if known) <span class="badge-optional">Optional</span></span>
+                        <span><span data-i18n="lbl_booth">मतदान केंद्र / पोलिंग बूथ (यदि ज्ञात हो)</span> <span class="badge-optional">वैकल्पिक</span></span>
                       </label>
-                      <input type="text" id="pollingStation" class="input-box" placeholder="e.g. Primary School Room 2">
+                      <input type="text" id="pollingStation" class="input-box" placeholder="जैसे: प्राथमिक विद्यालय कक्ष संख्या 2" data-i18n-placeholder="ph_booth">
                     </div>
 
                     <!-- Electoral roll part number -->
                     <div class="form-group" id="grpRollPart">
                       <label class="form-label" for="rollPart">
-                        <span>Electoral roll part number <span class="badge-optional">Optional</span></span>
+                        <span><span data-i18n="lbl_part">निर्वाचक नामावली भाग संख्या</span> <span class="badge-optional">वैकल्पिक</span></span>
                       </label>
-                      <input type="text" id="rollPart" class="input-box" placeholder="e.g. 142">
+                      <input type="text" id="rollPart" class="input-box" placeholder="जैसे: 142" data-i18n-placeholder="ph_part">
                     </div>
 
                     <!-- Electoral roll serial number -->
                     <div class="form-group" id="grpRollSerial">
                       <label class="form-label" for="rollSerial">
-                        <span>Electoral roll serial number <span class="badge-optional">Optional</span></span>
+                        <span><span data-i18n="lbl_serial">निर्वाचक नामावली क्रमांक संख्या</span> <span class="badge-optional">वैकल्पिक</span></span>
                       </label>
-                      <input type="text" id="rollSerial" class="input-box" placeholder="e.g. 589">
+                      <input type="text" id="rollSerial" class="input-box" placeholder="जैसे: 589" data-i18n-placeholder="ph_serial">
                     </div>
                   </div>
 
                   <!-- 03 SIR 2026 grievance details -->
                   <div class="form-step-divider">
-                    <span>03 SIR 2026 grievance details</span>
+                    <span data-i18n="sec3_title">03 SIR 2026 शिकायत का विवरण</span>
                   </div>
-                  <div class="bilingual-subtitle">समस्या और उसके पहले किये गये प्रयास</div>
+                  <div class="bilingual-subtitle" data-i18n="sec3_sub">समस्या और उसके पहले किये गये प्रयास</div>
 
                   <div class="form-grid">
                     <div class="form-group full-width" id="grpNature">
                       <label class="form-label" for="natureSelect">
-                        <span>Nature of complaint / शिकायत का प्रकार <span class="req-star">*</span></span>
+                        <span data-i18n="lbl_nature">शिकायत का प्रकार *</span>
                       </label>
                       <select id="natureSelect" class="select-box" required>
-                        <option value="">Select your problem</option>
+                        <option value="" data-i18n="opt_nature">अपनी समस्या का चयन करें</option>
                       </select>
                       <span class="field-error" id="errNature"></span>
                     </div>
 
                     <div class="form-group" id="grpSirStage">
                       <label class="form-label" for="sirStageSelect">
-                        <span>Stage of SIR / संबंधित चरण</span>
+                        <span data-i18n="lbl_stage">SIR का संबंधित चरण</span>
                       </label>
                       <select id="sirStageSelect" class="select-box">
-                        <option value="">Select stage</option>
+                        <option value="" data-i18n="opt_stage">चरण चुनें</option>
                       </select>
                     </div>
 
                     <div class="form-group" id="grpIncidentDate">
                       <label class="form-label" for="incidentDate">
-                        <span>When did you notice it?</span>
+                        <span data-i18n="lbl_incident_date">समस्या कब पता चली?</span>
                       </label>
-                      <input type="text" id="incidentDate" class="input-box" placeholder="e.g. October 2025 or Date">
+                      <input type="text" id="incidentDate" class="input-box" placeholder="जैसे: अक्टूबर 2025 या तारीख" data-i18n-placeholder="ph_incident_date">
                     </div>
 
                     <div class="form-group" id="grpVoterCardStatus">
                       <label class="form-label" for="voterCardStatusSelect">
-                        <span>Voter ID card status <span class="req-star">*</span></span>
+                        <span data-i18n="lbl_card_status">वोटर कार्ड की स्थिति *</span>
                       </label>
                       <select id="voterCardStatusSelect" class="select-box" required>
-                        <option value="">Select status</option>
+                        <option value="" data-i18n="opt_card_status">स्थिति चुनें</option>
                       </select>
                       <span class="field-error" id="errVoterCardStatus"></span>
                     </div>
 
                     <div class="form-group" id="grpEpic">
                       <label class="form-label" for="epicNumber">
-                        <span>EPIC / Voter ID number <span class="badge-optional">Optional</span></span>
+                        <span><span data-i18n="lbl_epic">वोटर आईडी / EPIC संख्या</span> <span class="badge-optional">वैकल्पिक</span></span>
                       </label>
-                      <input type="text" id="epicNumber" class="input-box" placeholder="e.g. ABC1234567" style="text-transform:uppercase;">
+                      <input type="text" id="epicNumber" class="input-box" placeholder="जैसे: ABC1234567" data-i18n-placeholder="ph_epic" style="text-transform:uppercase;">
                     </div>
 
                     <div class="form-group" id="grpLastSeen">
                       <label class="form-label" for="lastSeen">
-                        <span>Last time your name was in the roll</span>
+                        <span data-i18n="lbl_last_seen">पिछली बार मतदाता सूची में नाम कब था?</span>
                       </label>
-                      <input type="text" id="lastSeen" class="input-box" placeholder="e.g. 2024 Lok Sabha elections">
+                      <input type="text" id="lastSeen" class="input-box" placeholder="जैसे: 2024 लोकसभा चुनाव" data-i18n-placeholder="ph_last_seen">
                     </div>
 
                     <div class="form-group" id="grpEciClaimRef">
                       <label class="form-label" for="eciClaimRef">
-                        <span>Existing ECI application / appeal no.</span>
+                        <span data-i18n="lbl_eci_ref">पूर्व ECI आवेदन / अपील संख्या</span>
                       </label>
-                      <input type="text" id="eciClaimRef" class="input-box" placeholder="e.g. Form 6 / 7 / 8 reference number">
+                      <input type="text" id="eciClaimRef" class="input-box" placeholder="जैसे: फॉर्म 6 / 7 / 8 रिफरेंस नंबर" data-i18n-placeholder="ph_eci_ref">
                     </div>
 
                     <div class="form-group full-width" id="grpDescription">
                       <label class="form-label" for="description">
-                        <span>Explain what happened / पूरी शिकायत <span class="req-star">*</span></span>
+                        <span data-i18n="lbl_desc">पूरी शिकायत विस्तार से लिखें *</span>
                       </label>
-                      <textarea id="description" class="textarea-box" rows="4" placeholder="Describe the issue in detail..." required></textarea>
-                      <span class="field-help">Please do not include Aadhaar, bank numbers, caste, religion, political preference, or details about unrelated people.</span>
+                      <textarea id="description" class="textarea-box" rows="4" placeholder="विस्तार से बताएं कि क्या समस्या हुई..." data-i18n-placeholder="ph_desc" required></textarea>
+                      <span class="field-help" data-i18n="desc_help">कृपया आधार नंबर, बैंक खाता, जाति, धर्म या राजनीतिक पसंद का उल्लेख न करें।</span>
                       <span class="field-error" id="errDescription"></span>
                     </div>
                   </div>
 
                   <!-- 04 Upload supporting proof -->
                   <div class="form-step-divider">
-                    <span>04 Upload supporting proof</span>
+                    <span data-i18n="sec4_title">04 प्रमाण अपलोड करें</span>
                   </div>
-                  <div class="bilingual-subtitle">प्रमाण अपलोड करें — optional; a missing voter card should not prevent reporting</div>
+                  <div class="bilingual-subtitle" data-i18n="sec4_sub">प्रमाण अपलोड करें — ऐच्छिक; मतदाता पहचान पत्र न होने पर भी शिकायत दर्ज कर सकते हैं</div>
 
                   <div class="form-group full-width" id="grpProof" style="margin-top: 10px;">
                     <label class="upload-dropzone" for="proofFile" id="proofDropzone">
                       <div class="upload-icon">⇧</div>
-                      <div class="upload-title">Attach voter card or supporting evidence</div>
-                      <div class="upload-sub">Voter card, earlier voter-list page, SIR notice, or screenshot</div>
-                      <div class="upload-sub" style="font-weight: 500;">PDF / JPG / PNG / WEBP · Max 6 MB. Avoid Aadhaar uploads.</div>
+                      <div class="upload-title" data-i18n="upload_title">वोटर कार्ड या सहायक प्रमाण संलग्न करें</div>
+                      <div class="upload-sub" data-i18n="upload_sub">पुराना वोटर कार्ड, पिछली मतदाता सूची का पृष्ठ, नोटिस या स्क्रीनशॉट</div>
+                      <div class="upload-sub" style="font-weight: 500;" data-i18n="upload_note">PDF / JPG / PNG / WEBP · अधिकतम 6 MB. आधार अपलोड न करें।</div>
                       <input type="file" id="proofFile" class="upload-input-file" accept=".pdf,.jpg,.jpeg,.png,.webp">
                     </label>
                     <div id="selectedFileDisplay" style="display:none; margin-top:8px;"></div>
@@ -429,24 +445,24 @@
 
                   <!-- 05 How did you reach this website? -->
                   <div class="form-step-divider">
-                    <span>05 How did you reach this website?</span>
+                    <span data-i18n="sec5_title">05 आप इस वेबसाइट तक कैसे पहुंचे?</span>
                   </div>
-                  <div class="bilingual-subtitle">Helps the Lok Dal team understand where grievances are coming from</div>
+                  <div class="bilingual-subtitle" data-i18n="sec5_sub">इससे लोकदल टीम को यह समझने में सहायता मिलती है कि शिकायतें कहाँ से आ रही हैं</div>
 
                   <div class="form-grid">
                     <div class="form-group full-width" id="grpSource">
                       <label class="form-label" for="sourceSelect">
-                        <span>Source / माध्यम</span>
+                        <span data-i18n="lbl_source">माध्यम / स्रोत</span>
                       </label>
                       <select id="sourceSelect" class="select-box">
-                        <option value="">Select source</option>
+                        <option value="" data-i18n="opt_source">माध्यम चुनें</option>
                       </select>
                     </div>
 
                     <div class="form-group full-width" style="margin-top: 6px;">
                       <label class="consent-checkbox-wrap" for="consentRequired">
                         <input type="checkbox" id="consentRequired" required>
-                        <span>I confirm this grievance relates to a genuine voter registration issue for myself or a person who authorized me. The details provided are true to the best of my knowledge. <span class="req-star">*</span></span>
+                        <span data-i18n="consent_req">मैं पुष्टि करता/करती हूँ कि यह शिकायत मेरे या मेरे द्वारा अधिकृत व्यक्ति के वास्तविक मतदाता पंजीकरण से संबंधित है। दी गई जानकारी मेरी सर्वोत्तम जानकारी के अनुसार सत्य है। *</span>
                       </label>
                       <span class="field-error" id="errConsent" style="margin-left: 30px;"></span>
                     </div>
@@ -454,7 +470,7 @@
                     <div class="form-group full-width">
                       <label class="consent-checkbox-wrap" for="consentRepresentation">
                         <input type="checkbox" id="consentRepresentation">
-                        <span>I authorize the Search My Vote / Lok Dal legal aid team to represent this grievance before election authorities or appropriate forums if necessary (Optional).</span>
+                        <span data-i18n="consent_rep">मैं सर्च माय वोट / लोकदल लीगल एड टीम को चुनाव अधिकारियों या उचित मंचों के समक्ष आवश्यकता पड़ने पर इस शिकायत का प्रतिनिधित्व करने के लिए अधिकृत करता/करती हूँ (वैकल्पिक)।</span>
                       </label>
                     </div>
                   </div>
@@ -462,16 +478,16 @@
                   <div class="form-consent-box">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="22" height="22"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     <div>
-                      <strong>Notice: Non-governmental Electoral Rights Initiative</strong>
-                      <p>Search My Vote is a non-governmental initiative by Lok Dal to assist citizens with electoral roll issues. Grievances submitted here are for advocacy, verification, and legal aid. We do not charge fees and we are not the Election Commission of India.</p>
+                      <strong data-i18n="legal_box_title">सूचना: गैर-सरकारी मतदाता अधिकार पहल</strong>
+                      <p data-i18n="legal_box_desc">सर्च माय वोट (Search My Vote) नागरिकों की मतदाता सूची संबंधी समस्याओं में सहायता के लिए लोकदल की एक गैर-सरकारी पहल है। यहाँ दर्ज शिकायतें कानूनी सहायता, सत्यापन और लोकतांत्रिक पैरवी के लिए हैं। हम कोई शुल्क नहीं लेते और हम भारत निर्वाचन आयोग (ECI) नहीं हैं।</p>
                     </div>
                   </div>
 
                   <!-- Centered Buttons: Reset Form & Green Submit Button -->
                   <div class="form-actions">
-                    <button type="reset" class="btn btn-outline" id="resetBtn">Reset Form</button>
+                    <button type="reset" class="btn btn-outline" id="resetBtn" data-i18n="btn_reset">फॉर्म रीसेट करें</button>
                     <button type="submit" class="btn btn-primary btn-submit-green" id="submitBtn">
-                      <span class="btn-caption">Submit SIR grievance ↗</span>
+                      <span class="btn-caption" data-i18n="btn_submit">शिकायत दर्ज करें और टिकट प्राप्त करें ↗</span>
                       <span class="spinner" id="submitSpinner" style="display:none;"></span>
                     </button>
                   </div>
@@ -482,20 +498,20 @@
                   <div class="sidebar-info-card">
                     <h4>
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                      Before you begin
+                      <span data-i18n="sb1_title">शुरू करने से पहले</span>
                     </h4>
                     <ul>
                       <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
-                        <span>Valid 10-digit mobile number for status alerts</span>
+                        <span data-i18n="sb1_item1">स्थिति अलर्ट के लिए वैध 10-अंकों का मोबाइल नंबर</span>
                       </li>
                       <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
-                        <span>Constituency details (State, District, Assembly)</span>
+                        <span data-i18n="sb1_item2">निर्वाचन क्षेत्र विवरण (राज्य, जिला, विधानसभा)</span>
                       </li>
                       <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
-                        <span>Description of missing name or roll deletion</span>
+                        <span data-i18n="sb1_item3">नाम हटने या विलोपन की स्थिति का विवरण</span>
                       </li>
                     </ul>
                   </div>
@@ -503,20 +519,20 @@
                   <div class="sidebar-info-card sage">
                     <h4>
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                      Your data is protected
+                      <span data-i18n="sb2_title">आपका डेटा सुरक्षित है</span>
                     </h4>
-                    <p>
-                      Submissions are stored securely and treated confidentially in accordance with Indian DPDP principles. Information is used exclusively for citizen casework and democratic grievance representation.
+                    <p data-i18n="sb2_desc">
+                      आपकी जानकारी भारतीय डेटा संरक्षण (DPDP) सिद्धांतों के तहत गोपनीय रखी जाती है। इसका उपयोग केवल नागरिक सहायता और लोकतांत्रिक अधिकारों के लिए किया जाता है।
                     </p>
                   </div>
 
                   <div class="sidebar-info-card">
                     <h4>
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-                      Independent platform
+                      <span data-i18n="sb3_title">स्वतंत्र नागरिक मंच</span>
                     </h4>
-                    <p>
-                      Lok Dal advocates for constitutional voter rights and lawful representation. This platform does not directly modify official voter registers.
+                    <p data-i18n="sb3_desc">
+                      लोकदल संवैधानिक मताधिकारों और विधिक प्रतिनिधित्व की वकालत करता है। यह पोर्टल आधिकारिक मतदाता सूची में सीधा बदलाव नहीं करता है।
                     </p>
                   </div>
                 </aside>
@@ -528,9 +544,9 @@
           <div class="flip-face flip-back" id="cardFaceBack">
             <section class="screen-card">
               <div class="screen-header">
-                <h2 class="screen-title">Track Complaint Status</h2>
-                <p class="screen-subtitle">
-                  Enter your Case reference number and Private tracking PIN to check the real-time status and caseworker remarks.
+                <h2 class="screen-title" data-i18n="track_title">शिकायत की स्थिति जांचें</h2>
+                <p class="screen-subtitle" data-i18n="track_sub">
+                  अपनी दर्ज शिकायत की वास्तविक स्थिति और केसवर्कर की टिप्पणियां देखने के लिए केस रिफरेंस और गुप्त पिन दर्ज करें।
                 </p>
               </div>
 
@@ -538,27 +554,27 @@
                 <div class="track-dual-grid">
                   <div>
                     <label class="form-label" for="trackCaseRef" style="margin-bottom:6px;">
-                      <span>Case reference number <span class="req-star">*</span></span>
+                      <span data-i18n="lbl_caseref">केस रिफरेंस नंबर *</span>
                     </label>
-                    <input type="text" id="trackCaseRef" class="track-input" placeholder="e.g. SMV-2026-XXXXXXXXXX" maxlength="25" autocomplete="off" style="text-transform:uppercase;">
+                    <input type="text" id="trackCaseRef" class="track-input" placeholder="जैसे: SMV-2026-XXXXXXXXXX" data-i18n-placeholder="ph_caseref" maxlength="25" autocomplete="off" style="text-transform:uppercase;">
                   </div>
                   <div>
                     <label class="form-label" for="trackPin" style="margin-bottom:6px;">
-                      <span>Private tracking PIN <span class="req-star">*</span></span>
+                      <span data-i18n="lbl_pin">निजी ट्रैकिंग पिन (PIN) *</span>
                     </label>
-                    <input type="text" id="trackPin" class="track-input" placeholder="10-character PIN" maxlength="15" autocomplete="off" style="text-transform:uppercase; letter-spacing:0.08em;">
+                    <input type="text" id="trackPin" class="track-input" placeholder="10-अक्षरों का गुप्त पिन" data-i18n-placeholder="ph_pin" maxlength="15" autocomplete="off" style="text-transform:uppercase; letter-spacing:0.08em;">
                   </div>
                 </div>
 
                 <div style="display:flex; justify-content:flex-end; margin-bottom:12px;">
-                  <button class="btn btn-primary" id="trackSubmitBtn">
-                    <span class="btn-caption">View case status →</span>
+                  <button type="button" class="btn btn-primary" id="trackSubmitBtn">
+                    <span class="btn-caption" data-i18n="btn_track">स्थिति देखें →</span>
                     <span class="spinner" id="trackSpinner" style="display:none;"></span>
                   </button>
                 </div>
 
-                <p class="track-privacy-note" style="font-size:12px; color:var(--text-muted); line-height:1.5;">
-                  Lost your PIN? Contact the Search My Vote team with identity verification. For privacy, your status cannot be accessed using only a mobile number.
+                <p class="track-privacy-note" data-i18n="track_privacy_note" style="font-size:12px; color:var(--text-muted); line-height:1.5;">
+                  पिन खो गया है? पहचान सत्यापन के साथ सर्च माय वोट टीम से संपर्क करें। गोपनीयता के लिए, केवल मोबाइल नंबर से स्थिति नहीं देखी जा सकती।
                 </p>
                 <div class="track-error-display" id="trackErrorMsg"></div>
 
@@ -566,7 +582,7 @@
                 <div class="track-card" id="trackCardResult" style="display:none;">
                   <div class="track-card-header">
                     <div>
-                      <div class="track-case-badge">Official Grievance Reference</div>
+                      <div class="track-case-badge" data-i18n="modal_caseref_lbl">केस रिफरेंस नंबर</div>
                       <div class="track-case-id" id="resTicketId">SMV-2026-0000000000</div>
                     </div>
                     <span class="status-pill received" id="resStatusPill">Received</span>
@@ -575,34 +591,34 @@
                   <div class="track-card-body">
                     <div class="track-info-grid">
                       <div class="track-info-item">
-                        <span class="track-info-label">Applicant Name</span>
+                        <span class="track-info-label" data-i18n="lbl_fullname">पूरा नाम</span>
                         <span class="track-info-value" id="resName">—</span>
                       </div>
                       <div class="track-info-item">
-                        <span class="track-info-label">Registered Mobile</span>
+                        <span class="track-info-label" data-i18n="lbl_mobile">मोबाइल नंबर</span>
                         <span class="track-info-value" id="resMobile">—</span>
                       </div>
                       <div class="track-info-item">
-                        <span class="track-info-label">Grievance Category</span>
+                        <span class="track-info-label" data-i18n="lbl_nature">शिकायत का प्रकार</span>
                         <span class="track-info-value" id="resNature">—</span>
                       </div>
                       <div class="track-info-item">
-                        <span class="track-info-label">Registration Date</span>
+                        <span class="track-info-label">पंजीकरण तिथि</span>
                         <span class="track-info-value" id="resDate">—</span>
                       </div>
                       <div class="track-info-item">
-                        <span class="track-info-label">Stage of SIR</span>
+                        <span class="track-info-label" data-i18n="lbl_stage">SIR का संबंधित चरण</span>
                         <span class="track-info-value" id="resStage">—</span>
                       </div>
                       <div class="track-info-item">
-                        <span class="track-info-label">Voter ID / EPIC</span>
+                        <span class="track-info-label" data-i18n="lbl_card_status">वोटर कार्ड की स्थिति</span>
                         <span class="track-info-value" id="resCardStatus">—</span>
                       </div>
                     </div>
 
                     <!-- Constituency Trail -->
                     <div class="track-location-trail">
-                      <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-right: 4px;">Constituency Trail:</span>
+                      <span style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-right: 4px;">निर्वाचन क्षेत्र क्रम:</span>
                       <span class="trail-node" id="resState">State</span>
                       <span class="trail-sep">➔</span>
                       <span class="trail-node" id="resDistrict">District</span>
@@ -617,13 +633,13 @@
 
                     <!-- Attached proof if available -->
                     <div id="resProofContainer" style="display:none; margin-top: 10px;">
-                      <span style="font-size: 12px; font-weight: 600; color: var(--dp-color-ink);">Supporting Proof:</span>
+                      <span style="font-size: 12px; font-weight: 600; color: var(--dp-color-ink);">सहायक प्रमाण:</span>
                       <span id="resProofPill" class="selected-file-pill" style="margin-left: 8px;"></span>
                     </div>
 
                     <!-- Citizen Description -->
                     <div style="margin-top: 14px; padding: 12px 14px; background: #faf7f0; border: 1px solid var(--border-light); border-radius: 8px;">
-                      <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 4px;">Citizen's Statement:</div>
+                      <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 4px;">नागरिक का कथन / विवरण:</div>
                       <p id="resDescription" style="font-size: 13px; color: var(--dp-color-ink); margin: 0; white-space: pre-wrap; line-height: 1.5;"></p>
                     </div>
 
@@ -631,18 +647,18 @@
                     <div class="track-remarks-box">
                       <div class="track-remarks-title">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                        Caseworker Notes &amp; Status Update
+                        केसवर्कर टिप्पणियां एवं प्रगति
                       </div>
                       <p class="track-remarks-content" id="resRemarks">
-                        Your grievance is registered with the central helpline. Case files are being reviewed by authorized personnel.
+                        आपकी शिकायत केंद्रीय रजिस्टर में दर्ज है और अधिकृत टीम द्वारा इसकी समीक्षा की जा रही है।
                       </p>
                     </div>
                   </div>
                 </div>
 
                 <div style="text-align: center; margin-top: 28px;">
-                  <button class="btn btn-outline" onclick="flipCard('file')">
-                    ← File Another Complaint
+                  <button type="button" class="btn btn-outline" onclick="flipCard('file')" data-i18n="track_btn_back">
+                    ← दूसरी शिकायत दर्ज करें
                   </button>
                 </div>
               </div>
@@ -659,10 +675,10 @@
   <section class="closing-forest-area">
     <div class="container">
       <div class="closing-header">
-        <div class="closing-kicker">OUR SOLEMN PLEDGE</div>
-        <h3 class="closing-title">Commitment to Indian Democracy</h3>
-        <p class="closing-subtitle">
-          Every Indian citizen has a constitutional right to an accurate electoral roll entry. Here is our solemn pledge to you.
+        <div class="closing-kicker" data-i18n="pledge_kicker">हमारा संकल्प</div>
+        <h3 class="closing-title" data-i18n="pledge_title">भारतीय लोकतंत्र के प्रति हमारी प्रतिबद्धता</h3>
+        <p class="closing-subtitle" data-i18n="pledge_sub">
+          प्रत्येक भारतीय नागरिक का यह संवैधानिक अधिकार है कि उसका नाम मतदाता सूची में सही दर्ज हो।
         </p>
       </div>
 
@@ -672,9 +688,9 @@
           <div class="assurance-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <h4>1. 100% Confidentiality</h4>
-          <p>
-            Your personal information is strictly protected under Indian data protection principles. We never share your contact details for commercial purposes or political campaigning.
+          <h4 data-i18n="pledge1_title">1. 100% गोपनीयता</h4>
+          <p data-i18n="pledge1_desc">
+            आपकी व्यक्तिगत जानकारी पूर्णतः सुरक्षित है। हम कभी भी आपका विवरण व्यावसायिक या अवांछित प्रचार के लिए साझा नहीं करते।
           </p>
         </div>
 
@@ -682,9 +698,9 @@
           <div class="assurance-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
-          <h4>2. 48-Hour Case Intake</h4>
-          <p>
-            Every complaint registered on Search My Vote is ingested into our CRM database, reviewed by designated caseworkers, and categorized for timely representation.
+          <h4 data-i18n="pledge2_title">2. 48 घंटे में केस इंटेक</h4>
+          <p data-i18n="pledge2_desc">
+            दर्ज प्रत्येक शिकायत को केंद्रीय रजिस्टर में दर्ज कर अधिकृत केसवर्करों द्वारा प्राथमिकता से समीक्षा की जाती है।
           </p>
         </div>
 
@@ -692,9 +708,9 @@
           <div class="assurance-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
           </div>
-          <h4>3. Transparent Tracking</h4>
-          <p>
-            You are issued a unique Case reference number (SMV-2026-XXXXXXXXXX) and Private tracking PIN instantly. You can track real-time progress, caseworker remarks, and advocacy updates at any time.
+          <h4 data-i18n="pledge3_title">3. पारदर्शी ट्रैकिंग</h4>
+          <p data-i18n="pledge3_desc">
+            आपको तुरंत केस रिफरेंस और सुरक्षित पिन जारी किया जाता है जिससे आप कभी भी प्रगति देख सकते हैं।
           </p>
         </div>
       </div>
@@ -702,24 +718,24 @@
       <!-- Statutory Legal Notice & Citizen Contact Desk -->
       <div class="assurance-legal-box">
         <div>
-          <h5>Statutory Legal Notice</h5>
-          <p>
-            SearchMyVote.com is an independent voter grievance intake and documentation helpline sponsored and managed by Lok Dal (INDIA bloc constituent). This portal is <strong>not</strong> an Election Commission of India (ECI) website and does not directly change official voter rolls. All data is processed for citizen assistance, legal advocacy, and democratic electoral oversight.
+          <h5 data-i18n="legal_footer_title">वैधानिक सूचना</h5>
+          <p data-i18n="legal_footer_desc">
+            SearchMyVote.com लोकदल द्वारा प्रायोजित एक स्वतंत्र नागरिक सहायता व शिकायत निवारण हेल्पलाइन है। यह भारत निर्वाचन आयोग (ECI) की आधिकारिक वेबसाइट नहीं है और आधिकारिक निर्वाचक नामावली में सीधे बदलाव नहीं करती।
           </p>
         </div>
         <div>
-          <h5>Citizen Support Desk</h5>
-          <p>Have questions about your grievance or need immediate assistance?</p>
+          <h5 data-i18n="support_title">नागरिक सहायता केंद्र</h5>
+          <p data-i18n="support_desc">क्या आपको अपनी शिकायत के संबंध में सहायता चाहिए?</p>
           <p style="margin-top: 6px;">
             Email: <a href="mailto:grievance@searchmyvote.in" class="footer-contact-email">grievance@searchmyvote.in</a>
           </p>
-          <p style="margin-top: 2px;">Hours: Mon – Sat (9:00 AM – 7:00 PM IST)</p>
+          <p style="margin-top: 2px;" data-i18n="support_hours">समय: सोम – शनि (प्रातः 9:00 बजे – सायं 7:00 बजे IST)</p>
         </div>
       </div>
 
       <!-- Bottom Footer on the Same Forest Ground -->
       <footer class="footer-bottom-bar">
-        <p>© 2026 Search My Vote. All rights reserved.</p>
+        <p data-i18n="copyright">© 2026 सर्च माय वोट (Search My Vote). सर्वाधिकार सुरक्षित।</p>
       </footer>
     </div>
   </section>
@@ -730,18 +746,18 @@
       <div class="modal-icon-wrap">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="32" height="32"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
-      <h3 class="modal-title">Grievance Registered Successfully!</h3>
-      <p class="modal-text">
-        Your case has been recorded in the Search My Vote central register. Please save your dual credentials below to track your grievance:
+      <h3 class="modal-title" data-i18n="modal_title">शिकायत सफलतापूर्वक दर्ज हुई!</h3>
+      <p class="modal-text" data-i18n="modal_desc">
+        आपका मामला सर्च माय वोट के केंद्रीय रजिस्टर में दर्ज हो गया है। अपनी शिकायत को ट्रैक करने के लिए नीचे दिए गए दोनों क्रेडेंशियल्स सुरक्षित रखें:
       </p>
 
       <div class="ticket-showcase-grid">
         <div class="ticket-showcase-box">
           <div style="text-align: left;">
-            <div class="ticket-showcase-label">Case reference number</div>
+            <div class="ticket-showcase-label" data-i18n="modal_caseref_lbl">केस रिफरेंस नंबर</div>
             <div class="ticket-box-code" id="modalCaseRef">SMV-2026-XXXXXXXXXX</div>
           </div>
-          <button class="copy-ticket-btn" id="copyCaseRefBtn" title="Copy Case Reference">
+          <button type="button" class="copy-ticket-btn" id="copyCaseRefBtn" title="Copy Case Reference">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span id="copyCaseRefText">Copy</span>
           </button>
@@ -749,30 +765,31 @@
 
         <div class="ticket-showcase-box">
           <div style="text-align: left;">
-            <div class="ticket-showcase-label">Private tracking PIN</div>
+            <div class="ticket-showcase-label" data-i18n="modal_pin_lbl">निजी ट्रैकिंग पिन (PIN)</div>
             <div class="ticket-box-code pin" id="modalTrackingPin">XXXXXXXXXX</div>
           </div>
-          <button class="copy-ticket-btn" id="copyPinBtn" title="Copy Private PIN">
+          <button type="button" class="copy-ticket-btn" id="copyPinBtn" title="Copy Private PIN">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span id="copyPinText">Copy</span>
           </button>
         </div>
       </div>
 
-      <p class="modal-note">
-        Lost your PIN? Contact the Search My Vote team with identity verification. For privacy, your status cannot be accessed using only a mobile number.
+      <p class="modal-note" data-i18n="modal_note">
+        पिन खो जाने पर पहचान सत्यापन आवश्यक होगा। गोपनीयता हेतु केवल मोबाइल नंबर से स्थिति नहीं देखी जा सकती।
       </p>
 
       <div class="modal-btns">
-        <button class="btn btn-outline" id="modalDismissBtn">Done</button>
-        <button class="btn btn-outline" id="modalDownloadReceiptBtn">Download Receipt 📄</button>
-        <button class="btn btn-primary" id="modalTrackNowBtn">Track Now ➔</button>
+        <button type="button" class="btn btn-outline" id="modalDismissBtn" data-i18n="btn_done">संपन्न</button>
+        <button type="button" class="btn btn-outline" id="modalDownloadReceiptBtn" data-i18n="btn_receipt">रसीद डाउनलोड करें 📄</button>
+        <button type="button" class="btn btn-primary" id="modalTrackNowBtn" data-i18n="btn_track_now">अभी ट्रैक करें ➔</button>
       </div>
     </div>
   </div>
 
   <!-- Scripts -->
   <script src="/js/data.js"></script>
+  <script src="/js/i18n.js"></script>
   <script src="/js/app.js"></script>
 </body>
 </html>

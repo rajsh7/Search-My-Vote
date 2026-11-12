@@ -160,6 +160,46 @@ body::-webkit-scrollbar {
   margin-top: 2px;
 }
 
+.nav-right-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.lang-switch-pill {
+  display: inline-flex;
+  align-items: center;
+  background: #ece7da;
+  border: 1px solid var(--dp-color-field-line);
+  border-radius: 9999px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  border-radius: 9999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--dp-typography-reading);
+  line-height: 1;
+}
+
+.lang-btn:hover {
+  color: var(--dp-color-ink);
+}
+
+.lang-btn.active {
+  background: var(--dp-color-ink);
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
 .nav-actions {
   display: flex;
   align-items: center;
@@ -514,6 +554,24 @@ body::-webkit-scrollbar {
   font-weight: 500;
   color: var(--dp-color-ground);
   letter-spacing: -0.01em;
+}
+
+.how-it-works-banner-wrap {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+  margin-bottom: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0d2f21;
+}
+
+.how-it-works-infographic-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
 }
 
 .steps-3-grid {

@@ -713,12 +713,70 @@ document.addEventListener('DOMContentLoaded', () => {
       const rec = lastSubmittedRecord;
       if (!rec) return;
 
-      const dateStr = new Date(rec.created_at).toLocaleString('en-IN', {
+      const currentLang = localStorage.getItem('smv_lang') || 'hi';
+      const dateStr = new Date(rec.created_at).toLocaleString(currentLang === 'hi' ? 'hi-IN' : 'en-IN', {
         dateStyle: 'full',
         timeStyle: 'medium'
       });
 
-      const receiptText = `====================================================================
+      let receiptText = '';
+      if (currentLang === 'hi') {
+        receiptText = `====================================================================
+सर्च माय वोट — नागरिक शिकायत पंजीकरण रसीद
+केंद्रीय नागरिक निवारण हेल्पलाइन एवं विधिक सहायता मंच
+वेबसाइट: https://searchmyvote.com | ईमेल: grievance@searchmyvote.in
+====================================================================
+
+केस क्रेडेंशियल्स (ट्रैकिंग के लिए दोनों सुरक्षित रखें)
+--------------------------------------------------------------------
+केस रिफरेंस नंबर (Case Reference) : ${rec.ticket_id}
+निजी सुरक्षा पिन (Private PIN)   : ${rec.tracking_pin}
+पंजीकरण समय एवं तारीख          : ${dateStr}
+वर्तमान स्थिति                 : दर्ज / केंद्रीय रजिस्टर में प्राप्त
+
+नागरिक विवरण
+--------------------------------------------------------------------
+पूरा नाम                       : ${rec.full_name}
+मोबाइल नंबर                    : +91 ${rec.mobile}
+ईमेल                          : ${rec.email || 'उपलब्ध नहीं'}
+पता एवं पिन कोड                : ${rec.address_line || '—'}${rec.postcode ? ' (' + rec.postcode + ')' : ''}
+
+निर्वाचन क्षेत्र विवरण
+--------------------------------------------------------------------
+राज्य / केंद्र शासित प्रदेश      : ${rec.state}
+जिला                          : ${rec.district}
+लोकसभा निर्वाचन क्षेत्र        : ${rec.lok_sabha || 'निर्दिष्ट नहीं'}
+विधानसभा निर्वाचन क्षेत्र       : ${rec.assembly || 'निर्दिष्ट नहीं'}
+गांव या वार्ड                 : ${rec.village_ward || 'निर्दिष्ट नहीं'}
+मतदान केंद्र / बूथ             : ${rec.polling_station || 'निर्दिष्ट नहीं'}
+भाग एवं क्रमांक संख्या          : भाग ${rec.roll_part || '—'} / क्रमांक ${rec.roll_serial || '—'}
+
+SIR 2026 शिकायत का विवरण
+--------------------------------------------------------------------
+शिकायत का प्रकार              : ${rec.grievance_nature}
+SIR का संबंधित चरण             : ${rec.sir_stage || 'निर्दिष्ट नहीं'}
+समस्या कब पता चली              : ${rec.incident_date || 'निर्दिष्ट नहीं'}
+वोटर कार्ड की स्थिति          : ${rec.voter_card_status}
+EPIC / वोटर आईडी संख्या       : ${rec.epic || 'उपलब्ध नहीं'}
+पिछली बार सूची में नाम कब था   : ${rec.last_seen || 'निर्दिष्ट नहीं'}
+पूर्व ECI आवेदन / अपील संख्या  : ${rec.eci_claim_ref || 'उपलब्ध नहीं'}
+संलग्न प्रमाण                 : ${rec.proof_name || 'कोई नहीं'}
+
+नागरिक का कथन / पूरी शिकायत:
+${rec.description}
+
+वैधानिक सूचना एवं गोपनीयता
+--------------------------------------------------------------------
+सर्च माय वोट (Search My Vote) लोकदल द्वारा प्रायोजित एक स्वतंत्र नागरिक
+सहायता व शिकायत निवारण पहल है। यह आधिकारिक निर्वाचक नामावली में सीधे
+बदलाव नहीं करती। दर्ज विवरण कानूनी सहायता एवं लोकतांत्रिक पैरवी के लिए
+गोपनीयता के साथ सुरक्षित रखा जाता है।
+
+अपना केस रिफरेंस और पिन सुरक्षित रखें। गोपनीयता हेतु केवल मोबाइल नंबर
+से स्थिति नहीं देखी जा सकती।
+====================================================================`;
+      } else {
+        receiptText = `====================================================================
 SEARCH MY VOTE — CITIZEN GRIEVANCE INTAKE RECEIPT
 Central Civic Redressal Helpline & Legal Aid Portal
 Website: https://searchmyvote.com | Email: grievance@searchmyvote.in
@@ -772,6 +830,7 @@ and constitutional voter representation.
 Keep your Case Reference and PIN secure. For privacy, case status cannot
 be accessed with only a phone number.
 ====================================================================`;
+      }
 
       const blob = new Blob([receiptText], { type: 'text/plain;charset=utf-8' });
       const url = URL.createObjectURL(blob);
