@@ -603,9 +603,25 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify(payload)
       });
 
-      const resData = await response.json();
+      let resData = null;
+      const rawText = await response.text();
+      try {
+        resData = JSON.parse(rawText);
+      } catch (jsonErr) {
+        console.error('Non-JSON server response:', response.status, rawText);
+        if (response.status === 413) {
+          alert('Upload size too large: The attached file exceeds the server limit. Please attach a file under 6 MB or submit without attachment.');
+          return;
+        }
+        if (response.status === 502 || response.status === 504) {
+          alert('Server temporarily unavailable (Gateway 502). Please ensure the backend service is running and try again.');
+          return;
+        }
+        alert(`Server error (${response.status}): ${rawText.slice(0, 140) || 'An unexpected error occurred. Please try again.'}`);
+        return;
+      }
 
-      if (response.ok && resData.success) {
+      if (response.ok && resData && resData.success) {
         lastSubmittedRecord = {
           ticket_id: resData.ticket_id,
           tracking_pin: resData.tracking_pin,
@@ -627,11 +643,11 @@ document.addEventListener('DOMContentLoaded', () => {
         lokSabhaCustom.style.display = 'none';
         assemblyCustom.style.display = 'none';
       } else {
-        alert(resData.error || 'Failed to submit grievance. Please verify details and try again.');
+        alert(resData?.error || 'Failed to submit grievance. Please verify details and try again.');
       }
     } catch (err) {
-      console.error(err);
-      alert('Network communication error. Please check your internet connection.');
+      console.error('Fetch error:', err);
+      alert('Unable to reach the server. Please check your internet connection or try again.');
     } finally {
       submitBtn.disabled = false;
       submitSpinner.style.display = 'none';
@@ -807,9 +823,16 @@ be accessed with only a phone number.
         body: JSON.stringify({ case_ref: caseRef, pin: pin })
       });
 
-      const data = await response.json();
+      let data = null;
+      const rawText = await response.text();
+      try {
+        data = JSON.parse(rawText);
+      } catch (jsonErr) {
+        trackErrorMsg.textContent = `Server error (${response.status}). Please try again.`;
+        return;
+      }
 
-      if (response.ok && data.ticket_id) {
+      if (response.ok && data && data.ticket_id) {
         document.getElementById('resTicketId').textContent = data.ticket_id;
         document.getElementById('resName').textContent = data.full_name;
         document.getElementById('resMobile').textContent = `+91 ${data.mobile}`;

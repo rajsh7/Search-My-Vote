@@ -18,8 +18,22 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://weddevraj_db_user:
 
 // Middleware
 app.use(cors());
-app.use(express.json({ limit: '15mb' }));
-app.use(express.urlencoded({ extended: true, limit: '15mb' }));
+app.use(express.json({ limit: '20mb' }));
+app.use(express.urlencoded({ extended: true, limit: '20mb' }));
+
+// Handle JSON syntax errors or payload-too-large errors cleanly
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+    console.error('⚠️ JSON syntax error intercepted:', err.message);
+    return res.status(400).json({ error: 'Malformed JSON data received. Please verify form values and try again.' });
+  }
+  if (err && (err.type === 'entity.too.large' || err.status === 413)) {
+    console.error('⚠️ Payload too large:', err.message);
+    return res.status(413).json({ error: 'The uploaded file exceeds the allowed size limit (20MB). Please select a file under 6 MB.' });
+  }
+  next(err);
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Mongoose Grievance Schema
