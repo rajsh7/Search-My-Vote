@@ -740,11 +740,20 @@ body::-webkit-scrollbar {
   margin: 0 auto;
 }
 
-.form-with-sidebar {
-  display: grid;
-  grid-template-columns: 1fr 310px;
-  gap: 36px;
-  align-items: start;
+/* Form Section Container 10% Left and Right Margins */
+#formSection .container {
+  width: 80% !important;
+  margin-left: 10% !important;
+  margin-right: 10% !important;
+  max-width: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.form-with-sidebar,
+.form-main-area {
+  display: block;
+  width: 100%;
 }
 
 /* Form Steps */
@@ -784,14 +793,16 @@ body::-webkit-scrollbar {
 
 .form-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px 22px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 24px;
+  width: 100%;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
   position: relative;
+  width: 100%;
 }
 
 .form-group.full-width {
@@ -823,17 +834,18 @@ body::-webkit-scrollbar {
 }
 
 .input-box,
-.select-box,
-.textarea-box {
+.select-box {
+  width: 100%;
+  height: 48px;
   font-family: var(--dp-typography-reading);
   font-size: 0.94rem;
   color: var(--dp-color-ink);
   background: #ffffff;
   border: var(--dp-border-hairline) solid var(--dp-color-rule);
   border-radius: 10px;
-  padding: 12px 14px;
+  padding: 12px 16px;
   outline: none;
-  width: 100%;
+  box-sizing: border-box;
   transition: border-color var(--dp-motion-interaction) var(--dp-motion-easing),
               box-shadow var(--dp-motion-interaction) var(--dp-motion-easing);
 }
@@ -843,6 +855,24 @@ body::-webkit-scrollbar {
 .textarea-box:focus {
   border-color: var(--dp-color-ink);
   box-shadow: 0 0 0 3px rgba(30, 56, 44, 0.12);
+}
+
+.textarea-box {
+  width: 100%;
+  min-height: 110px;
+  font-family: var(--dp-typography-reading);
+  font-size: 0.94rem;
+  color: var(--dp-color-ink);
+  background: #ffffff;
+  border: var(--dp-border-hairline) solid var(--dp-color-rule);
+  border-radius: 10px;
+  padding: 12px 16px;
+  outline: none;
+  box-sizing: border-box;
+  resize: vertical;
+  line-height: 1.5;
+  transition: border-color var(--dp-motion-interaction) var(--dp-motion-easing),
+              box-shadow var(--dp-motion-interaction) var(--dp-motion-easing);
 }
 
 .select-box {
@@ -1001,6 +1031,33 @@ body::-webkit-scrollbar {
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+/* Guidance Cards Below Form Section */
+.below-form-guidance-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--dp-color-rule);
+}
+
+.below-form-guidance-grid .sidebar-info-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: #faf8f3;
+  border: var(--dp-border-hairline) solid var(--dp-color-rule);
+  border-radius: 16px;
+  padding: 22px 20px;
+  box-shadow: 0 4px 16px rgba(30, 56, 44, 0.03);
+}
+
+.below-form-guidance-grid .sidebar-info-card.sage {
+  background: var(--dp-color-panel);
+  border-color: var(--dp-color-ornament-line);
 }
 
 /* Form Sidebar */
@@ -1569,7 +1626,7 @@ body::-webkit-scrollbar {
 }
 
 /* =========================================================
-   RESPONSIVE DESIGN (Botanical System Thresholds: 1120px, 760px, 480px)
+   RESPONSIVE DESIGN (Botanical System Thresholds: 1120px, 900px, 768px, 480px)
    ========================================================= */
 @media (max-width: 1120px) {
   .hero-grid {
@@ -1577,10 +1634,62 @@ body::-webkit-scrollbar {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 900px) {
+  .below-form-guidance-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  #formSection .container {
+    width: auto !important;
+    margin-left: 14px !important;
+    margin-right: 14px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .nav-container {
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    gap: 10px;
+  }
+
+  .brand-logo-img {
+    height: 36px;
+  }
+
+  .brand-title {
+    font-size: 1.35rem;
+  }
+
+  .nav-actions {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .lang-switch-pill {
+    padding: 2px;
+  }
+
+  .lang-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
   .hero-grid {
     grid-template-columns: 1fr;
     text-align: center;
+  }
+
+  .hero-title {
+    font-size: 2.15rem;
+    line-height: 1.2;
   }
 
   .hero-copy-side {
@@ -1588,6 +1697,14 @@ body::-webkit-scrollbar {
   }
 
   .hero-actions-row {
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .hero-actions-row .btn {
+    width: 100%;
     justify-content: center;
   }
 
@@ -1603,8 +1720,58 @@ body::-webkit-scrollbar {
     grid-template-columns: 1fr;
   }
 
-  .form-with-sidebar {
-    grid-template-columns: 1fr;
+  .form-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  .screen-card {
+    padding: 24px 18px;
+    border-radius: 16px;
+  }
+
+  .screen-title {
+    font-size: 1.6rem;
+  }
+
+  .screen-subtitle {
+    font-size: 0.88rem;
+  }
+
+  .card-tabs {
+    width: 100%;
+    display: flex;
+  }
+
+  .card-tab-btn {
+    flex: 1;
+    padding: 10px 8px;
+    font-size: 0.84rem;
+    justify-content: center;
+  }
+
+  .track-dual-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+
+  .track-info-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .track-location-trail {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .how-it-works-banner-wrap {
+    margin-bottom: 20px;
+  }
+
+  .how-it-works-infographic-img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
   }
 
   .assurance-grid {
@@ -1615,17 +1782,16 @@ body::-webkit-scrollbar {
     grid-template-columns: 1fr;
   }
 
-  .screen-card {
-    padding: 28px 22px;
+  .modal-box {
+    width: 94%;
+    max-width: 520px;
+    padding: 22px 18px;
+    margin: 16px auto;
   }
 }
 
 @media (max-width: 480px) {
   .feature-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .form-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1642,8 +1808,12 @@ body::-webkit-scrollbar {
   }
 
   .card-tab-btn {
-    padding: 8px 18px;
-    font-size: 0.85rem;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+
+  .hero-title {
+    font-size: 1.85rem;
   }
 }
 
