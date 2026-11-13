@@ -787,10 +787,10 @@ body::-webkit-scrollbar {
   font-size: 1.05rem;
   font-weight: 600;
   color: var(--dp-color-ink);
-  white-space: nowrap;
   display: flex;
   align-items: center;
   gap: 8px;
+  line-height: 1.35;
 }
 
 .form-step-divider span::before {
@@ -2215,51 +2215,57 @@ body::-webkit-scrollbar {
 }
 
 /* =========================================================
-   RESPONSIVE DESIGN (Botanical System Thresholds: 1120px, 900px, 768px, 480px)
+   RESPONSIVE DESIGN SYSTEM (Desktop: 1120px, Tablet: 992px, Mobile: 768px, Compact: 480px)
    ========================================================= */
+
+/* Prevent horizontal scroll bleed on any mobile device */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+}
+
+img, svg, video {
+  max-width: 100%;
+  height: auto;
+}
+
 @media (max-width: 1120px) {
   .hero-grid {
     gap: 32px;
   }
 }
 
-@media (max-width: 900px) {
-  .below-form-guidance-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-}
-
-@media (max-width: 768px) {
-  #formSection .container {
-    width: auto !important;
-    margin-left: 14px !important;
-    margin-right: 14px !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+/* Tablet & Mobile Navigation Breakpoint (<= 992px) */
+@media (max-width: 992px) {
+  .navbar {
+    padding: 10px 0 8px;
   }
 
   .nav-container {
+    display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    align-items: center;
     justify-content: space-between;
+    gap: 8px 12px;
   }
 
   .nav-brand {
-    gap: 10px;
+    order: 1;
+    gap: 8px;
   }
 
   .brand-logo-img {
-    height: 36px;
+    height: 32px;
   }
 
   .brand-title {
-    font-size: 1.35rem;
+    font-size: 1.25rem;
   }
 
-  .nav-actions {
+  .nav-right-group {
+    order: 2;
     gap: 8px;
-    flex-wrap: wrap;
   }
 
   .lang-switch-pill {
@@ -2267,64 +2273,203 @@ body::-webkit-scrollbar {
   }
 
   .lang-btn {
-    padding: 5px 10px;
+    padding: 4px 10px;
     font-size: 12px;
+  }
+
+  /* Hide the 2 large desktop action buttons from sticky navbar on mobile to eliminate clutter */
+  .nav-actions {
+    display: none !important;
+  }
+
+  /* Horizontal swipeable pill bar for navigation links */
+  .nav-menu-links {
+    order: 3;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 4px 2px 2px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .nav-menu-links::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  .nav-menu-item {
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    padding: 5px 12px;
+    background: rgba(30, 56, 44, 0.05);
+    border-radius: 9999px;
+  }
+
+  .nav-menu-item.active {
+    background: var(--dp-color-ink);
+    color: var(--dp-color-ground);
+  }
+}
+
+/* Mobile Devices (<= 768px) */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 36px 0 28px;
   }
 
   .hero-grid {
     grid-template-columns: 1fr;
     text-align: center;
-  }
-
-  .hero-title {
-    font-size: 2.15rem;
-    line-height: 1.2;
+    gap: 28px;
   }
 
   .hero-copy-side {
     align-items: center;
   }
 
-  .hero-actions-row {
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    gap: 10px;
+  .botanical-label {
+    font-size: 0.72rem;
+    margin-bottom: 14px;
+    text-align: center;
   }
 
-  .hero-actions-row .btn {
+  .hero-title-hindi {
+    font-size: clamp(2rem, 7vw, 2.7rem);
+    line-height: 1.15;
+  }
+
+  .hero-title-green {
+    font-size: clamp(1.65rem, 6vw, 2.25rem);
+    margin-bottom: 16px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.98rem;
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+
+  .hero-hindi-sub {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin-bottom: 24px;
+  }
+
+  .hero-actions-row {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .hero-actions-row .btn-botanical-primary,
+  .hero-actions-row .btn-botanical-quiet {
     width: 100%;
     justify-content: center;
+    text-align: center;
+    padding: 12px 20px;
   }
 
   .hero-visual-side {
-    margin-top: 10px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 10px 0 20px;
+  }
+
+  .botanical-sprig-svg {
+    display: none !important;
+  }
+
+  .botanical-arch-card {
+    width: 250px;
+    height: 375px;
+    border-radius: 125px 125px 20px 20px;
+  }
+
+  .arch-outer-guide {
+    width: 280px;
+    height: 405px;
+    border-radius: 140px 140px 24px 24px;
+  }
+
+  /* Sage 4 Pillars Section */
+  .sage-features-section {
+    margin: 20px auto 30px;
+  }
+
+  .sage-panel-card {
+    padding: 22px 16px;
+    border-radius: 20px;
   }
 
   .feature-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  /* Continuous Forest 3-Step Process */
+  .forest-steps-section {
+    margin: 28px auto 36px;
+  }
+
+  .forest-field-card {
+    padding: 28px 16px;
+    border-radius: 22px;
+  }
+
+  .forest-header {
+    margin-bottom: 24px;
+  }
+
+  .forest-title {
+    font-size: clamp(1.4rem, 5.5vw, 1.8rem);
+    line-height: 1.25;
+  }
+
+  .how-it-works-banner-wrap {
+    border-radius: 12px;
+    margin-bottom: 20px;
   }
 
   .steps-3-grid {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
 
-  .form-grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px;
+  .step-box-item {
+    padding-top: 14px;
   }
 
-  .screen-card {
-    padding: 24px 18px;
-    border-radius: 16px;
+  /* Form & Tracking Section */
+  #formSection .container {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+    max-width: 100% !important;
   }
 
-  .screen-title {
-    font-size: 1.6rem;
+  .main-wrapper {
+    padding-top: 6px;
+    padding-bottom: 40px;
   }
 
-  .screen-subtitle {
-    font-size: 0.88rem;
+  .card-tab-bar {
+    width: 100%;
+    margin-bottom: 16px;
   }
 
   .card-tabs {
@@ -2334,118 +2479,336 @@ body::-webkit-scrollbar {
 
   .card-tab-btn {
     flex: 1;
-    padding: 10px 8px;
-    font-size: 0.84rem;
+    padding: 10px 6px;
+    font-size: 0.82rem;
     justify-content: center;
+    text-align: center;
+    gap: 6px;
   }
 
+  .screen-card {
+    padding: 22px 14px;
+    border-radius: 18px;
+  }
+
+  .screen-header {
+    margin-bottom: 20px;
+  }
+
+  .screen-title {
+    font-size: 1.55rem;
+  }
+
+  .screen-subtitle {
+    font-size: 0.88rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  .form-step-divider {
+    margin: 20px 0 14px;
+  }
+
+  .form-step-divider span {
+    font-size: 0.98rem;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+  }
+
+  .form-consent-box {
+    padding: 14px 14px;
+    font-size: 0.84rem;
+  }
+
+  .below-form-guidance-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 24px;
+    padding-top: 20px;
+  }
+
+  /* Track Screen */
   .track-dual-grid {
     grid-template-columns: 1fr !important;
     gap: 12px;
   }
 
+  .track-input {
+    font-size: 1rem;
+    padding: 11px 14px;
+  }
+
+  .track-card {
+    padding: 18px 14px;
+    border-radius: 16px;
+  }
+
+  .track-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .track-case-id {
+    font-size: 1.25rem;
+    word-break: break-all;
+  }
+
   .track-info-grid {
     grid-template-columns: 1fr !important;
+    gap: 10px;
   }
 
   .track-location-trail {
-    flex-wrap: wrap;
-    gap: 4px;
+    padding: 8px 10px;
+    font-size: 0.82rem;
   }
 
-  .how-it-works-banner-wrap {
+  /* Subpage Educational Components */
+  .civic-section {
+    margin-top: 24px;
     margin-bottom: 20px;
   }
 
-  .how-it-works-infographic-img {
+  .civic-card-panel {
+    padding: 22px 14px;
+    border-radius: 18px;
+  }
+
+  .civic-header {
+    margin-bottom: 20px;
+  }
+
+  .civic-title {
+    font-size: 1.55rem;
+    line-height: 1.25;
+  }
+
+  .civic-subtitle {
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .civic-grid-3 {
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+  }
+
+  .civic-info-card {
+    padding: 18px 16px;
+  }
+
+  .civic-alert-box {
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 16px;
+  }
+
+  .civic-official-links-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .civic-links-row {
     width: 100%;
-    height: auto;
-    border-radius: 12px;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .civic-link-pill {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 8px 14px;
+  }
+
+  .history-timeline-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+  }
+
+  .timeline-milestone-card {
+    padding: 18px 16px;
+  }
+
+  .sir-actions-cta {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .sir-actions-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .faq-search-wrap {
+    width: 100%;
+    padding: 10px 14px;
+  }
+
+  .faq-accordion-item summary {
+    padding: 14px 16px;
+    font-size: 0.95rem;
+    gap: 10px;
+  }
+
+  .faq-answer-content {
+    padding: 0 16px 14px;
+    font-size: 0.9rem;
+  }
+
+  .subpage-cta-card {
+    padding: 24px 16px;
+    border-radius: 18px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .subpage-cta-text h3 {
+    font-size: 1.35rem;
+  }
+
+  .subpage-cta-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .subpage-cta-actions .btn-botanical-primary,
+  .subpage-cta-actions .btn-botanical-quiet {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Closing Forest Area & Footer */
+  .closing-forest-area {
+    padding: 44px 0 24px;
+    border-radius: 32px 32px 0 0;
+    margin-top: 40px;
+  }
+
+  .closing-header {
+    margin-bottom: 28px;
+  }
+
+  .closing-title {
+    font-size: 1.65rem;
+    line-height: 1.25;
+  }
+
+  .closing-subtitle {
+    font-size: 0.92rem;
   }
 
   .assurance-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .assurance-card {
+    padding: 18px 16px;
   }
 
   .assurance-legal-box {
     grid-template-columns: 1fr;
-  }
-
-  .civic-card-panel {
-    padding: 26px 18px;
-    border-radius: 20px;
-  }
-
-  .civic-grid-3 {
-    grid-template-columns: 1fr;
     gap: 16px;
-  }
-
-  .history-timeline-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    padding: 18px 16px;
+    margin-bottom: 28px;
   }
 
   .footer-resource-grid {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 24px;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
   }
 
   .footer-bottom-bar {
     flex-direction: column;
     text-align: center;
     gap: 12px;
+    padding-top: 18px;
   }
 
   .footer-bottom-links {
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.85rem;
   }
 
-  .faq-accordion-item summary {
-    padding: 16px 18px;
-    font-size: 0.98rem;
+  /* Success Modal */
+  .modal-dialog {
+    width: 92%;
+    max-width: 480px;
+    padding: 22px 16px;
+    margin: 20px auto;
   }
 
-  .faq-answer-content {
-    padding: 0 18px 16px;
+  .modal-title {
+    font-size: 1.35rem;
   }
 
-  .modal-box {
-    width: 94%;
-    max-width: 520px;
-    padding: 22px 18px;
-    margin: 16px auto;
+  .ticket-box-code {
+    font-size: 1.15rem;
+  }
+
+  .modal-btns {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .modal-btns .btn {
+    width: 100%;
   }
 }
 
+/* Compact Smartphones (<= 480px) */
 @media (max-width: 480px) {
-  .feature-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .history-timeline-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .civic-title {
-    font-size: 1.5rem;
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
   }
 
   .botanical-arch-card {
-    width: 260px;
-    height: 390px;
-    border-radius: 130px 130px 20px 20px;
+    width: 220px;
+    height: 330px;
+    border-radius: 110px 110px 18px 18px;
   }
 
   .arch-outer-guide {
-    width: 290px;
-    height: 420px;
-    border-radius: 145px 145px 24px 24px;
+    width: 248px;
+    height: 358px;
+    border-radius: 124px 124px 22px 22px;
   }
 
   .card-tab-btn {
-    padding: 8px 12px;
-    font-size: 0.8rem;
+    font-size: 0.76rem;
+    padding: 8px 4px;
+    gap: 4px;
+  }
+
+  .card-tab-btn svg {
+    width: 14px;
+    height: 14px;
   }
 
   .hero-title {
