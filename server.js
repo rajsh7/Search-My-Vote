@@ -672,6 +672,23 @@ app.get('/admin', (req, res) => {
   res.redirect('/login/crm');
 });
 
+// Dedicated Civic Knowledge & Educational Pages
+app.get(['/rights', '/voter-rights'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'rights.html'));
+});
+
+app.get(['/history', '/voting-history'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'history.html'));
+});
+
+app.get(['/sir-2026', '/sir'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'sir-2026.html'));
+});
+
+app.get(['/faq', '/faqs'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'faq.html'));
+});
+
 // Fallback to main page
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));

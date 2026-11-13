@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="faq_title">अक्सर पूछे जाने वाले प्रश्न (FAQ) · Search My Vote</title>
+  <meta name="description" content="Frequently Asked Questions (FAQ) on voter list deletions, SIR 2026 verification, constitutional rights, and Search My Vote complaint tracking.">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+
+  <!-- Google Fonts: EB Garamond (Editorial Serif) & Instrument Sans (Modern Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <!-- Left: Logo & Brand in Single Line -->
+      <a href="/" class="nav-brand" aria-label="Search My Vote Home">
+        <img src="/assets/logo.svg" alt="Search My Vote Logo" class="brand-logo-img" onerror="this.src='/assets/search-my-vote-logo.png'">
+        <span class="brand-title">Search <span>My</span> Vote</span>
+      </a>
+
+      <!-- Center: Navigation Links -->
+      <nav class="nav-menu-links" aria-label="Main Navigation">
+        <a href="/#howItWorksSection" class="nav-menu-item" data-i18n="nav_how">प्रक्रिया</a>
+        <a href="/voter-rights" class="nav-menu-item" data-i18n="nav_rights">संवैधानिक अधिकार</a>
+        <a href="/voting-history" class="nav-menu-item" data-i18n="nav_history">मतदान इतिहास</a>
+        <a href="/sir-2026" class="nav-menu-item" data-i18n="nav_sir">SIR 2026</a>
+        <a href="/faq" class="nav-menu-item active" data-i18n="nav_faq">FAQ</a>
+      </nav>
+
+      <!-- Right: Language Selector + Actions -->
+      <div class="nav-right-group">
+        <!-- Language Switcher: Hindi (Default) | English -->
+        <div class="lang-switch-pill" role="group" aria-label="Language Selector">
+          <button type="button" class="lang-btn active" id="langBtnHi" onclick="setLanguage('hi')">हिंदी</button>
+          <button type="button" class="lang-btn" id="langBtnEn" onclick="setLanguage('en')">English</button>
+        </div>
+
+        <nav class="nav-actions" aria-label="Quick Actions">
+          <a href="/#formSection" class="nav-link-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            <span data-i18n="nav_file_btn">शिकायत दर्ज करें</span>
+          </a>
+          <a href="/#formSection" class="nav-link-btn primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span data-i18n="nav_track_btn">स्थिति ट्रैक करें</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Main Container -->
+  <main class="civic-section container" style="margin-top: 36px;">
+    <!-- Breadcrumb -->
+    <div class="page-breadcrumb">
+      <a href="/">होम / Home</a>
+      <span>›</span>
+      <span class="active-crumb" data-i18n="nav_faq">अक्सर पूछे जाने वाले प्रश्न (FAQ)</span>
+    </div>
+
+    <!-- Main Content Panel -->
+    <div class="civic-card-panel">
+      <div class="civic-header">
+        <span class="civic-kicker" data-i18n="faq_kicker">नागरिक सहायता एवं समाधान</span>
+        <h1 class="civic-title" data-i18n="faq_title">अक्सर पूछे जाने वाले प्रश्न (FAQ)</h1>
+        <p class="civic-subtitle" data-i18n="faq_sub">
+          मतदाता सूची, नाम कटना, कानूनी अधिकार और सर्च माय वोट की कार्यप्रणाली से जुड़े प्रमुख सवालों के आधिकारिक जवाब।
+        </p>
+
+        <!-- Live FAQ Search Input -->
+        <div class="faq-search-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="faqSearchInput" class="faq-search-input" placeholder="प्रश्न खोजें (उदा: वोटर कार्ड, नाम कटना, आधार, नोटिस, ECI)..." data-i18n-placeholder="ph_faq_search">
+        </div>
+      </div>
+
+      <!-- 8 Interactive Accordions -->
+      <div class="faq-accordion-list" id="faqAccordionList">
+        <!-- FAQ 1 -->
+        <details class="faq-accordion-item" open>
+          <summary>
+            <span class="faq-q-text" data-i18n="faq_q1">क्या यह वेबसाइट भारत निर्वाचन आयोग (ECI) की आधिकारिक वेबसाइट है?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer-content">
+            <p data-i18n="faq_a1">
+              नहीं। सर्च माय वोट (Search My Vote) नागरिकों की सहायता के लिए लोकदल की एक स्वतंत्र, गैर-सरकारी पहल है। यह भारत निर्वाचन आयोग की वेबसाइट नहीं है। यहाँ दर्ज शिकायतें कानूनी सहायता, सत्यापन और लोकतांत्रिक पैरवी के लिए हैं।
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ 2 -->
+        <details class="faq-accordion-item">
+          <summary>
+            <span class="faq-q-text" data-i18n="faq_q2">क्या यहाँ शिकायत दर्ज करने से मेरा आवेदन सीधे चुनाव आयोग में जमा हो जाता है?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer-content">
+            <p data-i18n="faq_a2">
+              नहीं। यहाँ दर्ज शिकायत से हमारा विधिक सेल आपके मामले का दस्तावेजीकरण करता है और आपको सही वैधानिक प्रपत्र (फॉर्म 6, 7 या 8) भरने, अपील दाखिल करने या ERO सुनवाई में उपस्थित होने का पूर्ण मार्गदर्शन व विधिक सहायता प्रदान करता है।
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ 3 -->
+        <details class="faq-accordion-item">
+          <summary>
+            <span class="faq-q-text" data-i18n="faq_q3">मेरे पास मूल वोटर आईडी कार्ड (EPIC) है, क्या नाम कटने पर भी मैं वोट दे सकता हूँ?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer-content">
+            <p data-i18n="faq_a3">
+              नहीं। भारतीय चुनाव नियमों के तहत मतदान करने के लिए केवल पहचान पत्र होना पर्याप्त नहीं है; मतदान के दिन संबंधित मतदान केंद्र की 'वर्तमान निर्वाचक नामावली' में आपका नाम सक्रिय होना अनिवार्य है। यदि नाम कट गया है तो तुरंत फॉर्म 6 या 8 भरें।
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ 4 -->
+        <details class="faq-accordion-item">
+          <summary>
+            <span class="faq-q-text" data-i18n="faq_q4">क्या शिकायत दर्ज करने के लिए आधार कार्ड देना या अपलोड करना अनिवार्य है?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer-content">
+            <p data-i18n="faq_a4">
+              बिल्कुल नहीं। इस पोर्टल पर आधार कार्ड देना या अपलोड करना अनिवार्य नहीं है। हम नागरिकों से कभी भी पूर्ण आधार संख्या या बैंक विवरण नहीं मांगते। आप पुराना वोटर कार्ड, बिजली बिल या कोई अन्य मान्य निवास प्रमाण अपलोड कर सकते हैं।
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ 5 -->
+        <details class="faq-accordion-item">
+          <summary>
+            <span class="faq-q-text" data-i18n="faq_q5">मैं अपनी दर्ज शिकायत की प्रगति कैसे देख सकता हूँ?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer-content">
+            <p data-i18n="faq_a5">
+              शिकायत दर्ज होते ही आपको एक 'केस रिफरेंस नंबर' (उदा: SMV-2026-XXXXXXXXXX) और एक 10-अक्षरों का 'निजी ट्रैकिंग पिन' (PIN) प्राप्त होता है। ऊपर 'स्थिति ट्रैक करें' लिंक से दोनों क्रेडेंशियल्स दर्ज करके आप कभी भी केसवर्कर की टिप्पणियां और प्रगति देख सकते हैं।
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ 6 -->
+        <details class="faq-accordion-item">
+          <summary>
+            <span class="faq-q-text" data-i18n="faq_q6">स्टेटस में 'Closed' का क्या अर्थ है? क्या इसका मतलब मेरा नाम जुड़ गया?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer-content">
+            <p data-i18n="faq_a6">
+              नहीं। 'Closed' सर्च माय वोट की आंतरिक सहायता प्रक्रिया की समाप्ति को दर्शाता है (जैसे विधिक नोटिस सौंप दिया गया या उचित प्रपत्र भरवा दिया गया)। आधिकारिक मतदाता सूची में नाम जुड़ने या संशोधन की अंतिम पुष्टि केवल ECI के निर्वाचक पोर्टल पर ही जांची जा सकती है।
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ 7 -->
+        <details class="faq-accordion-item">
+          <summary>
+            <span class="faq-q-text" data-i18n="faq_q7">क्या मेरी जानकारी किसी राजनीतिक प्रचार या मार्केटिंग के लिए उपयोग की जाएगी?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer-content">
+            <p data-i18n="faq_a7">
+              नहीं। सर्च माय वोट नागरिक डेटा संरक्षण (DPDP) सिद्धांतों का कड़ाई से पालन करता है। आपकी जानकारी का उपयोग केवल आपके मतदाता अधिकार की बहाली, विधिक परामर्श और केस संबंधी सहायता के लिए ही किया जाता है। इसे कभी किसी तीसरे पक्ष को नहीं बेचा या सौंपा जाता।
+            </p>
+          </div>
+        </details>
+
+        <!-- FAQ 8 -->
+        <details class="faq-accordion-item">
+          <summary>
+            <span class="faq-q-text" data-i18n="faq_q8">यदि मुझे SIR 2026 में विलोपन का ERO नोटिस मिला है तो मुझे क्या करना चाहिए?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer-content">
+            <p data-i18n="faq_a8">
+              नोटिस में उल्लिखित सुनवाई की तारीख और स्थान पर अपने पहचान व निवास प्रमाण (बिजली बिल, राशन कार्ड, पूर्व मतदाता पर्ची) के साथ उपस्थित हों। यदि आप समय पर उपस्थित नहीं हो सकते या सहायता चाहिए, तो हमारी हेल्पलाइन पर विवरण दर्ज करें ताकि हमारी लीगल टीम आपकी पैरवी में सहायता कर सके।
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- Citizen Action CTA Card -->
+    <div class="subpage-cta-card">
+      <div class="subpage-cta-text">
+        <h3 data-i18n="hero_title_hindi">आपका वोट. आपकी आवाज़.</h3>
+        <p data-i18n="hero_subtitle">क्या मतदाता सूची (SIR 2026) से आपका नाम गायब है? बिना सूचना नाम हटने या गलत विवरण की गोपनीय शिकायत दर्ज करें।</p>
+      </div>
+      <div class="subpage-cta-actions">
+        <a href="/#formSection" class="btn-botanical-primary">
+          <span data-i18n="hero_btn_register">अपनी शिकायत दर्ज करें ↗</span>
+        </a>
+        <a href="/#formSection" class="btn-botanical-quiet" style="color: #ffffff; border-color: rgba(255,255,255,0.4);">
+          <span data-i18n="hero_btn_track">स्थिति ट्रैक करें →</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Closing Forest-Green Area & Footer -->
+  <section class="closing-forest-area">
+    <div class="container">
+      <!-- 3-Column Footer Resource Grid -->
+      <div class="footer-resource-grid">
+        <!-- Col 1: About Initiative -->
+        <div class="footer-col">
+          <div class="footer-brand-lockup">
+            <img src="/assets/search-my-vote-logo.png" alt="Search My Vote" class="footer-logo-img" onerror="this.src='/assets/logo.svg'">
+            <span class="footer-brand-name">Search My Vote</span>
+          </div>
+          <p class="footer-mission-text" data-i18n="footer_col1_desc">
+            लोकदल द्वारा संचालित एक स्वतंत्र, गैर-सरकारी मतदाता अधिकार एवं निर्वाचक नामावली सहायता पहल। हम प्रत्येक नागरिक के मताधिकार की रक्षा हेतु विधिक एवं लोकतांत्रिक सहयोग प्रदान करते हैं।
+          </p>
+          <span class="footer-pill-badge" data-i18n="footer_pill">गैर-सरकारी नागरिक पहल · Non-Government</span>
+        </div>
+
+        <!-- Col 2: Citizen Services & ECI Links -->
+        <div class="footer-col">
+          <h5 data-i18n="footer_col2_title">नागरिक सेवाएं एवं आधिकारिक लिंक</h5>
+          <ul class="footer-links-list">
+            <li><a href="/#formSection" data-i18n="f_link_file">अपनी शिकायत दर्ज करें</a></li>
+            <li><a href="/#formSection" data-i18n="f_link_track">शिकायत की स्थिति ट्रैक करें</a></li>
+            <li><a href="https://electoralsearch.eci.gov.in/" target="_blank" rel="noopener">ECI मतदाता सूची खोज ↗</a></li>
+            <li><a href="https://voters.eci.gov.in/home/forms" target="_blank" rel="noopener">आधिकारिक ECI फॉर्म (6, 7, 8) ↗</a></li>
+            <li><a href="https://voters.eci.gov.in/" target="_blank" rel="noopener">ECI नागरिक सेवा पोर्टल ↗</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Civic Knowledge & Help Desk -->
+        <div class="footer-col">
+          <h5 data-i18n="footer_col3_title">संवैधानिक ज्ञान एवं सहायता</h5>
+          <ul class="footer-links-list">
+            <li><a href="/voter-rights" data-i18n="f_link_rights">संवैधानिक मतदान अधिकार (अनुच्छेद 324-326)</a></li>
+            <li><a href="/voting-history" data-i18n="f_link_history">भारत में मतदान का इतिहास (1950–2026)</a></li>
+            <li><a href="/sir-2026" data-i18n="f_link_sir">SIR 2026 संसाधन केंद्र</a></li>
+            <li><a href="/faq" data-i18n="f_link_faq" style="color: var(--dp-color-warm-field); font-weight: 600;">अक्सर पूछे जाने वाले प्रश्न (FAQ)</a></li>
+            <li style="margin-top: 10px; color: #cedfd9;">
+              <strong>Email:</strong> <a href="mailto:grievance@searchmyvote.in" class="footer-contact-email">grievance@searchmyvote.in</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Statutory Legal Notice & Disclaimers -->
+      <div class="assurance-legal-box">
+        <div>
+          <h5 data-i18n="legal_footer_title">वैधानिक सूचना एवं अस्वीकरण</h5>
+          <p data-i18n="legal_footer_desc">
+            SearchMyVote.com लोकदल द्वारा प्रायोजित एक स्वतंत्र नागरिक सहायता व शिकायत निवारण पहल है। यह भारत निर्वाचन आयोग (ECI) की आधिकारिक वेबसाइट नहीं है और आधिकारिक निर्वाचक नामावली में सीधे बदलाव नहीं करती।
+          </p>
+        </div>
+        <div>
+          <h5 data-i18n="dpdp_footer_title">डेटा सुरक्षा एवं DPDP सिद्धांत</h5>
+          <p data-i18n="dpdp_footer_desc">
+            नागरिकों द्वारा साझा की गई जानकारी भारतीय डिजिटल व्यक्तिगत डेटा संरक्षण (DPDP) सिद्धांतों के अनुसार पूर्णतः गोपनीय रखी जाती है।
+          </p>
+        </div>
+      </div>
+
+      <!-- Bottom Footer -->
+      <footer class="footer-bottom-bar">
+        <p data-i18n="copyright">© 2026 सर्च माय वोट (Search My Vote). सर्वाधिकार सुरक्षित।</p>
+        <div class="footer-bottom-links">
+          <a href="/voter-rights" data-i18n="nav_rights">मतदान अधिकार</a>
+          <span>·</span>
+          <a href="/voting-history" data-i18n="nav_history">मतदान इतिहास</a>
+          <span>·</span>
+          <a href="/sir-2026" data-i18n="nav_sir">SIR 2026</a>
+          <span>·</span>
+          <a href="/faq" data-i18n="nav_faq">FAQ</a>
+          <span>·</span>
+          <a href="/login/crm" style="color: #f0b574;">कर्मचारी लॉगिन (CRM)</a>
+        </div>
+      </footer>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="/js/i18n.js"></script>
+  <script>
+    // Live Search Filter for FAQ items
+    document.addEventListener('DOMContentLoaded', () => {
+      const faqSearchInput = document.getElementById('faqSearchInput');
+      const faqList = document.getElementById('faqAccordionList');
+      if (faqSearchInput && faqList) {
+        faqSearchInput.addEventListener('input', (e) => {
+          const q = e.target.value.trim().toLowerCase();
+          const items = faqList.querySelectorAll('.faq-accordion-item');
+          items.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            if (!q || text.includes(q)) {
+              item.style.display = '';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -178,6 +178,12 @@ body::-webkit-scrollbar {
   color: var(--dp-color-accent);
 }
 
+.nav-menu-item.active {
+  background: var(--dp-color-ink);
+  color: var(--dp-color-ground);
+  font-weight: 600;
+}
+
 .lang-switch-pill {
   display: inline-flex;
   align-items: center;
@@ -1309,6 +1315,71 @@ body::-webkit-scrollbar {
 .civic-section {
   margin-top: 50px;
   margin-bottom: 30px;
+}
+
+/* Page Breadcrumb Navigation */
+.page-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--dp-typography-reading);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.page-breadcrumb a {
+  color: var(--dp-color-ink);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.page-breadcrumb a:hover {
+  color: var(--dp-color-accent);
+  text-decoration: underline;
+}
+
+.page-breadcrumb .active-crumb {
+  color: var(--dp-color-accent);
+  font-weight: 600;
+}
+
+/* Subpage Call-to-Action Card */
+.subpage-cta-card {
+  background: var(--dp-color-ink);
+  color: var(--dp-color-ground);
+  border-radius: 24px;
+  padding: 36px 32px;
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 20px rgba(30, 56, 44, 0.08);
+}
+
+.subpage-cta-text h3 {
+  font-family: var(--dp-typography-display);
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+  color: var(--dp-color-ground);
+  font-weight: 600;
+}
+
+.subpage-cta-text p {
+  font-size: 0.95rem;
+  color: #cfd8d2;
+  margin: 0;
+  max-width: 600px;
+  line-height: 1.55;
+}
+
+.subpage-cta-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .civic-card-panel {

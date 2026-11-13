@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="rights_title">अपने संवैधानिक मतदान अधिकार जानिए · Search My Vote</title>
+  <meta name="description" content="Know Your Constitutional Voting Rights under the Constitution of India (Articles 324, 325, 326) and Representation of the People Acts (1950 & 1951).">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+
+  <!-- Google Fonts: EB Garamond (Editorial Serif) & Instrument Sans (Modern Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <!-- Left: Logo & Brand in Single Line -->
+      <a href="/" class="nav-brand" aria-label="Search My Vote Home">
+        <img src="/assets/logo.svg" alt="Search My Vote Logo" class="brand-logo-img" onerror="this.src='/assets/search-my-vote-logo.png'">
+        <span class="brand-title">Search <span>My</span> Vote</span>
+      </a>
+
+      <!-- Center: Navigation Links -->
+      <nav class="nav-menu-links" aria-label="Main Navigation">
+        <a href="/#howItWorksSection" class="nav-menu-item" data-i18n="nav_how">प्रक्रिया</a>
+        <a href="/voter-rights" class="nav-menu-item active" data-i18n="nav_rights">संवैधानिक अधिकार</a>
+        <a href="/voting-history" class="nav-menu-item" data-i18n="nav_history">मतदान इतिहास</a>
+        <a href="/sir-2026" class="nav-menu-item" data-i18n="nav_sir">SIR 2026</a>
+        <a href="/faq" class="nav-menu-item" data-i18n="nav_faq">FAQ</a>
+      </nav>
+
+      <!-- Right: Language Selector + Actions -->
+      <div class="nav-right-group">
+        <!-- Language Switcher: Hindi (Default) | English -->
+        <div class="lang-switch-pill" role="group" aria-label="Language Selector">
+          <button type="button" class="lang-btn active" id="langBtnHi" onclick="setLanguage('hi')">हिंदी</button>
+          <button type="button" class="lang-btn" id="langBtnEn" onclick="setLanguage('en')">English</button>
+        </div>
+
+        <nav class="nav-actions" aria-label="Quick Actions">
+          <a href="/#formSection" class="nav-link-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            <span data-i18n="nav_file_btn">शिकायत दर्ज करें</span>
+          </a>
+          <a href="/#formSection" class="nav-link-btn primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span data-i18n="nav_track_btn">स्थिति ट्रैक करें</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Main Container -->
+  <main class="civic-section container" style="margin-top: 36px;">
+    <!-- Breadcrumb -->
+    <div class="page-breadcrumb">
+      <a href="/">होम / Home</a>
+      <span>›</span>
+      <span class="active-crumb" data-i18n="nav_rights">संवैधानिक अधिकार</span>
+    </div>
+
+    <!-- Main Content Panel -->
+    <div class="civic-card-panel">
+      <div class="civic-header">
+        <span class="civic-kicker" data-i18n="rights_kicker">संवैधानिक सुरक्षा एवं वैधानिक प्रावधान</span>
+        <h1 class="civic-title" data-i18n="rights_title">अपने संवैधानिक मतदान अधिकार जानिए</h1>
+        <p class="civic-subtitle" data-i18n="rights_sub">
+          भारतीय संविधान और लोक प्रतिनिधित्व अधिनियम के तहत प्रत्येक पात्र नागरिक को मताधिकार प्राप्त है। कोई भी वैध मतदाता मनमाने ढंग से नामावली से नहीं हटाया जा सकता।
+        </p>
+      </div>
+
+      <!-- 6 Informational Cards Grid -->
+      <div class="civic-grid-3">
+        <!-- Card 1: Article 324 -->
+        <div class="civic-info-card">
+          <div class="civic-card-top">
+            <span class="civic-badge article">Article 324</span>
+            <span class="civic-card-meta">संविधान भाग XV</span>
+          </div>
+          <h2 data-i18n="r_art324_title">अनुच्छेद 324: स्वतंत्र निर्वाचन अधीक्षण</h2>
+          <p data-i18n="r_art324_desc">
+            संसद और राज्य विधानसभाओं के सभी निर्वाचनों के अधीक्षण, निर्देशन और नियंत्रण का दायित्व एक स्वतंत्र निर्वाचन आयोग में निहित है।
+          </p>
+        </div>
+
+        <!-- Card 2: Article 325 -->
+        <div class="civic-info-card">
+          <div class="civic-card-top">
+            <span class="civic-badge article">Article 325</span>
+            <span class="civic-card-meta">समानता का अधिकार</span>
+          </div>
+          <h2 data-i18n="r_art325_title">अनुच्छेद 325: धर्म, मूलवंश, जाति या लिंग के आधार पर कोई भेदभाव नहीं</h2>
+          <p data-i18n="r_art325_desc">
+            प्रत्येक प्रादेशिक निर्वाचन क्षेत्र के लिए एक सामान्य निर्वाचक नामावली होगी; केवल धर्म, मूलवंश, जाति या लिंग के आधार पर कोई अपात्र नहीं होगा।
+          </p>
+        </div>
+
+        <!-- Card 3: Article 326 -->
+        <div class="civic-info-card">
+          <div class="civic-card-top">
+            <span class="civic-badge article">Article 326</span>
+            <span class="civic-card-meta">वयस्क मताधिकार</span>
+          </div>
+          <h2 data-i18n="r_art326_title">अनुच्छेद 326: वयस्क मताधिकार की संवैधानिक गारंटी</h2>
+          <p data-i18n="r_art326_desc">
+            18 वर्ष या उससे अधिक आयु का प्रत्येक भारतीय नागरिक मतदान हेतु पंजीकृत होने का हकदार है, जब तक कि विधि द्वारा अयोग्य न घोषित हो।
+          </p>
+        </div>
+
+        <!-- Card 4: RPA 1950 -->
+        <div class="civic-info-card">
+          <div class="civic-card-top">
+            <span class="civic-badge act">RPA 1950</span>
+            <span class="civic-card-meta">नामावली कानून</span>
+          </div>
+          <h2 data-i18n="r_rpa50_title">RPA 1950: निर्वाचक नामावली तैयार व पुनरीक्षण</h2>
+          <p data-i18n="r_rpa50_desc">
+            लोक प्रतिनिधित्व अधिनियम 1950 की धारा 14-25 के तहत मतदाता सूची तैयार करने, दावे, आपत्तियां और अपील (धारा 24) के वैधानिक अधिकार तय हैं।
+          </p>
+        </div>
+
+        <!-- Card 5: RPA 1951 -->
+        <div class="civic-info-card">
+          <div class="civic-card-top">
+            <span class="civic-badge act">RPA 1951</span>
+            <span class="civic-card-meta">मतदान का अधिकार</span>
+          </div>
+          <h2 data-i18n="r_rpa51_title">RPA 1951: मतदान का वैधानिक अधिकार</h2>
+          <p data-i18n="r_rpa51_desc">
+            अधिनियम की धारा 62 स्पष्ट करती है कि निर्वाचक नामावली में दर्ज प्रत्येक व्यक्ति मतदान का हकदार है। अनधिकृत विलोपन इस अधिकार का हनन है।
+          </p>
+        </div>
+
+        <!-- Card 6: Remedies Forms 6, 7, 8 -->
+        <div class="civic-info-card">
+          <div class="civic-card-top">
+            <span class="civic-badge remedy">ECI Forms</span>
+            <span class="civic-card-meta">वैधानिक उपचार</span>
+          </div>
+          <h2 data-i18n="r_remedy_title">आधिकारिक ECI उपचार: फॉर्म 6, 7 और 8</h2>
+          <p data-i18n="r_remedy_desc">
+            नाम जोड़ने के लिए फॉर्म 6, विलोपन या आपत्ति के लिए फॉर्म 7, तथा सुधार या निवास स्थानांतरण के लिए फॉर्म 8 का उपयोग करें।
+          </p>
+        </div>
+      </div>
+
+      <!-- Vital Legal Distinction Alert Box -->
+      <div class="civic-alert-box">
+        <div class="civic-alert-icon">⚠️</div>
+        <div class="civic-alert-body">
+          <strong data-i18n="r_alert_title">महत्वपूर्ण विधिक अंतर: वोटर आईडी कार्ड (EPIC) बनाम सक्रिय निर्वाचक नामावली</strong>
+          <p data-i18n="r_alert_desc">
+            केवल वोटर पहचान पत्र (EPIC) होना वोट डालने की गारंटी नहीं देता। मतदान के दिन संबंधित मतदान केंद्र की वर्तमान निर्वाचक नामावली में आपका नाम होना अनिवार्य है। यदि आपका नाम गलत तरीके से कट गया है, तो तुरंत फॉर्म 6 या फॉर्म 8 भरकर पुनरीक्षण की मांग करें।
+          </p>
+        </div>
+      </div>
+
+      <!-- Official Statutory Links Bar -->
+      <div class="civic-official-links-bar">
+        <span class="civic-links-title" data-i18n="r_sources_label">आधिकारिक वैधानिक स्रोत:</span>
+        <div class="civic-links-row">
+          <a href="https://www.legislative.gov.in/constitution-of-india/" target="_blank" rel="noopener" class="civic-link-pill">भारत का संविधान ↗</a>
+          <a href="https://www.eci.gov.in/" target="_blank" rel="noopener" class="civic-link-pill">भारत निर्वाचन आयोग (ECI) ↗</a>
+          <a href="https://voters.eci.gov.in/home/forms" target="_blank" rel="noopener" class="civic-link-pill">ECI प्रपत्र 6, 7 और 8 ↗</a>
+          <a href="https://electoralsearch.eci.gov.in/" target="_blank" rel="noopener" class="civic-link-pill">मतदाता सूची में नाम खोजें ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Citizen Action CTA Card -->
+    <div class="subpage-cta-card">
+      <div class="subpage-cta-text">
+        <h3 data-i18n="hero_title_hindi">आपका वोट. आपकी आवाज़.</h3>
+        <p data-i18n="hero_subtitle">क्या मतदाता सूची (SIR 2026) से आपका नाम गायब है? बिना सूचना नाम हटने या गलत विवरण की गोपनीय शिकायत दर्ज करें।</p>
+      </div>
+      <div class="subpage-cta-actions">
+        <a href="/#formSection" class="btn-botanical-primary">
+          <span data-i18n="hero_btn_register">अपनी शिकायत दर्ज करें ↗</span>
+        </a>
+        <a href="/#formSection" class="btn-botanical-quiet" style="color: #ffffff; border-color: rgba(255,255,255,0.4);">
+          <span data-i18n="hero_btn_track">स्थिति ट्रैक करें →</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Closing Forest-Green Area & Footer -->
+  <section class="closing-forest-area">
+    <div class="container">
+      <!-- 3-Column Footer Resource Grid -->
+      <div class="footer-resource-grid">
+        <!-- Col 1: About Initiative -->
+        <div class="footer-col">
+          <div class="footer-brand-lockup">
+            <img src="/assets/search-my-vote-logo.png" alt="Search My Vote" class="footer-logo-img" onerror="this.src='/assets/logo.svg'">
+            <span class="footer-brand-name">Search My Vote</span>
+          </div>
+          <p class="footer-mission-text" data-i18n="footer_col1_desc">
+            लोकदल द्वारा संचालित एक स्वतंत्र, गैर-सरकारी मतदाता अधिकार एवं निर्वाचक नामावली सहायता पहल। हम प्रत्येक नागरिक के मताधिकार की रक्षा हेतु विधिक एवं लोकतांत्रिक सहयोग प्रदान करते हैं।
+          </p>
+          <span class="footer-pill-badge" data-i18n="footer_pill">गैर-सरकारी नागरिक पहल · Non-Government</span>
+        </div>
+
+        <!-- Col 2: Citizen Services & ECI Links -->
+        <div class="footer-col">
+          <h5 data-i18n="footer_col2_title">नागरिक सेवाएं एवं आधिकारिक लिंक</h5>
+          <ul class="footer-links-list">
+            <li><a href="/#formSection" data-i18n="f_link_file">अपनी शिकायत दर्ज करें</a></li>
+            <li><a href="/#formSection" data-i18n="f_link_track">शिकायत की स्थिति ट्रैक करें</a></li>
+            <li><a href="https://electoralsearch.eci.gov.in/" target="_blank" rel="noopener">ECI मतदाता सूची खोज ↗</a></li>
+            <li><a href="https://voters.eci.gov.in/home/forms" target="_blank" rel="noopener">आधिकारिक ECI फॉर्म (6, 7, 8) ↗</a></li>
+            <li><a href="https://voters.eci.gov.in/" target="_blank" rel="noopener">ECI नागरिक सेवा पोर्टल ↗</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Civic Knowledge & Help Desk -->
+        <div class="footer-col">
+          <h5 data-i18n="footer_col3_title">संवैधानिक ज्ञान एवं सहायता</h5>
+          <ul class="footer-links-list">
+            <li><a href="/voter-rights" data-i18n="f_link_rights" style="color: var(--dp-color-warm-field); font-weight: 600;">संवैधानिक मतदान अधिकार (अनुच्छेद 324-326)</a></li>
+            <li><a href="/voting-history" data-i18n="f_link_history">भारत में मतदान का इतिहास (1950–2026)</a></li>
+            <li><a href="/sir-2026" data-i18n="f_link_sir">SIR 2026 संसाधन केंद्र</a></li>
+            <li><a href="/faq" data-i18n="f_link_faq">अक्सर पूछे जाने वाले प्रश्न (FAQ)</a></li>
+            <li style="margin-top: 10px; color: #cedfd9;">
+              <strong>Email:</strong> <a href="mailto:grievance@searchmyvote.in" class="footer-contact-email">grievance@searchmyvote.in</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Statutory Legal Notice & Disclaimers -->
+      <div class="assurance-legal-box">
+        <div>
+          <h5 data-i18n="legal_footer_title">वैधानिक सूचना एवं अस्वीकरण</h5>
+          <p data-i18n="legal_footer_desc">
+            SearchMyVote.com लोकदल द्वारा प्रायोजित एक स्वतंत्र नागरिक सहायता व शिकायत निवारण पहल है। यह भारत निर्वाचन आयोग (ECI) की आधिकारिक वेबसाइट नहीं है और आधिकारिक निर्वाचक नामावली में सीधे बदलाव नहीं करती।
+          </p>
+        </div>
+        <div>
+          <h5 data-i18n="dpdp_footer_title">डेटा सुरक्षा एवं DPDP सिद्धांत</h5>
+          <p data-i18n="dpdp_footer_desc">
+            नागरिकों द्वारा साझा की गई जानकारी भारतीय डिजिटल व्यक्तिगत डेटा संरक्षण (DPDP) सिद्धांतों के अनुसार पूर्णतः गोपनीय रखी जाती है।
+          </p>
+        </div>
+      </div>
+
+      <!-- Bottom Footer -->
+      <footer class="footer-bottom-bar">
+        <p data-i18n="copyright">© 2026 सर्च माय वोट (Search My Vote). सर्वाधिकार सुरक्षित।</p>
+        <div class="footer-bottom-links">
+          <a href="/voter-rights" data-i18n="nav_rights">मतदान अधिकार</a>
+          <span>·</span>
+          <a href="/voting-history" data-i18n="nav_history">मतदान इतिहास</a>
+          <span>·</span>
+          <a href="/sir-2026" data-i18n="nav_sir">SIR 2026</a>
+          <span>·</span>
+          <a href="/faq" data-i18n="nav_faq">FAQ</a>
+          <span>·</span>
+          <a href="/login/crm" style="color: #f0b574;">कर्मचारी लॉगिन (CRM)</a>
+        </div>
+      </footer>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="history_title">भारत में लोकतांत्रिक मतदान का विकास · Search My Vote</title>
+  <meta name="description" content="The Evolution of Democratic Voting in India (1950–2026): From the first general elections and EVMs to universal VVPAT and SIR 2026.">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+
+  <!-- Google Fonts: EB Garamond (Editorial Serif) & Instrument Sans (Modern Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <!-- Left: Logo & Brand in Single Line -->
+      <a href="/" class="nav-brand" aria-label="Search My Vote Home">
+        <img src="/assets/logo.svg" alt="Search My Vote Logo" class="brand-logo-img" onerror="this.src='/assets/search-my-vote-logo.png'">
+        <span class="brand-title">Search <span>My</span> Vote</span>
+      </a>
+
+      <!-- Center: Navigation Links -->
+      <nav class="nav-menu-links" aria-label="Main Navigation">
+        <a href="/#howItWorksSection" class="nav-menu-item" data-i18n="nav_how">प्रक्रिया</a>
+        <a href="/voter-rights" class="nav-menu-item" data-i18n="nav_rights">संवैधानिक अधिकार</a>
+        <a href="/voting-history" class="nav-menu-item active" data-i18n="nav_history">मतदान इतिहास</a>
+        <a href="/sir-2026" class="nav-menu-item" data-i18n="nav_sir">SIR 2026</a>
+        <a href="/faq" class="nav-menu-item" data-i18n="nav_faq">FAQ</a>
+      </nav>
+
+      <!-- Right: Language Selector + Actions -->
+      <div class="nav-right-group">
+        <!-- Language Switcher: Hindi (Default) | English -->
+        <div class="lang-switch-pill" role="group" aria-label="Language Selector">
+          <button type="button" class="lang-btn active" id="langBtnHi" onclick="setLanguage('hi')">हिंदी</button>
+          <button type="button" class="lang-btn" id="langBtnEn" onclick="setLanguage('en')">English</button>
+        </div>
+
+        <nav class="nav-actions" aria-label="Quick Actions">
+          <a href="/#formSection" class="nav-link-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            <span data-i18n="nav_file_btn">शिकायत दर्ज करें</span>
+          </a>
+          <a href="/#formSection" class="nav-link-btn primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span data-i18n="nav_track_btn">स्थिति ट्रैक करें</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Main Container -->
+  <main class="civic-section container" style="margin-top: 36px;">
+    <!-- Breadcrumb -->
+    <div class="page-breadcrumb">
+      <a href="/">होम / Home</a>
+      <span>›</span>
+      <span class="active-crumb" data-i18n="nav_history">मतदान इतिहास</span>
+    </div>
+
+    <!-- Main Content Panel -->
+    <div class="civic-card-panel">
+      <div class="civic-header">
+        <span class="civic-kicker" data-i18n="history_kicker">संवैधानिक यात्रा (1950–2026)</span>
+        <h1 class="civic-title" data-i18n="history_title">भारत में लोकतांत्रिक मतदान का विकास</h1>
+        <p class="civic-subtitle" data-i18n="history_sub">
+          1950 में स्वतंत्र निर्वाचन आयोग की स्थापना से लेकर डिजिटल आधुनिकिकरण और SIR 2026 तक भारत के सार्वभौमिक वयस्क मताधिकार की ऐतिहासिक यात्रा।
+        </p>
+      </div>
+
+      <!-- 8-Milestone Timeline Grid -->
+      <div class="history-timeline-grid">
+        <!-- Milestone 1: 1950 -->
+        <div class="timeline-milestone-card">
+          <div class="milestone-year">1950</div>
+          <span class="milestone-badge">स्थापना · Inception</span>
+          <h2 class="milestone-title" data-i18n="h_1950_title">निर्वाचन आयोग की स्थापना</h2>
+          <p class="milestone-desc" data-i18n="h_1950_desc">
+            25 जनवरी 1950 को स्वतंत्र संवैधानिक संस्था के रूप में भारत निर्वाचन आयोग का गठन हुआ। श्री सुकुमार सेन प्रथम मुख्य निर्वाचन आयुक्त बने।
+          </p>
+        </div>
+
+        <!-- Milestone 2: 1951-52 -->
+        <div class="timeline-milestone-card">
+          <div class="milestone-year">1951–52</div>
+          <span class="milestone-badge">प्रथम चुनाव · First Polls</span>
+          <h2 class="milestone-title" data-i18n="h_1951_title">प्रथम आम चुनाव</h2>
+          <p class="milestone-desc" data-i18n="h_1951_desc">
+            17.3 करोड़ मतदाताओं के साथ विश्व का सबसे बड़ा लोकतांत्रिक प्रयोग; सार्वभौमिक वयस्क मताधिकार की ऐतिहासिक शुरुआत।
+          </p>
+        </div>
+
+        <!-- Milestone 3: 1982 -->
+        <div class="timeline-milestone-card">
+          <div class="milestone-year">1982</div>
+          <span class="milestone-badge">ईवीएम ट्रायल · EVM Pilot</span>
+          <h2 class="milestone-title" data-i18n="h_1982_title">ईवीएम का प्रथम प्रायोगिक उपयोग</h2>
+          <p class="milestone-desc" data-i18n="h_1982_desc">
+            केरल के 70-पारूर विधानसभा क्षेत्र में इलेक्ट्रॉनिक वोटिंग मशीन (EVM) का पहला परीक्षण किया गया।
+          </p>
+        </div>
+
+        <!-- Milestone 4: 1988 -->
+        <div class="timeline-milestone-card">
+          <div class="milestone-year">1988–89</div>
+          <span class="milestone-badge">संशोधन · Amendment</span>
+          <h2 class="milestone-title" data-i18n="h_1988_title">मतदान आयु 18 वर्ष (61वां संशोधन)</h2>
+          <p class="milestone-desc" data-i18n="h_1988_desc">
+            संविधान के 61वें संशोधन अधिनियम 1988 द्वारा मतदान की न्यूनतम आयु 21 वर्ष से घटाकर 18 वर्ष की गई।
+          </p>
+        </div>
+
+        <!-- Milestone 5: 2004 -->
+        <div class="timeline-milestone-card">
+          <div class="milestone-year">2004</div>
+          <span class="milestone-badge">100% ईवीएम · National EVM</span>
+          <h2 class="milestone-title" data-i18n="h_2004_title">राष्ट्रव्यापी ईवीएम मतदान</h2>
+          <p class="milestone-desc" data-i18n="h_2004_desc">
+            14वें लोकसभा चुनाव में देश के सभी 543 संसदीय क्षेत्रों में शत-प्रतिशत इलेक्ट्रॉनिक वोटिंग मशीनों से मतदान संपन्न हुआ।
+          </p>
+        </div>
+
+        <!-- Milestone 6: 2013 -->
+        <div class="timeline-milestone-card">
+          <div class="milestone-year">2013</div>
+          <span class="milestone-badge">VVPAT आरंभ · Audit Trail</span>
+          <h2 class="milestone-title" data-i18n="h_2013_title">VVPAT का आरंभ</h2>
+          <p class="milestone-desc" data-i18n="h_2013_desc">
+            नागालैंड के नोकसेन विधानसभा क्षेत्र में मतदाता सत्यापन योग्य पेपर ऑडिट ट्रेल (VVPAT) का पहला प्रयोग।
+          </p>
+        </div>
+
+        <!-- Milestone 7: 2019 -->
+        <div class="timeline-milestone-card">
+          <div class="milestone-year">2019</div>
+          <span class="milestone-badge">पूर्ण VVPAT · Universal</span>
+          <h2 class="milestone-title" data-i18n="h_2019_title">शत-प्रतिशत VVPAT कवरेज</h2>
+          <p class="milestone-desc" data-i18n="h_2019_desc">
+            17वें लोकसभा चुनाव में सभी मतदान केंद्रों पर अनिवार्य VVPAT पर्ची सत्यापन लागू किया गया।
+          </p>
+        </div>
+
+        <!-- Milestone 8: 2026 -->
+        <div class="timeline-milestone-card highlight">
+          <div class="milestone-year">2026</div>
+          <span class="milestone-badge" style="background: #fde8d7; color: #895440;">वर्तमान · SIR Modernization</span>
+          <h2 class="milestone-title" data-i18n="h_2026_title">SIR 2026 एवं डिजिटल रोल सत्यापन</h2>
+          <p class="milestone-desc" data-i18n="h_2026_desc">
+            विशेष गहन पुनरीक्षण (SIR) के तहत घर-घर सत्यापन और मतदाता सूची का आधुनिकीकरण; सर्च माय वोट नागरिक सहायता।
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Citizen Action CTA Card -->
+    <div class="subpage-cta-card">
+      <div class="subpage-cta-text">
+        <h3 data-i18n="hero_title_hindi">आपका वोट. आपकी आवाज़.</h3>
+        <p data-i18n="hero_subtitle">क्या मतदाता सूची (SIR 2026) से आपका नाम गायब है? बिना सूचना नाम हटने या गलत विवरण की गोपनीय शिकायत दर्ज करें।</p>
+      </div>
+      <div class="subpage-cta-actions">
+        <a href="/#formSection" class="btn-botanical-primary">
+          <span data-i18n="hero_btn_register">अपनी शिकायत दर्ज करें ↗</span>
+        </a>
+        <a href="/#formSection" class="btn-botanical-quiet" style="color: #ffffff; border-color: rgba(255,255,255,0.4);">
+          <span data-i18n="hero_btn_track">स्थिति ट्रैक करें →</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Closing Forest-Green Area & Footer -->
+  <section class="closing-forest-area">
+    <div class="container">
+      <!-- 3-Column Footer Resource Grid -->
+      <div class="footer-resource-grid">
+        <!-- Col 1: About Initiative -->
+        <div class="footer-col">
+          <div class="footer-brand-lockup">
+            <img src="/assets/search-my-vote-logo.png" alt="Search My Vote" class="footer-logo-img" onerror="this.src='/assets/logo.svg'">
+            <span class="footer-brand-name">Search My Vote</span>
+          </div>
+          <p class="footer-mission-text" data-i18n="footer_col1_desc">
+            लोकदल द्वारा संचालित एक स्वतंत्र, गैर-सरकारी मतदाता अधिकार एवं निर्वाचक नामावली सहायता पहल। हम प्रत्येक नागरिक के मताधिकार की रक्षा हेतु विधिक एवं लोकतांत्रिक सहयोग प्रदान करते हैं।
+          </p>
+          <span class="footer-pill-badge" data-i18n="footer_pill">गैर-सरकारी नागरिक पहल · Non-Government</span>
+        </div>
+
+        <!-- Col 2: Citizen Services & ECI Links -->
+        <div class="footer-col">
+          <h5 data-i18n="footer_col2_title">नागरिक सेवाएं एवं आधिकारिक लिंक</h5>
+          <ul class="footer-links-list">
+            <li><a href="/#formSection" data-i18n="f_link_file">अपनी शिकायत दर्ज करें</a></li>
+            <li><a href="/#formSection" data-i18n="f_link_track">शिकायत की स्थिति ट्रैक करें</a></li>
+            <li><a href="https://electoralsearch.eci.gov.in/" target="_blank" rel="noopener">ECI मतदाता सूची खोज ↗</a></li>
+            <li><a href="https://voters.eci.gov.in/home/forms" target="_blank" rel="noopener">आधिकारिक ECI फॉर्म (6, 7, 8) ↗</a></li>
+            <li><a href="https://voters.eci.gov.in/" target="_blank" rel="noopener">ECI नागरिक सेवा पोर्टल ↗</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Civic Knowledge & Help Desk -->
+        <div class="footer-col">
+          <h5 data-i18n="footer_col3_title">संवैधानिक ज्ञान एवं सहायता</h5>
+          <ul class="footer-links-list">
+            <li><a href="/voter-rights" data-i18n="f_link_rights">संवैधानिक मतदान अधिकार (अनुच्छेद 324-326)</a></li>
+            <li><a href="/voting-history" data-i18n="f_link_history" style="color: var(--dp-color-warm-field); font-weight: 600;">भारत में मतदान का इतिहास (1950–2026)</a></li>
+            <li><a href="/sir-2026" data-i18n="f_link_sir">SIR 2026 संसाधन केंद्र</a></li>
+            <li><a href="/faq" data-i18n="f_link_faq">अक्सर पूछे जाने वाले प्रश्न (FAQ)</a></li>
+            <li style="margin-top: 10px; color: #cedfd9;">
+              <strong>Email:</strong> <a href="mailto:grievance@searchmyvote.in" class="footer-contact-email">grievance@searchmyvote.in</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Statutory Legal Notice & Disclaimers -->
+      <div class="assurance-legal-box">
+        <div>
+          <h5 data-i18n="legal_footer_title">वैधानिक सूचना एवं अस्वीकरण</h5>
+          <p data-i18n="legal_footer_desc">
+            SearchMyVote.com लोकदल द्वारा प्रायोजित एक स्वतंत्र नागरिक सहायता व शिकायत निवारण पहल है। यह भारत निर्वाचन आयोग (ECI) की आधिकारिक वेबसाइट नहीं है और आधिकारिक निर्वाचक नामावली में सीधे बदलाव नहीं करती।
+          </p>
+        </div>
+        <div>
+          <h5 data-i18n="dpdp_footer_title">डेटा सुरक्षा एवं DPDP सिद्धांत</h5>
+          <p data-i18n="dpdp_footer_desc">
+            नागरिकों द्वारा साझा की गई जानकारी भारतीय डिजिटल व्यक्तिगत डेटा संरक्षण (DPDP) सिद्धांतों के अनुसार पूर्णतः गोपनीय रखी जाती है।
+          </p>
+        </div>
+      </div>
+
+      <!-- Bottom Footer -->
+      <footer class="footer-bottom-bar">
+        <p data-i18n="copyright">© 2026 सर्च माय वोट (Search My Vote). सर्वाधिकार सुरक्षित।</p>
+        <div class="footer-bottom-links">
+          <a href="/voter-rights" data-i18n="nav_rights">मतदान अधिकार</a>
+          <span>·</span>
+          <a href="/voting-history" data-i18n="nav_history">मतदान इतिहास</a>
+          <span>·</span>
+          <a href="/sir-2026" data-i18n="nav_sir">SIR 2026</a>
+          <span>·</span>
+          <a href="/faq" data-i18n="nav_faq">FAQ</a>
+          <span>·</span>
+          <a href="/login/crm" style="color: #f0b574;">कर्मचारी लॉगिन (CRM)</a>
+        </div>
+      </footer>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="/js/i18n.js"></script>
+</body>
+</html>
