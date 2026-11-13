@@ -166,6 +166,30 @@ body::-webkit-scrollbar {
   gap: 16px;
 }
 
+/* Center Navigation Links */
+.nav-menu-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-menu-item {
+  font-family: var(--dp-typography-reading);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--dp-color-ink);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-menu-item:hover {
+  background: rgba(30, 56, 44, 0.08);
+  color: var(--dp-color-accent);
+}
+
 .lang-switch-pill {
   display: inline-flex;
   align-items: center;
@@ -1291,6 +1315,399 @@ body::-webkit-scrollbar {
 }
 
 /* =========================================================
+   CIVIC KNOWLEDGE & EDUCATIONAL SECTIONS
+   (Rights, Timeline, SIR 2026 Resource Centre, FAQs)
+   ========================================================= */
+.civic-section {
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.civic-card-panel {
+  background: var(--dp-color-panel, #faf8f3);
+  border: var(--dp-border-hairline) solid var(--dp-color-rule);
+  border-radius: 28px;
+  padding: 40px 36px;
+  box-shadow: 0 4px 24px rgba(30, 56, 44, 0.04);
+}
+
+.civic-header {
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.civic-kicker {
+  font-family: var(--dp-typography-reading);
+  font-size: var(--dp-typography-label);
+  font-weight: 700;
+  letter-spacing: var(--dp-typography-label-tracking);
+  text-transform: uppercase;
+  color: var(--dp-color-accent);
+  margin-bottom: 8px;
+}
+
+.civic-title {
+  font-family: var(--dp-typography-display);
+  font-size: clamp(1.75rem, 3vw, 2.35rem);
+  font-weight: 600;
+  color: var(--dp-color-ink);
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+
+.civic-subtitle {
+  font-size: 1.02rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 840px;
+}
+
+/* 3-Column Civic Cards Grid */
+.civic-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-bottom: 24px;
+}
+
+.civic-info-card {
+  background: #ffffff;
+  border: 1px solid var(--dp-color-field-line);
+  border-radius: 18px;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.civic-info-card:hover {
+  transform: translateY(-2px);
+  border-color: #bccbc1;
+  box-shadow: 0 6px 18px rgba(30, 56, 44, 0.06);
+}
+
+.civic-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.civic-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  line-height: 1.2;
+}
+
+.civic-badge.article {
+  background: #e7efe9;
+  color: #1e382c;
+}
+
+.civic-badge.act {
+  background: #fdf3e7;
+  color: #895440;
+}
+
+.civic-badge.remedy {
+  background: #eef2f7;
+  color: #2b567a;
+}
+
+.civic-card-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.civic-info-card h4 {
+  font-family: var(--dp-typography-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--dp-color-ink);
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+
+.civic-info-card p {
+  font-size: 0.92rem;
+  color: #4a5d52;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Civic Amber Alert Box */
+.civic-alert-box {
+  display: flex;
+  gap: 16px;
+  background: #fff8f0;
+  border: 1px solid #ebd9c8;
+  border-left: 4px solid var(--dp-color-accent);
+  border-radius: 14px;
+  padding: 18px 22px;
+  margin-top: 16px;
+  margin-bottom: 24px;
+  align-items: flex-start;
+}
+
+.civic-alert-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.civic-alert-body strong {
+  display: block;
+  font-family: var(--dp-typography-display);
+  font-size: 1.05rem;
+  color: var(--dp-color-accent);
+  margin-bottom: 4px;
+}
+
+.civic-alert-body p {
+  font-size: 0.92rem;
+  color: #5a4b41;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Civic Official Links Bar */
+.civic-official-links-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--dp-color-field-line);
+}
+
+.civic-links-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.civic-links-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.civic-link-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 16px;
+  border-radius: 9999px;
+  background: #ece7da;
+  border: 1px solid var(--dp-color-field-line);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--dp-color-ink);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.civic-link-pill:hover {
+  background: var(--dp-color-ink);
+  color: var(--dp-color-ground);
+  border-color: var(--dp-color-ink);
+  transform: translateY(-1px);
+}
+
+/* History 8-Milestone Timeline Grid */
+.history-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.timeline-milestone-card {
+  background: #ffffff;
+  border: 1px solid var(--dp-color-field-line);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.timeline-milestone-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(30, 56, 44, 0.05);
+}
+
+.timeline-milestone-card.highlight {
+  border: 1.5px solid var(--dp-color-accent);
+  background: #fffdfa;
+}
+
+.milestone-year {
+  font-family: var(--dp-typography-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--dp-color-ink);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.milestone-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #eef2ee;
+  color: #1e382c;
+  align-self: flex-start;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.timeline-milestone-card.highlight .milestone-badge {
+  background: #fde8d7;
+  color: #895440;
+}
+
+.milestone-title {
+  font-family: var(--dp-typography-display);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--dp-color-ink);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.milestone-desc {
+  font-size: 0.88rem;
+  color: #55685d;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* SIR 2026 Resource Panel */
+.sir-resource-panel {
+  border-top: 3px solid var(--dp-color-accent);
+}
+
+.sir-actions-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--dp-color-field-line);
+}
+
+/* FAQ Search & Accordion List */
+.faq-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid var(--dp-color-field-line);
+  border-radius: 14px;
+  padding: 12px 18px;
+  margin-top: 18px;
+  max-width: 620px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.faq-search-wrap svg {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.faq-search-input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--dp-color-ink);
+  outline: none;
+}
+
+.faq-search-input::placeholder {
+  color: #8c9b91;
+}
+
+.faq-accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.faq-accordion-item {
+  background: #ffffff;
+  border: 1px solid var(--dp-color-field-line);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faq-accordion-item[open] {
+  border-color: #b5c7bc;
+  box-shadow: 0 4px 16px rgba(30, 56, 44, 0.04);
+}
+
+.faq-accordion-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  cursor: pointer;
+  font-family: var(--dp-typography-display);
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: var(--dp-color-ink);
+  list-style: none;
+  user-select: none;
+  gap: 18px;
+}
+
+.faq-accordion-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-q-text {
+  flex: 1;
+}
+
+.faq-icon {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--dp-color-accent);
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.faq-accordion-item[open] .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer-content {
+  padding: 0 24px 22px;
+  font-size: 0.96rem;
+  color: #44564c;
+  line-height: 1.65;
+  border-top: 1px solid #f2ede2;
+  padding-top: 16px;
+}
+
+.faq-answer-content p {
+  margin: 0;
+}
+
+/* =========================================================
    CLOSING FOREST-GREEN AREA WITH BROAD CURVED TOP
    ========================================================= */
 .closing-forest-area {
@@ -1337,6 +1754,119 @@ body::-webkit-scrollbar {
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   margin-bottom: 40px;
+}
+
+/* Enhanced 3-Column Footer Resource Grid */
+.footer-resource-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1.2fr 1.2fr;
+  gap: 36px;
+  padding-bottom: 36px;
+  margin-bottom: 36px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-col h5 {
+  font-family: var(--dp-typography-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--dp-color-warm-field);
+  margin-bottom: 14px;
+}
+
+.footer-brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.footer-logo-img {
+  height: 38px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.footer-brand-name {
+  font-family: var(--dp-typography-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.footer-mission-text {
+  font-size: 0.92rem;
+  color: #cedfd9;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.footer-pill-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background: rgba(240, 181, 116, 0.15);
+  color: var(--dp-color-warm-field);
+  border: 1px solid rgba(240, 181, 116, 0.3);
+}
+
+.footer-links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links-list li a {
+  color: #cedfd9;
+  text-decoration: none;
+  font-size: 0.92rem;
+  transition: color 0.2s ease;
+}
+
+.footer-links-list li a:hover {
+  color: var(--dp-color-warm-field);
+  text-decoration: underline;
+}
+
+.footer-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-top: var(--dp-border-hairline) solid var(--dp-color-field-line);
+  padding-top: 24px;
+  font-size: var(--dp-typography-metadata);
+  color: #9ab0a3;
+}
+
+.footer-bottom-bar p {
+  margin: 0;
+}
+
+.footer-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-bottom-links a {
+  color: #cedfd9;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-bottom-links a:hover {
+  color: var(--dp-color-warm-field);
+  text-decoration: underline;
 }
 
 .assurance-card {
@@ -1782,6 +2312,45 @@ body::-webkit-scrollbar {
     grid-template-columns: 1fr;
   }
 
+  .civic-card-panel {
+    padding: 26px 18px;
+    border-radius: 20px;
+  }
+
+  .civic-grid-3 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .history-timeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .footer-resource-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .footer-bottom-bar {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .footer-bottom-links {
+    justify-content: center;
+  }
+
+  .faq-accordion-item summary {
+    padding: 16px 18px;
+    font-size: 0.98rem;
+  }
+
+  .faq-answer-content {
+    padding: 0 18px 16px;
+  }
+
   .modal-box {
     width: 94%;
     max-width: 520px;
@@ -1793,6 +2362,14 @@ body::-webkit-scrollbar {
 @media (max-width: 480px) {
   .feature-grid {
     grid-template-columns: 1fr;
+  }
+
+  .history-timeline-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .civic-title {
+    font-size: 1.5rem;
   }
 
   .botanical-arch-card {

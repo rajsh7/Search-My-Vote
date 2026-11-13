@@ -990,6 +990,24 @@ be accessed with only a phone number.
     }
   });
 
+  // FAQ Live Search Filter
+  const faqSearchInput = document.getElementById('faqSearchInput');
+  const faqList = document.getElementById('faqAccordionList');
+  if (faqSearchInput && faqList) {
+    faqSearchInput.addEventListener('input', (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      const items = faqList.querySelectorAll('.faq-accordion-item');
+      items.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (!q || text.includes(q)) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  }
+
   // Initialize dropdowns on boot
   initDropdowns();
 });
