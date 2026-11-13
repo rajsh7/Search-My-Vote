@@ -15,6 +15,7 @@ const TRANSLATIONS = {
     hero_badge: "लोकतांत्रिक मतदाता अधिकार एवं निर्वाचक नामावली सहायता",
     hero_title_hindi: "आपका वोट.<br><span>आपकी आवाज़.</span>",
     hero_title_sub: "Your Vote is <em>Your Voice.</em>",
+    cta_title: "आपका वोट. आपकी आवाज़.",
     hero_subtitle: "क्या मतदाता सूची (SIR 2026) से आपका नाम गायब है? बिना सूचना नाम हटने या गलत विवरण की गोपनीय शिकायत दर्ज करें।",
     hero_hindi_sub: "अगर आपका नाम मतदाता सूची से हट गया है या रिकॉर्ड में गलत जानकारी है, तो अपनी शिकायत दर्ज करें। लोकदल दस्तावेज़ एकत्र कर कानूनी और लोकतांत्रिक माध्यमों से मुद्दा उठाने का प्रयास करेगा।",
     hero_btn_register: "अपनी शिकायत दर्ज करें ↗",
@@ -284,6 +285,7 @@ const TRANSLATIONS = {
     hero_badge: "Democratic Voter Rights & Electoral Roll Assistance",
     hero_title_hindi: "Your Vote.<br><span>Your Voice.</span>",
     hero_title_sub: "Aapka Vote, <em>Aapki Aawaaz.</em>",
+    cta_title: "Your Vote. Your Voice.",
     hero_subtitle: "Has your name gone missing from the voter list? Notice unexpected deletion or enumeration errors? Register your grievance confidentially.",
     hero_hindi_sub: "If your name was omitted or details were recorded incorrectly during SIR 2026, submit your complaint. Lok Dal compiles documentation for lawful and democratic advocacy.",
     hero_btn_register: "Register your grievance ↗",
@@ -579,11 +581,15 @@ function setLanguage(lang) {
   const dict = TRANSLATIONS[lang];
   if (!dict) return;
 
-  // Update textContent for elements with data-i18n
+  // Update textContent for elements with data-i18n (safely render HTML if tags exist)
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (dict[key] !== undefined) {
-      el.textContent = dict[key];
+      if (typeof dict[key] === 'string' && dict[key].includes('<') && dict[key].includes('>')) {
+        el.innerHTML = dict[key];
+      } else {
+        el.textContent = dict[key];
+      }
     }
   });
 
